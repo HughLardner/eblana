@@ -30,6 +30,7 @@
 def tabData = []
 tabData << [name: 'userinfo', icon: 'icon_user', messageCode: 'spring.security.ui.user.info']
 tabData << [name: 'roles',    icon: 'icon_role', messageCode: 'spring.security.ui.user.roles']
+tabData << [name: 'characters',    icon: 'icon_role', messageCode: 'spring.security.ui.user.roles']
 boolean isOpenId = Holders.pluginManager.hasGrailsPlugin('springSecurityOpenid')
 if (isOpenId) {
 	tabData << [name: 'openIds', icon: 'icon_role', messageCode: 'spring.security.ui.user.openIds']
@@ -41,8 +42,6 @@ if (isOpenId) {
 			<s2ui:tab name='userinfo' height='900'>
 				<table>
 					<tbody>
-
-
 						<g:render template="/secUser/form"
 							model="['secUserInstance': user]" />
 					</tbody>
@@ -56,6 +55,16 @@ if (isOpenId) {
 						<g:link controller='role' action='edit' id='${entry.key.id}'>
 							${entry.key.authority.encodeAsHTML()}
 						</g:link>
+					</div>
+				</g:each>
+			</s2ui:tab>
+			
+			<s2ui:tab name='character' height='900'>
+				<g:each var="character" in="${user.character}">
+					<div>
+						${character}
+						<g:render template="/playerCharacter/showForm"
+							model="['playerCharacterInstance': character]" />
 					</div>
 				</g:each>
 			</s2ui:tab>

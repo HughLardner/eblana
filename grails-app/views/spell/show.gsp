@@ -16,33 +16,29 @@
 	<table class="table">
 		<tbody>
 		
+		<tr class="prop">
+				<td valign="top" class="name"><g:message code="spell.post.label" default="Name" /></td>
+				
+				<td valign="top" class="value"> ${fieldValue(bean: spellInstance, field: "pre")} ${spellInstance?.effect?.encodeAsHTML()} ${fieldValue(bean: spellInstance, field: "post")}</td>
+				
+			</tr>
+			
 			<tr class="prop">
 				<td valign="top" class="name"><g:message code="spell.classes.label" default="Classes" /></td>
 				
-				<td valign="top" class="value"><g:link controller="classes" action="show" id="${spellInstance?.classes?.id}">${spellInstance?.classes?.encodeAsHTML()}</g:link></td>
+				<td valign="top" class="value">${spellInstance?.classes?.encodeAsHTML()}</td>
 				
 			</tr>
 		
 			<tr class="prop">
-				<td valign="top" class="name"><g:message code="spell.effect.label" default="Effect" /></td>
+				<td valign="top" class="name"><g:message code="spell.effect.label" default="Description" /></td>
 				
-				<td valign="top" class="value"><g:link controller="effect" action="show" id="${spellInstance?.effect?.id}">${spellInstance?.effect?.encodeAsHTML()}</g:link></td>
-				
-			</tr>
-		
-			<tr class="prop">
-				<td valign="top" class="name"><g:message code="spell.post.label" default="Post" /></td>
-				
-				<td valign="top" class="value">${fieldValue(bean: spellInstance, field: "post")}</td>
+				<td valign="top" class="value">${spellInstance?.effect?.description}</td>
 				
 			</tr>
 		
-			<tr class="prop">
-				<td valign="top" class="name"><g:message code="spell.pre.label" default="Pre" /></td>
-				
-				<td valign="top" class="value">${fieldValue(bean: spellInstance, field: "pre")}</td>
-				
-			</tr>
+			
+		
 		
 		</tbody>
 	</table>

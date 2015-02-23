@@ -1,6 +1,4 @@
 <style>
-
-
 table {
 	border-collapse: collapse;
 }
@@ -10,44 +8,38 @@ table, td, th {
 	padding: 15px;
 }
 
-.frame{
-padding: 0px;
+.frame {
+	padding: 0px;
 }
 
 div.character {
 	
 }
 
-ul.feat{
-  columns: 2;
-  -webkit-columns: 2;
-  -moz-columns: 2;
+ul.feat {
+	columns: 2;
+	-webkit-columns: 2;
+	-moz-columns: 2;
 }
-
 </style>
 
 <section id="show-playerCharacter" class="first">
 	<div class="character">
-		<table class = "frame" style=" width: 100%; height: 50%">
+		<table class="frame" style="width: 100%; height: 50%">
 			<tr>
 				<td>
 
 					<table style="width: 100%; text-align: left;">
 						<tr>
-							<td><g:message code="playerCharacter.user.label"
-									default="Player: " /> <g:link controller="user" action="show"
-									id="${playerCharacterInstance?.user?.id}">
-									${playerCharacterInstance?.user?.firstName.encodeAsHTML()}
-									${playerCharacterInstance?.user?.surname}
-								</g:link></td>
+							<td>
+								${playerCharacterInstance?.user?.firstName.encodeAsHTML()} ${playerCharacterInstance?.user?.surname}
+							</td>
 							<td><g:message code="playerCharacter.name.label"
 									default="Character: " /> ${fieldValue(bean: playerCharacterInstance, field: "name")}
 							</td>
-							<td><g:message code="playerCharacter.species.label"
-									default="Species: " /> <g:link controller="species"
-									action="show" id="${playerCharacterInstance?.species?.id}">
-									${playerCharacterInstance?.species?.encodeAsHTML()}
-								</g:link></td>
+							<td>
+								${playerCharacterInstance?.species?.encodeAsHTML()}
+							</td>
 						</tr>
 					</table>
 					<table style="width: 100%; text-align: left;">
@@ -70,10 +62,9 @@ ul.feat{
 
 								<ul>
 									<g:each in="${playerCharacterInstance.classes}" var="c">
-										<li><g:link controller="classes" action="show"
-												id="${c?.id}">
-												${c?.encodeAsHTML()}
-											</g:link></li>
+										<li>
+											${c?.encodeAsHTML()}
+										</li>
 									</g:each>
 								</ul></td>
 
@@ -83,7 +74,8 @@ ul.feat{
 								<ul class="feat">
 									<g:each in="${playerCharacterInstance.feat.sort{it.feat.name}}"
 										var="f">
-										<li><g:link controller="feat" action="show" id="${f?.feat?.id}">
+										<li><g:link controller="feat" action="show"
+												id="${f?.feat?.id}">
 												${f?.encodeAsHTML()}
 												${f?.effect}
 											</g:link></li>
@@ -100,7 +92,8 @@ ul.feat{
 									<g:each
 										in="${playerCharacterInstance.spell.sort{it.spell.classes.level}}"
 										var="s">
-										<li><g:link controller="spell" action="show" id="${s?.spell?.id}">
+										<li><g:link controller="spell" action="show"
+												id="${s?.spell?.id}">
 												${s?.encodeAsHTML()}
 												${s?.effect1}
 												${s?.effect2}
@@ -112,9 +105,9 @@ ul.feat{
 
 								<ul>
 									<g:each in="${playerCharacterInstance.lore}" var="l">
-										<li><g:link controller="lore" action="show" id="${l?.id}">
-												${l?.encodeAsHTML()}
-											</g:link></li>
+										<li>
+											${l?.encodeAsHTML()}
+										</li>
 									</g:each>
 								</ul></td>
 						</tr>
