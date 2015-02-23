@@ -21,7 +21,7 @@ environments {
 			pooled = true
 			dbCreate = "update"
 			driverClassName = "com.mysql.jdbc.Driver"
-			url = "jdbc:mysql://aa6f7qp6aotplc.cae1e41aqjjr.us-east-1.rds.amazonaws.com:3306/eblana?user=Eblana&password=Awe6YgHfr"
+			url = "jdbc:mysql://eblana.cae1e41aqjjr.us-east-1.rds.amazonaws.com:3306/eblana?user=Eblana&password=Awe6YgHfr"
 			dialect = org.hibernate.dialect.MySQL5InnoDBDialect
 			properties {
 				validationQuery = "SELECT 1"
@@ -47,7 +47,7 @@ environments {
 			pooled = true
 			dbCreate = "update"
 			driverClassName = "com.mysql.jdbc.Driver"
-			url = "jdbc:mysql://aa6f7qp6aotplc.cae1e41aqjjr.us-east-1.rds.amazonaws.com:3306/eblana?user=Eblana&password=Awe6YgHfr"
+			url = "jdbc:mysql://eblana.cae1e41aqjjr.us-east-1.rds.amazonaws.com:3306/eblana?user=Eblana&password=Awe6YgHfr"
 			dialect = org.hibernate.dialect.MySQL5InnoDBDialect
 			properties {
 				validationQuery = "SELECT 1"
