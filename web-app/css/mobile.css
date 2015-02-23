@@ -1,0 +1,63 @@
+/* Styles for mobile devices */
+
+@media screen and (max-width: 1530px) {
+	.formField {
+		width: 100%;
+	}
+	.formtoleft .form-control {
+		float: right;
+		width: 70%;
+	}
+}
+
+@media screen and (max-width: 1280px) {
+	.logoblock, .logoblock span {
+		width: 100px;
+		height: 100px;
+		font-size: 1em;
+	}
+	
+	#company_basic {
+		margin: 0 0 0 20px;
+	}
+	/*
+	#Menu {
+		width: 40%;
+		float: right;
+	}
+	*/
+	.formtoleft label {
+		width: 20%;
+	}
+	.formtoleft select {
+		width: 330px;
+	}
+}
+@media screen and (max-width: 1160px) {
+	.logoblock {
+		display: none;
+	}
+	
+	#main .half {
+		width: 100%;
+		float: none;
+		clear: both;
+	}
+	
+	#company_basic h1 {
+		width: 270px;
+	}
+	
+	#insidehorizontal {
+		margin-bottom: 30px;
+	}
+	
+	#insidehorizontal ul li {
+		padding: 5px 0px;
+	}
+	
+	#insidehorizontal ul li a, #insidehorizontal ul li a:hover {
+		padding: 8px 10px 9px 10px;
+	}
+	
+}

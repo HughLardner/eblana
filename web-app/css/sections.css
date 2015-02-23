@@ -1,0 +1,411 @@
+/*
+Project Name: Zaphod
+Author: Sean
+Version: alpha
+Started: 21/jul/2014
+*/
+
+
+/* =============== INVESTMENT ADVISOR =========== */
+#top {
+	color: #efefef;
+	background: #000 url("../images/bkg-topcont-issuer.jpg") repeat-x;
+	padding: 20px;
+	width: 100%;
+	height: 200px;
+	margin: 40px 0 0 0;
+}
+	
+.logoblock {
+	display: block;
+	width: 162px;
+	height: 162px;
+	border: 1px solid #000;
+	float: left;
+	margin: 0 0 0 0px;
+	background: rgba(255,255,255,0.5);
+}
+
+.logoblock span {
+	font-size: 1.5em;
+	color: #000;
+	padding: 10px;
+	display: block;
+	margin-top: 0px;
+	font-family: Lato;
+	font-weight: 100;
+	display: table-cell;
+	vertical-align:middle;
+	text-align: center;
+	width: 162px;
+	height: 162px;
+}
+
+#company_basic {
+	float: left;
+	margin: 0 0 0 40px;
+}
+#company_basic h1 {
+	border-bottom: 1px solid #696969;
+	font-size: 30px;
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+}
+#company_basic span { color: #c9c9c9; }
+#company_basic .button { margin-top: 30px; }
+#company_detail {
+	float: right;
+	padding: 0;
+	margin: 0 40px 0 0;
+	width: 300px;
+}
+
+#company_detail ul { width: 300px; }
+#company_detail ul li {
+	display: inline-block;
+	height: 20px;
+	margin-bottom: 20px;
+	overflow: hidden;
+}
+
+#company_detail ul .detail_info { width: 200px; }
+
+#subpage_assets, #subpage_activities, #subpage_affiliations, #subpage_clienttrans, #subpage_disclosure { display: none; }
+
+.icocal {
+	background: url("../images/ico-cal.png") no-repeat;
+	display: block;
+	width: 32px;
+	height: 32px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.icocal span {
+	font-size: 0.7em;
+	text-transform: uppercase;
+	text-align: center;
+	padding: 16px 0 0 6px;
+	overflow: hidden;
+	display: block;
+	width: 27px;
+}
+
+/* =============== PETITION (create) =========== */
+
+div.media {
+	width: 600px;
+	height: 849px;
+	position: fixed;
+	display: block;
+	float: left;
+	margin-top: 0px;
+}
+
+
+.formArea {
+	width: 49%;
+	margin-bottom: 30px;
+}
+
+.formArea:nth-child(odd) { float: left; }
+
+.formArea:nth-child(even) { float: right; }
+
+.form-actions {
+	padding-top: 0;
+	clear: both;
+}
+
+.formArea input[type=file] { padding-top: 10px; }
+
+.form-actions .btn[type="reset"] { float: right; }
+
+.newhidden .formField {
+	border: 0;
+	clear: both;
+	float: none !important;
+	margin-bottom: 10px;
+	height: 55px;
+}
+
+.newhidden .formField label { padding-bottom: 5px; }
+
+.newhidden {
+	margin-top: 15px;
+	padding-bottom: 10px;
+}
+
+.formtoleft {
+	margin-left: 620px;
+	padding: 0px;
+}
+
+.formField {
+	border-bottom: 1px solid #d5d5d5;
+	width: 45%;
+	min-width: 330px;
+	padding: 10px 0;
+	display: block;
+}
+
+.formField:nth-child(odd) {
+	float: left;
+	margin: 0 0 10px 0;
+	clear: left;
+}
+
+.formField:nth-child(even) {
+	float: right;
+	margin: 0px;
+	clear: right;
+}
+
+.formtoleft input[type=number]::-webkit-inner-spin-button, 
+.formtoleft input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.formtoleft .form-pagenumber {
+	float: right;
+	width: 20px;
+	border: 1px solid #bbb;
+	color: #666;
+	padding: 4px 0px;
+	text-align: center;
+	background: #ddd;
+	border-radius: 4px;
+	font-size: 0.8em;
+	display: block;
+	position: relative !important;
+	clear: right;
+	margin-top: -29px;
+}
+
+.formtoleft label {
+	float: left;
+	padding: 0 !important;
+	margin-top: 5px !important;
+	width: 30%;
+	text-align: left !important;
+}
+
+.formtoleft .form-control {
+	float: right;
+	width: 60%;
+}
+
+.formtoleft .formField input[type=button] {
+	background: #428bca;
+	color: #fff;
+	padding: 8px;
+	border-radius: 4px;
+	float: right;
+	border: 1px solid #26568d;
+}
+
+.btn-group { 
+	float: right;
+	width: 82px;
+	margin: 0;
+}
+.formtoleft .form-control, .btn-group, input[type=button] { margin-right: 25px; }
+
+.formField_inside .formField {
+	width: 100%;
+	margin: 0;
+	padding: 0 !important;
+}
+
+.formField_inside .formField label { width: 35%; }
+.formField_inside .formField .form-control {
+	margin: 0;
+	margin-top: 0px;
+	width: 60% !important;
+}
+
+.formField span img {
+	float: left;
+	margin-top: -30px;
+}
+
+.many-to-many {
+	width: 100%;
+}
+
+.formField_inside:first-child {
+	margin: 25px 0 0 0;
+}
+
+.formField_inside {
+	padding: 0;
+	margin: 0px 0 0 0;
+}
+
+.form-create-detail {
+	display: block;
+	clear: both;
+	text-align: left;
+	margin: 20px 0 30px 620px;
+}
+
+.prop:nth-child(even) td { background: #dfdfdf; }
+.prop td { padding: 10px !important;}
+.prop td.name { font-weight: bold; }
+
+#companyList div {
+	clear: both;
+	margin-bottom: 50px;
+}
+/* ================== HOME ================== */
+.w_big {
+	width: 100%;
+	max-width: 500px;
+	margin: 40px auto;
+}
+
+a.w_bigbutton {
+	display: block;
+	background: #179dfb;
+	width: 45%;
+	height: 150px;
+	color: #fff;
+	text-align: center;
+	font-size: 2em;
+	text-decoration: none;
+	padding-top: 55px;
+	border: 1px solid #1374bf;
+	border-radius: 10px;
+	transition: background 0.3s, border 0.3s;
+}
+
+a.w_bigbutton:hover { 
+	background: #1374bf; 
+	border: 1px solid #179dfb; 
+}
+
+a.w_left { float: left; }
+a.w_right { float: right; }
+
+/* ============ CASE UPDATE =========== */
+/* (REFACTORING NEEDED) */
+#navcontainer {
+	display: none
+}
+#navcontainer {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  line-height: 1;
+}
+#navcontainer ul, #navcontainer ul li, #navcontainer ul ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#navcontainer ul {
+  position: relative;
+  z-index: 597;
+  float: left;
+  background: #464646;
+}
+
+#navcontainer ul li {
+  float: left;
+  min-height: 1px;
+  line-height: 1em;
+  vertical-align: middle;
+  position: relative;
+}
+#navcontainer ul li.hover, #navcontainer ul li:hover {
+  position: relative;
+  z-index: 599;
+  cursor: default;
+}
+#navcontainer ul ul {
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  left: 0px;
+  z-index: 598;
+  width: 100%;
+}
+#navcontainer ul ul li {
+  float: none;
+}
+#navcontainer ul ul ul {
+  top: -2px;
+  right: 0;
+}
+#navcontainer ul li:hover > ul {
+  visibility: visible;
+}
+#navcontainer ul ul {
+  top: 1px;
+  left: 99%;
+}
+#navcontainer ul li {
+  float: none;
+}
+#navcontainer ul ul {
+  margin-top: -1px;
+}
+
+/* Custom CSS Styles */
+#navcontainer {
+  width: 300px;
+  background: #464646;
+  zoom: 1;
+}
+
+#navcontainer a {
+  display: block;
+  padding: 15px 20px;
+  color: #ffffff;
+  text-decoration: none;
+}
+#navcontainer > ul, #navcontainer ul ul {
+  width: 300px;
+}
+
+#navcontainer > ul > li > a, #navcontainer ul ul a, #navcontainer ul ul a:hover, #navcontainer ul ul li:hover > a {
+  color: #ffffff;
+}
+#navcontainer > ul > li > a:hover {
+  color: #ffffff;
+  background: #1374bf;
+}
+#navcontainer > ul > li.active a, #navcontainer > ul > li a:hover, #navcontainer > ul > li:hover a {
+  background: #179dfb;
+}
+
+#navcontainer li {
+  position: relative;
+}
+
+#navcontainer.align-right {
+  float: right;
+}
+#navcontainer.align-right li {
+  text-align: right;
+}
+
+#navcontainer.align-right ul ul {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  z-index: 598;
+  width: 100%;
+}
+
+#navcontainer a:hover {
+  background: #1374bf !important;
+  color: #ffffff;
+}
+
+#navcontainer ul ul {
+margin-left: 3px;
+}
+
+
