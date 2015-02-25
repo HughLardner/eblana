@@ -13,10 +13,18 @@ This menu is used to show function that can be triggered on the content (an obje
 		<g:set var="entityName"
 			value="${message(code: params.controller+'.label', default: params.controller.substring(0,1).toUpperCase() + params.controller.substring(1).toLowerCase())}" />
 		<sec:ifAllGranted roles="ROLE_ADMIN">
+			<li class="${ params.action == "list" ? 'active' : '' }"><g:link
+					action="list">
+					<i class="glyphicon glyphicon-th-list"></i>
+					<g:message code="default.list.label" args="[entityName]" />
+				</g:link></li>
+			<li class="${ params.action == "create" ? 'active' : '' }"><g:link
+					action="create">
+					<i class="glyphicon glyphicon-plus"></i>
+					<g:message code="default.new.label" args="[entityName]" />
+				</g:link></li>
 			<li class=""><g:link controller="user">Admin</g:link></li>
 			<li class=""><g:render template="/_common/modals/deleteTextLink" />
-			</li>
-
 		</sec:ifAllGranted>
 		<g:if
 			test="${ params.action == 'show' || params.action == 'edit' || params.action == 'showLogin'}">

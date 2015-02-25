@@ -17,13 +17,17 @@
 		<thead>
 			<tr>
 			
-				<th><g:message code="item.duration.label" default="Duration" /></th>
+				<g:sortableColumn property="attunementTime" title="${message(code: 'item.attunementTime.label', default: 'Attunement Time')}" />
+			
+				<g:sortableColumn property="convertedCrystalCost" title="${message(code: 'item.convertedCrystalCost.label', default: 'Converted Crystal Cost')}" />
+			
+				<g:sortableColumn property="curseCure" title="${message(code: 'item.curseCure.label', default: 'Curse Cure')}" />
+			
+				<g:sortableColumn property="duration" title="${message(code: 'item.duration.label', default: 'Duration')}" />
+			
+				<g:sortableColumn property="internalNotes" title="${message(code: 'item.internalNotes.label', default: 'Internal Notes')}" />
 			
 				<g:sortableColumn property="name" title="${message(code: 'item.name.label', default: 'Name')}" />
-			
-				<g:sortableColumn property="singleUse" title="${message(code: 'item.singleUse.label', default: 'Single Use')}" />
-			
-				<g:sortableColumn property="type" title="${message(code: 'item.type.label', default: 'Type')}" />
 			
 			</tr>
 		</thead>
@@ -31,13 +35,17 @@
 		<g:each in="${itemInstanceList}" status="i" var="itemInstance">
 			<tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 			
-				<td><g:link action="show" id="${itemInstance.id}">${fieldValue(bean: itemInstance, field: "duration")}</g:link></td>
+				<td><g:link action="show" id="${itemInstance.id}">${fieldValue(bean: itemInstance, field: "attunementTime")}</g:link></td>
+			
+				<td>${fieldValue(bean: itemInstance, field: "convertedCrystalCost")}</td>
+			
+				<td>${fieldValue(bean: itemInstance, field: "curseCure")}</td>
+			
+				<td>${fieldValue(bean: itemInstance, field: "duration")}</td>
+			
+				<td>${fieldValue(bean: itemInstance, field: "internalNotes")}</td>
 			
 				<td>${fieldValue(bean: itemInstance, field: "name")}</td>
-			
-				<td><g:formatBoolean boolean="${itemInstance.singleUse}" /></td>
-			
-				<td>${fieldValue(bean: itemInstance, field: "type")}</td>
 			
 			</tr>
 		</g:each>
