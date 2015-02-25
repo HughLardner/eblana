@@ -109,7 +109,7 @@ environments {
     }
     production {
         grails.logging.jul.usebridge = false
-        grails.serverURL = "http://default-environment-gycpncbcmv.elasticbeanstalk.com"
+        grails.serverURL = "http://eblana.herokuapp.com/"
     }
 }
 
@@ -146,6 +146,7 @@ grails.plugin.springsecurity.ui.password.minLength=8
 grails.plugin.springsecurity.ui.password.maxLength=64
 grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/secUser/showLogin'
+grails.plugin.springsecurity.logout.afterLogoutUrl = '/'
 //grails.plugin.springsecurity.securityConfigType = 'Requestmap'
 grails.plugin.springsecurity.interceptUrlMap = [
     '/':                              ['permitAll'],
