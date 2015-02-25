@@ -23,7 +23,7 @@
 			<g:hiddenField name="version" value="${secUserInstance?.version}" />
 			<g:hiddenField name="_method" value="PUT" />
 			
-			<g:render template="form"/>
+			<g:render template="formUser"/>
 			
 			<div class="form-actions margin-top-medium">
 				<g:actionSubmit class="btn btn-primary" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
