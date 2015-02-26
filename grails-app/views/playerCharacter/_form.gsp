@@ -15,7 +15,7 @@
 				code="playerCharacter.user.label" default="User" /></label>
 		<div>
 			<g:select class="form-control" id="user" name="user.id"
-				from="${eblana.users.User.list()}" optionKey="id"
+				from="${eblana.users.SecUser.list()}" optionKey="id"
 				value="${playerCharacterInstance?.user?.id}" class="many-to-one"
 				noSelection="['null': '']" />
 			<span class="help-inline"> ${hasErrors(bean: playerCharacterInstance, field: 'user', 'error')}
@@ -284,6 +284,20 @@
 			<g:field class="form-control" name="voidCrystals" type="number"
 				value="${playerCharacterInstance.voidCrystals}" />
 			<span class="help-inline"> ${hasErrors(bean: playerCharacterInstance, field: 'voidCrystals', 'error')}
+			</span>
+		</div>
+	</div>
+	
+	<div
+		class="${hasErrors(bean: playerCharacterInstance, field: 'item', 'error')} formField">
+		<label for="item" class="control-label"><g:message
+				code="playerCharacter.item.label" default="Items" /></label>
+		<div>
+			<g:select class="form-control" id="item" name="item.id"
+				from="${eblana.items.Item.list()}" optionKey="id"
+				value="${playerCharacterInstance?.item?.id}" class="many-to-many"
+				noSelection="['null': '']" />
+			<span class="help-inline"> ${hasErrors(bean: playerCharacterInstance, field: 'item', 'error')}
 			</span>
 		</div>
 	</div>

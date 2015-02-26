@@ -139,4 +139,15 @@ ul.feat {
 		</table>
 	</div>
 
+	<div>
+
+		<g:each
+			in="${playerCharacterInstance.item}"
+			var="i">
+			
+			<g:render template="/item/showTemplate"
+			model="['itemInstance': i]" />
+			</g:each>
+	</div>
+
 </section>
