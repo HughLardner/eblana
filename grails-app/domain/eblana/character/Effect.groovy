@@ -9,5 +9,7 @@ class Effect {
 	
 	static mapping = {
 		sort "name"
+		description type:"text"
+		
 	}
 }

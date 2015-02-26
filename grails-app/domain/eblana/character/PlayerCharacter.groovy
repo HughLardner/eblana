@@ -1,11 +1,11 @@
 package eblana.character
 
-import eblana.users.User
 import eblana.background.God
 import eblana.background.Group
 import eblana.background.Settlement
 import eblana.items.Item
 import eblana.items.Recipe
+import eblana.users.SecUser
 
 class PlayerCharacter {
 
@@ -24,7 +24,7 @@ class PlayerCharacter {
 	
 	static hasMany = [classes : Classes, feat : CharacterFeat, spell : CharacterSpell, lore : Lore, item : Item, recipe : Recipe]
 	
-	static belongsTo = [user : User, group : Group, settlement : Settlement, god : God]
+	static belongsTo = [user : SecUser, group : Group, settlement : Settlement, god : God]
 	
 	String toString(){
 		return name

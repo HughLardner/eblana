@@ -61,7 +61,7 @@ ul.feat {
 									default="Classes: " />
 
 								<ul>
-									<g:each in="${playerCharacterInstance.classes}" var="c">
+									<g:each in="${playerCharacterInstance?.classes}" var="c">
 										<li>
 											${c?.encodeAsHTML()}
 										</li>
@@ -72,7 +72,7 @@ ul.feat {
 									default="Feat: " />
 
 								<ul class="feat">
-									<g:each in="${playerCharacterInstance.feat.sort{it.feat.name}}"
+									<g:each in="${playerCharacterInstance?.feat?.sort{it.feat.name}}"
 										var="f">
 										<li><g:link controller="feat" action="show"
 												id="${f?.feat?.id}">
@@ -90,7 +90,7 @@ ul.feat {
 
 								<ul>
 									<g:each
-										in="${playerCharacterInstance.spell.sort{it.spell.classes.level}}"
+										in="${playerCharacterInstance?.spell?.sort{it.spell?.classes?.level}}"
 										var="s">
 										<li><g:link controller="spell" action="show"
 												id="${s?.spell?.id}">
@@ -104,7 +104,7 @@ ul.feat {
 									default="Lores: " />
 
 								<ul>
-									<g:each in="${playerCharacterInstance.lore}" var="l">
+									<g:each in="${playerCharacterInstance?.lore}" var="l">
 										<li>
 											${l?.encodeAsHTML()}
 										</li>
@@ -142,7 +142,7 @@ ul.feat {
 	<div>
 
 		<g:each
-			in="${playerCharacterInstance.item}"
+			in="${playerCharacterInstance?.item}"
 			var="i">
 			
 			<g:render template="/item/showTemplate"

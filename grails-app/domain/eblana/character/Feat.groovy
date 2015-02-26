@@ -15,6 +15,7 @@ class Feat {
 	
 	static mapping = {
 		sort "name"
+		description type:"text"
 	}
 	
 }
