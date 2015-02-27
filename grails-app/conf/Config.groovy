@@ -51,6 +51,10 @@ grails.mime.types = [ // the first one is the default format
 		'application/xml']
 ]
 
+grails.gorm.default.mapping = {
+	version false
+}
+
 // URL Mapping Cache Max Size, defaults to 5000
 //grails.urlmapping.cache.maxsize = 1000
 
