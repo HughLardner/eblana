@@ -112,11 +112,14 @@
 		
 			<g:each in="${secUserInstance?.character}" status="i"
 					var="playerCharacterInstance">
+					<g:if test = "${playerCharacterInstance.alive}">
+					
 					<div>
 						<label for="chracter" class="control-label"> </label>
 						<g:render template="/playerCharacter/showForm"
 							model="['playerCharacterInstance': playerCharacterInstance]" />
 					</div>
+					</g:if>
 				</g:each>
 	</section>
 
