@@ -145,7 +145,7 @@ grails.plugin.springsecurity.authority.className = 'eblana.users.SecRole'
 grails.plugin.springsecurity.password.algorithm='bcrypt'
 //grails.plugin.springsecurity.rejectIfNoRule = false
 //grails.plugin.springsecurity.fii.rejectPublicInvocations = false
-grails.plugin.springsecurity.ui.password.validationRegex='^([a-zA-Z0-9@*#_%])*$'
+grails.plugin.springsecurity.ui.password.validationRegex='(?=^.{7,}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s)[0-9a-zA-Z!@#$%^&*()]*$'
 grails.plugin.springsecurity.ui.password.minLength=8
 grails.plugin.springsecurity.ui.password.maxLength=64
 grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
@@ -173,8 +173,8 @@ grails {
 	mail {
 	  host = "smtp.gmail.com"
 	  port = 465
-	  username = "hughlardner@gmail.com"
-	  password = "mo8YevUs\""
+	  username = "eblanaautomated@gmail.com"
+	  password = "Awe6YgHfr"
 	  props = ["mail.smtp.auth":"true",
 			   "mail.smtp.socketFactory.port":"465",
 			   "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",

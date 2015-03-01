@@ -1,26 +1,11 @@
 <%@ page import="eblana.users.SecUser"%>
 
-
-
-<div
-	class="${hasErrors(bean: secUserInstance, field: 'username', 'error')} ">
-	<label for="username" class="control-label"><g:message
-			code="secUser.username.label" default="Username" /></label>
-	<div>
-		<g:textField class="form-control" name="username"
-			value="${secUserInstance?.username}" />
-		<span class="help-inline">
-			${hasErrors(bean: secUserInstance, field: 'username', 'error')}
-		</span>
-	</div>
-</div>
-
 <div
 	class="${hasErrors(bean: secUserInstance, field: 'firstName', 'error')} ">
 	<label for="firstName" class="control-label"><g:message
 			code="secUser.firstName.label" default="First Name" /></label>
 	<div>
-		<g:textField class="form-control" name="firstName"
+		<g:textField class="form-control" name="firstName" required="true"
 			value="${secUserInstance?.firstName}" />
 		<span class="help-inline">
 			${hasErrors(bean: secUserInstance, field: 'firstName', 'error')}
@@ -33,23 +18,10 @@
 	<label for="surname" class="control-label"><g:message
 			code="secUser.surname.label" default="Surname" /></label>
 	<div>
-		<g:textField class="form-control" name="surname"
+		<g:textField class="form-control" name="surname"  required="true"
 			value="${secUserInstance?.surname}" />
 		<span class="help-inline">
 			${hasErrors(bean: secUserInstance, field: 'surname', 'error')}
-		</span>
-	</div>
-</div>
-
-<div
-	class="${hasErrors(bean: secUserInstance, field: 'email', 'error')} ">
-	<label for="email" class="control-label"><g:message
-			code="secUser.email.label" default="Email" /></label>
-	<div>
-		<g:textField class="form-control" name="email"
-			value="${secUserInstance?.email}" />
-		<span class="help-inline">
-			${hasErrors(bean: secUserInstance, field: 'email', 'error')}
 		</span>
 	</div>
 </div>
@@ -83,9 +55,9 @@
 <div
 	class="${hasErrors(bean: secUserInstance, field: 'emergancyContact', 'error')} ">
 	<label for="emergancyContact" class="control-label"><g:message
-			code="secUser.emergancyContact.label" default="Emergancy Contact" /></label>
+			code="secUser.emergancyContact.label" default="Emergancy Contact Name" /></label>
 	<div>
-		<g:textField class="form-control" name="emergancyContact"
+		<g:textField class="form-control" name="emergancyContact"  required="true"
 			value="${secUserInstance?.emergancyContact}" />
 		<span class="help-inline">
 			${hasErrors(bean: secUserInstance, field: 'emergancyContact', 'error')}
@@ -99,7 +71,7 @@
 			code="secUser.emergancyContactNumber.label"
 			default="Emergancy Contact Number" /></label>
 	<div>
-		<g:textField class="form-control" name="emergancyContactNumber"
+		<g:textField class="form-control" name="emergancyContactNumber"  required="true"
 			value="${secUserInstance?.emergancyContactNumber}" />
 		<span class="help-inline">
 			${hasErrors(bean: secUserInstance, field: 'emergancyContactNumber', 'error')}
