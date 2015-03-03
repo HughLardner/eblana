@@ -51,7 +51,7 @@ class EventController {
 		
 		def c = PlayerCharacter.findAllByAlive(true)
 		for (int i = 0; i < c.size(); i++){
-			def ce = new CharacterEvent()
+			def ce = new Downtime()
 			ce.character = c[i]
 			eventInstance.characterEvent.add(ce)
 		}
