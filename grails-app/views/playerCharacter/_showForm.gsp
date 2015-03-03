@@ -161,7 +161,7 @@ ul.feat {
 <h2> Downtimes</h2>
 		<g:each in="${playerCharacterInstance?.downtime}" var="i">
 
-			<g:render template="/characterEvent/downtime" model="['instance': i]" />
+			<g:render template="/downtime/downtime" model="['instance': i]" />
 		</g:each>
 	</div>
 
