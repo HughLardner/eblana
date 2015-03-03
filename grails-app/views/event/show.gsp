@@ -22,7 +22,7 @@
 				<td valign="top" style="text-align: left;" class="value">
 					<ul>
 					<g:each in="${eventInstance.characterEvent}" var="c">
-						<li><g:link controller="characterEvent" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></li>
+						<li><g:link controller="downtime" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></li>
 					</g:each>
 					</ul>
 				</td>

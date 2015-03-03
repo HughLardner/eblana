@@ -10,7 +10,6 @@ td.name {
 	<table class="frame">
 		<tr>
 			<td>
-
 				<table class="body">
 
 					<tr class="prop">

@@ -5,34 +5,34 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 /**
- * CharacterEventController
+ * DowntimeController
  * A controller class handles incoming web requests and performs actions such as redirects, rendering views and so on.
  */
 @Transactional(readOnly = true)
-class CharacterEventController {
+class DowntimeController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
 	def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond CharacterEvent.list(params), model:[characterEventInstanceCount: CharacterEvent.count()]
+        respond Downtime.list(params), model:[characterEventInstanceCount: Downtime.count()]
     }
 
 	def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond CharacterEvent.list(params), model:[characterEventInstanceCount: CharacterEvent.count()]
+        respond Downtime.list(params), model:[characterEventInstanceCount: Downtime.count()]
     }
 
-    def show(CharacterEvent characterEventInstance) {
+    def show(Downtime characterEventInstance) {
         respond characterEventInstance
     }
 
     def create() {
-        respond new CharacterEvent(params)
+        respond new Downtime(params)
     }
 
     @Transactional
-    def save(CharacterEvent characterEventInstance) {
+    def save(Downtime characterEventInstance) {
         if (characterEventInstance == null) {
             notFound()
             return
@@ -47,19 +47,19 @@ class CharacterEventController {
 
         request.withFormat {
             form {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'characterEventInstance.label', default: 'CharacterEvent'), characterEventInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'characterEventInstance.label', default: 'Downtime'), characterEventInstance.id])
                 redirect characterEventInstance
             }
             '*' { respond characterEventInstance, [status: CREATED] }
         }
     }
 
-    def edit(CharacterEvent characterEventInstance) {
+    def edit(Downtime characterEventInstance) {
         respond characterEventInstance
     }
 
     @Transactional
-    def update(CharacterEvent characterEventInstance) {
+    def update(Downtime characterEventInstance) {
         if (characterEventInstance == null) {
             notFound()
             return
@@ -74,7 +74,7 @@ class CharacterEventController {
 
         request.withFormat {
             form {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'CharacterEvent.label', default: 'CharacterEvent'), characterEventInstance.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Downtime.label', default: 'Downtime'), characterEventInstance.id])
                 redirect characterEventInstance
             }
             '*'{ respond characterEventInstance, [status: OK] }
@@ -82,7 +82,7 @@ class CharacterEventController {
     }
 
     @Transactional
-    def delete(CharacterEvent characterEventInstance) {
+    def delete(Downtime characterEventInstance) {
 
         if (characterEventInstance == null) {
             notFound()
@@ -93,7 +93,7 @@ class CharacterEventController {
 
         request.withFormat {
             form {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'CharacterEvent.label', default: 'CharacterEvent'), characterEventInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Downtime.label', default: 'Downtime'), characterEventInstance.id])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
@@ -103,7 +103,7 @@ class CharacterEventController {
     protected void notFound() {
         request.withFormat {
             form {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'characterEventInstance.label', default: 'CharacterEvent'), params.id])
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'characterEventInstance.label', default: 'Downtime'), params.id])
                 redirect action: "index", method: "GET"
             }
             '*'{ render status: NOT_FOUND }

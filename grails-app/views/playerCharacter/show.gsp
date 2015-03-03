@@ -20,7 +20,7 @@
 					<td valign="top" class="name"><g:message
 							code="playerCharacter.user.label" default="User" /></td>
 
-					<td valign="top" class="value"><g:link controller="user"
+					<td valign="top" class="value"><g:link controller="secUser"
 							action="show" id="${playerCharacterInstance?.user?.id}">
 							${playerCharacterInstance?.user?.firstName.encodeAsHTML()} ${playerCharacterInstance?.user?.surname}
 						</g:link></td>
