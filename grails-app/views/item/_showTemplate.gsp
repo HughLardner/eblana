@@ -1,68 +1,75 @@
-
 <%@ page import="eblana.items.Item"%>
 
-
+<style>
+td.name {
+	width: 15%;
+}
+</style>
 <section id="show-item" class="first">
 
-	<table class="table">
-		<tbody>
+	<table class="frame">
+		<tr>
+			<td>
 
-			<tr class="prop">
-				<td valign="top" class="name"><g:message code="item.name.label"
-						default="Name" /></td>
+				<table class="body">
 
-				<td valign="top" class="value">
-					${fieldValue(bean: itemInstance, field: "name")}
-				</td>
+					<tr class="prop">
+						<td valign="top" class="name"><g:message
+								code="item.name.label" default="Name" /></td>
 
-			</tr>
+						<td valign="top" class="value">
+							${fieldValue(bean: itemInstance, field: "name")}
+						</td>
 
-			<tr class="prop">
-				<td valign="top" class="name"><g:message code="item.type.label"
-						default="Type" /></td>
+					</tr>
 
-				<td valign="top" class="value">
-					${fieldValue(bean: itemInstance, field: "type")}
-				</td>
+					<tr class="prop">
+						<td valign="top" class="name"><g:message
+								code="item.type.label" default="Type" /></td>
 
-			</tr>
+						<td valign="top" class="value">
+							${fieldValue(bean: itemInstance, field: "type")}
+						</td>
 
-			<tr class="prop">
-				<td valign="top" class="name"><g:message
-						code="item.power1.label" default="Power" /></td>
+					</tr>
 
-				<td valign="top" class="value">
-					${fieldValue(bean: itemInstance, field: "power1")} ${fieldValue(bean: itemInstance, field: "power2")}
-				</td>
+					<tr class="prop">
+						<td valign="top" class="name"><g:message
+								code="item.power1.label" default="Power" /></td>
 
-			</tr>
+						<td valign="top" class="value">
+							${fieldValue(bean: itemInstance, field: "power1")} ${fieldValue(bean: itemInstance, field: "power2")}
+						</td>
 
-			<tr class="prop">
-				<td valign="top" class="name"><g:message
-						code="item.attunementTime.label" default="Attunement Time" /></td>
+					</tr>
 
-				<td valign="top" class="value">
-					${fieldValue(bean: itemInstance, field: "attunementTime")}
-				</td>
+					<tr class="prop">
+						<td valign="top" class="name"><g:message
+								code="item.attunementTime.label" default="Attunement Time" /></td>
 
-			</tr>
+						<td valign="top" class="value">
+							${fieldValue(bean: itemInstance, field: "attunementTime")}
+						</td>
 
-			<tr class="prop">
-				<td valign="top" class="name"><g:message
-						code="item.duration.label" default="Duration" /></td>
+					</tr>
 
-				<td valign="top" class="value">
-					${fieldValue(bean: itemInstance, field: "duration")}
-				</td>
+					<tr class="prop">
+						<td valign="top" class="name"><g:message
+								code="item.duration.label" default="Duration" /></td>
 
-			</tr>
+						<td valign="top" class="value">
+							${fieldValue(bean: itemInstance, field: "duration")}
+						</td>
+
+					</tr>
 
 
 
-		</tbody>
+					</tbody>
+				</table>
+
+			</td>
+		</tr>
 	</table>
 </section>
 
-</body>
-
-</html>

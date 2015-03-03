@@ -4,9 +4,8 @@ class Event {
 	String name
 	Date date
 	Integer eventNumber
-	List characterEvent = new ArrayList<CharacterEvent>()
-	
-	static hasMany = [characterEvent : CharacterEvent]
+	Boolean downtimeDone
+
 	
 	String toString(){
 		return "Event " + eventNumber + " : " + name

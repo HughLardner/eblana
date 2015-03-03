@@ -3,9 +3,9 @@ package eblana.event
 import eblana.character.PlayerCharacter
 import eblana.items.Item
 
-class CharacterEvent {
+class Downtime {
 
-	PlayerCharacter character
+	Event event
 	String research, researchResources, researchMethod
 	Integer	researchScore
 	String	headOfRulesResponse, headOfPlotResponse, headOfGameComments, finalDecision
@@ -13,7 +13,7 @@ class CharacterEvent {
 	List item = new ArrayList<Item>()
 	
 	static hasMany = [item : Item]
-	static belongsTo = [event : Event]
+	static belongsTo = [character : PlayerCharacter]
 	
 	static mapping = {
    research type: 'text'

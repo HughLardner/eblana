@@ -6,10 +6,15 @@ table {
 table, td, th {
 	border: 1px solid black;
 	padding: 15px;
+	table-layout: fixed;
 }
 
 .frame {
-	padding: 0px;
+	padding: 10px;
+	width: 95%; height: 50%"
+}
+.body{
+width: 100%; text-align: left;
 }
 
 div.character {
@@ -25,11 +30,12 @@ ul.feat {
 
 <section id="show-playerCharacter" class="first">
 	<div class="character">
-		<table class="frame" style="width: 100%; height: 50%">
+	<h2> Character</h2>
+		<table class="frame" >
 			<tr>
 				<td>
 
-					<table style="width: 100%; text-align: left;">
+					<table class="body">
 						<tr>
 							<td>
 								${playerCharacterInstance?.user?.firstName.encodeAsHTML()} ${playerCharacterInstance?.user?.surname}
@@ -72,7 +78,8 @@ ul.feat {
 									default="Feat: " />
 
 								<ul class="feat">
-									<g:each in="${playerCharacterInstance?.feat?.sort{it.feat.name}}"
+									<g:each
+										in="${playerCharacterInstance?.feat?.sort{it.feat.name}}"
 										var="f">
 										<li><g:link controller="feat" action="show"
 												id="${f?.feat?.id}">
@@ -140,14 +147,22 @@ ul.feat {
 	</div>
 
 	<div>
+<br>
+<h2> Items</h2>
+		<g:each in="${playerCharacterInstance?.item}" var="i">
 
-		<g:each
-			in="${playerCharacterInstance?.item}"
-			var="i">
+			<g:render template="/item/showTemplate" model="['itemInstance': i]" />
 			
-			<g:render template="/item/showTemplate"
-			model="['itemInstance': i]" />
-			</g:each>
+		</g:each>
+	</div>
+
+	<div>
+<br>
+<h2> Downtimes</h2>
+		<g:each in="${playerCharacterInstance?.downtime}" var="i">
+
+			<g:render template="/characterEvent/downtime" model="['instance': i]" />
+		</g:each>
 	</div>
 
 </section>
