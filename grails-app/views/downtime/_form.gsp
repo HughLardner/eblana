@@ -1,4 +1,4 @@
-<%@ page import="eblana.event.CharacterEvent" %>
+<%@ page import="eblana.event.Downtime" %>
 
 
 

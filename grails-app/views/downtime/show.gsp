@@ -1,12 +1,12 @@
 
-<%@ page import="eblana.event.CharacterEvent"%>
+<%@ page import="eblana.event.Downtime"%>
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta name="layout" content="kickstart" />
 <g:set var="entityName"
-	value="${message(code: 'characterEvent.label', default: 'CharacterEvent')}" />
+	value="${message(code: 'characterEvent.label', default: 'Downtime')}" />
 <title><g:message code="default.show.label" args="[entityName]" /></title>
 </head>
 
