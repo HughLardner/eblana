@@ -149,7 +149,7 @@ ul.feat {
 	<div>
 <br>
 <h2> Items</h2>
-		<g:each in="${playerCharacterInstance?.item}" var="i">
+		<g:each in="${playerCharacterInstance?.item.sort{ it.duration}}" var="i">
 
 			<g:render template="/item/showTemplate" model="['itemInstance': i]" />
 			
@@ -159,9 +159,11 @@ ul.feat {
 	<div>
 <br>
 <h2> Downtimes</h2>
-		<g:each in="${playerCharacterInstance?.downtime}" var="i">
+
+		<g:each in="${playerCharacterInstance?.downtime.sort{ it.event.toString()}.reverse()}" var="i">
 
 			<g:render template="/downtime/downtime" model="['instance': i]" />
+			<br>
 		</g:each>
 	</div>
 
