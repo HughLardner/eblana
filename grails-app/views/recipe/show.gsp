@@ -24,6 +24,20 @@
 			</tr>
 		
 			<tr class="prop">
+				<td valign="top" class="name"><g:message code="recipe.anyCrystal.label" default="Any Crystal" /></td>
+				
+				<td valign="top" class="value">${fieldValue(bean: recipeInstance, field: "anyCrystal")}</td>
+				
+			</tr>
+		
+			<tr class="prop">
+				<td valign="top" class="name"><g:message code="recipe.attunementTime.label" default="Attunement Time" /></td>
+				
+				<td valign="top" class="value">${fieldValue(bean: recipeInstance, field: "attunementTime")}</td>
+				
+			</tr>
+		
+			<tr class="prop">
 				<td valign="top" class="name"><g:message code="recipe.blendedCrystals.label" default="Blended Crystals" /></td>
 				
 				<td valign="top" class="value">${fieldValue(bean: recipeInstance, field: "blendedCrystals")}</td>
@@ -52,9 +66,30 @@
 			</tr>
 		
 			<tr class="prop">
-				<td valign="top" class="name"><g:message code="recipe.item.label" default="Item" /></td>
+				<td valign="top" class="name"><g:message code="recipe.internalNotes.label" default="Internal Notes" /></td>
 				
-				<td valign="top" class="value"><g:link controller="item" action="show" id="${recipeInstance?.item?.id}">${recipeInstance?.item?.encodeAsHTML()}</g:link></td>
+				<td valign="top" class="value">${fieldValue(bean: recipeInstance, field: "internalNotes")}</td>
+				
+			</tr>
+		
+			<tr class="prop">
+				<td valign="top" class="name"><g:message code="recipe.itemType.label" default="Item Type" /></td>
+				
+				<td valign="top" class="value">${fieldValue(bean: recipeInstance, field: "itemType")}</td>
+				
+			</tr>
+		
+			<tr class="prop">
+				<td valign="top" class="name"><g:message code="recipe.power1.label" default="Power1" /></td>
+				
+				<td valign="top" class="value">${fieldValue(bean: recipeInstance, field: "power1")}</td>
+				
+			</tr>
+		
+			<tr class="prop">
+				<td valign="top" class="name"><g:message code="recipe.power2.label" default="Power2" /></td>
+				
+				<td valign="top" class="value">${fieldValue(bean: recipeInstance, field: "power2")}</td>
 				
 			</tr>
 		

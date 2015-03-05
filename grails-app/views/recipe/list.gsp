@@ -19,15 +19,15 @@
 			
 				<g:sortableColumn property="airCrystals" title="${message(code: 'recipe.airCrystals.label', default: 'Air Crystals')}" />
 			
+				<g:sortableColumn property="anyCrystal" title="${message(code: 'recipe.anyCrystal.label', default: 'Any Crystal')}" />
+			
+				<g:sortableColumn property="attunementTime" title="${message(code: 'recipe.attunementTime.label', default: 'Attunement Time')}" />
+			
 				<g:sortableColumn property="blendedCrystals" title="${message(code: 'recipe.blendedCrystals.label', default: 'Blended Crystals')}" />
 			
 				<g:sortableColumn property="earthCrystals" title="${message(code: 'recipe.earthCrystals.label', default: 'Earth Crystals')}" />
 			
 				<th><g:message code="recipe.feat.label" default="Feat" /></th>
-			
-				<g:sortableColumn property="fireCrystals" title="${message(code: 'recipe.fireCrystals.label', default: 'Fire Crystals')}" />
-			
-				<th><g:message code="recipe.item.label" default="Item" /></th>
 			
 			</tr>
 		</thead>
@@ -37,15 +37,15 @@
 			
 				<td><g:link action="show" id="${recipeInstance.id}">${fieldValue(bean: recipeInstance, field: "airCrystals")}</g:link></td>
 			
+				<td>${fieldValue(bean: recipeInstance, field: "anyCrystal")}</td>
+			
+				<td>${fieldValue(bean: recipeInstance, field: "attunementTime")}</td>
+			
 				<td>${fieldValue(bean: recipeInstance, field: "blendedCrystals")}</td>
 			
 				<td>${fieldValue(bean: recipeInstance, field: "earthCrystals")}</td>
 			
 				<td>${fieldValue(bean: recipeInstance, field: "feat")}</td>
-			
-				<td>${fieldValue(bean: recipeInstance, field: "fireCrystals")}</td>
-			
-				<td>${fieldValue(bean: recipeInstance, field: "item")}</td>
 			
 			</tr>
 		</g:each>

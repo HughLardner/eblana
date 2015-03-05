@@ -10,6 +10,22 @@
 				</div>
 			</div>
 
+			<div class="${hasErrors(bean: recipeInstance, field: 'anyCrystal', 'error')} ">
+				<label for="anyCrystal" class="control-label"><g:message code="recipe.anyCrystal.label" default="Any Crystal" /></label>
+				<div>
+					<g:field class="form-control" name="anyCrystal" type="number" value="${recipeInstance.anyCrystal}"/>
+					<span class="help-inline">${hasErrors(bean: recipeInstance, field: 'anyCrystal', 'error')}</span>
+				</div>
+			</div>
+
+			<div class="${hasErrors(bean: recipeInstance, field: 'attunementTime', 'error')} ">
+				<label for="attunementTime" class="control-label"><g:message code="recipe.attunementTime.label" default="Attunement Time" /></label>
+				<div>
+					<g:textField class="form-control" name="attunementTime" value="${recipeInstance?.attunementTime}"/>
+					<span class="help-inline">${hasErrors(bean: recipeInstance, field: 'attunementTime', 'error')}</span>
+				</div>
+			</div>
+
 			<div class="${hasErrors(bean: recipeInstance, field: 'blendedCrystals', 'error')} ">
 				<label for="blendedCrystals" class="control-label"><g:message code="recipe.blendedCrystals.label" default="Blended Crystals" /></label>
 				<div>
@@ -42,11 +58,35 @@
 				</div>
 			</div>
 
-			<div class="${hasErrors(bean: recipeInstance, field: 'item', 'error')} ">
-				<label for="item" class="control-label"><g:message code="recipe.item.label" default="Item" /></label>
+			<div class="${hasErrors(bean: recipeInstance, field: 'internalNotes', 'error')} ">
+				<label for="internalNotes" class="control-label"><g:message code="recipe.internalNotes.label" default="Internal Notes" /></label>
 				<div>
-					<g:select class="form-control" id="item" name="item.id" from="${eblana.items.Item.list()}" optionKey="id" value="${recipeInstance?.item?.id}" class="many-to-one" noSelection="['null': '']"/>
-					<span class="help-inline">${hasErrors(bean: recipeInstance, field: 'item', 'error')}</span>
+					<g:textField class="form-control" name="internalNotes" value="${recipeInstance?.internalNotes}"/>
+					<span class="help-inline">${hasErrors(bean: recipeInstance, field: 'internalNotes', 'error')}</span>
+				</div>
+			</div>
+
+			<div class="${hasErrors(bean: recipeInstance, field: 'itemType', 'error')} ">
+				<label for="itemType" class="control-label"><g:message code="recipe.itemType.label" default="Item Type" /></label>
+				<div>
+					<g:textField class="form-control" name="itemType" value="${recipeInstance?.itemType}"/>
+					<span class="help-inline">${hasErrors(bean: recipeInstance, field: 'itemType', 'error')}</span>
+				</div>
+			</div>
+
+			<div class="${hasErrors(bean: recipeInstance, field: 'power1', 'error')} ">
+				<label for="power1" class="control-label"><g:message code="recipe.power1.label" default="Power1" /></label>
+				<div>
+					<g:textField class="form-control" name="power1" value="${recipeInstance?.power1}"/>
+					<span class="help-inline">${hasErrors(bean: recipeInstance, field: 'power1', 'error')}</span>
+				</div>
+			</div>
+
+			<div class="${hasErrors(bean: recipeInstance, field: 'power2', 'error')} ">
+				<label for="power2" class="control-label"><g:message code="recipe.power2.label" default="Power2" /></label>
+				<div>
+					<g:textField class="form-control" name="power2" value="${recipeInstance?.power2}"/>
+					<span class="help-inline">${hasErrors(bean: recipeInstance, field: 'power2', 'error')}</span>
 				</div>
 			</div>
 
