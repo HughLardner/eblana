@@ -11,10 +11,25 @@ table, td, th {
 
 .frame {
 	padding: 10px;
-	width: 95%; height: 50%"
+	width: 95%;
+	height: 50%
 }
-.body{
-width: 100%; text-align: left;
+
+.int {
+	width: 20px;
+}
+
+.body {
+	width: 100%;
+	text-align: left;
+}
+.craft{
+table-layout:auto !important;
+}
+
+.blank_row {
+	height: 10px !important; /* Overwrite any previous rules */
+	border: none !important;
 }
 
 div.character {
@@ -30,8 +45,8 @@ ul.feat {
 
 <section id="show-playerCharacter" class="first">
 	<div class="character">
-	<h2> Character</h2>
-		<table class="frame" >
+		<h2>Character</h2>
+		<table class="frame">
 			<tr>
 				<td>
 
@@ -147,20 +162,75 @@ ul.feat {
 	</div>
 
 	<div>
-<br>
-<h2> Items</h2>
-		<g:each in="${playerCharacterInstance?.item.sort{ it.duration}}" var="i">
+		<br>
+		<h2>Items</h2>
+		<g:each in="${playerCharacterInstance?.item.sort{ it.duration}}"
+			var="i">
 
 			<g:render template="/item/showTemplate" model="['itemInstance': i]" />
-			
+
 		</g:each>
 	</div>
 
 	<div>
-<br>
-<h2> Downtimes</h2>
 
-		<g:each in="${playerCharacterInstance?.downtime.sort{ it.event.toString()}.reverse()}" var="i">
+		<br>
+		<h2>Recipes</h2>
+		<table class="frame">
+			<tr>
+				<td>
+					<table class="craft">
+						<tr>
+							<td>Feat</td>
+							<td>Item Type</td>
+							<td>Power 1</td>
+							<td>Power 2</td>
+							<td>Attunement Time</td>
+							<td class="int">Total Cost</td>
+							<td class="int">Any Crystal</td>
+							<td class="int">Blended</td>
+							<td class="int">Air</td>
+							<td class="int">Earth</td>
+							<td class="int">Fire</td>
+							<td class="int">Water</td>
+							<td class="int">Void</td>
+						</tr>
+
+						<tr>
+							<g:each in="${playerCharacterInstance?.recipe.sort{ it.feat}}"
+								var="i">
+								<g:render template="/recipe/playerShow" model="['instance': i]" />
+							</g:each>
+							<g:each in="${playerCharacterInstance.feat}" var="feat">
+								<g:if test="${feat.feat.type.equals("Crafting") }">
+									<g:each
+										in="${eblana.items.Recipe.findAllByRequiredSkillToCraftAndResearchCost(feat.feat,0)}"
+										var="i">
+										<tr>
+											<g:render template="/recipe/playerShow"
+												model="['instance': i]" />
+										</tr>
+									</g:each>
+									<tr class="blank_row">
+										<td colspan="13"></td>
+									</tr>
+								</g:if>
+							</g:each>
+
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<div>
+		<br>
+		<h2>Downtimes</h2>
+
+		<g:each
+			in="${playerCharacterInstance?.downtime.sort{ it.event.toString()}.reverse()}"
+			var="i">
 
 			<g:render template="/downtime/downtime" model="['instance': i]" />
 			<br>

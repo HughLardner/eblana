@@ -109,12 +109,11 @@ grails.hibernate.cache.queries = false
 
 environments {
     development {
-        grails.logging.jul.usebridge = false
-        grails.serverURL = "http://eblanadev.herokuapp.com"
+        grails.logging.jul.usebridge = true
     }
     production {
         grails.logging.jul.usebridge = false
-        grails.serverURL = "http://eblana.herokuapp.com"
+        grails.serverURL = "http://eblanadev.herokuapp.com"
     }
 }
 
