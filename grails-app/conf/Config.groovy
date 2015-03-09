@@ -113,7 +113,7 @@ environments {
     }
     production {
         grails.logging.jul.usebridge = false
-        grails.serverURL = "http://eblanadev.herokuapp.com"
+        grails.serverURL = "http://eblana.herokuapp.com"
     }
 }
 

@@ -23,11 +23,11 @@
 			
 				<g:sortableColumn property="attunementTime" title="${message(code: 'recipe.attunementTime.label', default: 'Attunement Time')}" />
 			
+				<g:sortableColumn property="baseCostOfEffectToBeAddedItemToBeEnhanced" title="${message(code: 'recipe.baseCostOfEffectToBeAddedItemToBeEnhanced.label', default: 'Base Cost Of Effect To Be Added Item To Be Enhanced')}" />
+			
 				<g:sortableColumn property="blendedCrystals" title="${message(code: 'recipe.blendedCrystals.label', default: 'Blended Crystals')}" />
 			
-				<g:sortableColumn property="earthCrystals" title="${message(code: 'recipe.earthCrystals.label', default: 'Earth Crystals')}" />
-			
-				<th><g:message code="recipe.feat.label" default="Feat" /></th>
+				<g:sortableColumn property="duration" title="${message(code: 'recipe.duration.label', default: 'Duration')}" />
 			
 			</tr>
 		</thead>
@@ -41,11 +41,11 @@
 			
 				<td>${fieldValue(bean: recipeInstance, field: "attunementTime")}</td>
 			
+				<td><g:formatBoolean boolean="${recipeInstance.baseCostOfEffectToBeAddedItemToBeEnhanced}" /></td>
+			
 				<td>${fieldValue(bean: recipeInstance, field: "blendedCrystals")}</td>
 			
-				<td>${fieldValue(bean: recipeInstance, field: "earthCrystals")}</td>
-			
-				<td>${fieldValue(bean: recipeInstance, field: "feat")}</td>
+				<td>${fieldValue(bean: recipeInstance, field: "duration")}</td>
 			
 			</tr>
 		</g:each>
