@@ -22,7 +22,7 @@ class Recipe {
 	}
 	
 	String toString(){
-		return requiredSkillToCraft + " - " + itemType + " - " + power1 + " - " + power2
+		return requiredSkillToCraft.toString() + " - " + itemType.toString() + " - " + power1 + " - " + power2
 	}
 	
 }
