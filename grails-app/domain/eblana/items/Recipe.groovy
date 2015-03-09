@@ -18,6 +18,11 @@ class Recipe {
 		power1 type: "text"
 		power2 type: "text"
 		internalNotes type: "text"
+		sort "itemType"
+	}
+	
+	String toString(){
+		return requiredSkillToCraft + " - " + itemType + " - " + power1 + " - " + power2
 	}
 	
 }
