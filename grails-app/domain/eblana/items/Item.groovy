@@ -6,7 +6,7 @@ class Item {
 	String name
 	Boolean singleUse
 	String duration
-	String type
+	ItemType type
 	String power1, power2, attunementTime, curseCure, internalNotes
 	Integer convertedCrystalCost
 	Status status

@@ -9,7 +9,8 @@ class Recipe {
 	String internalNotes
 	Feat requiredSkillToCraft 
 	Lore researchSkill1
-	String itemName, itemType, power1, power2, attunementTime, duration,  researchSkill2
+	ItemType itemType 
+	String itemName, power1, power2, attunementTime, duration,  researchSkill2
 		
 	Boolean mustKnowTheSpell, baseCostOfEffectToBeAddedItemToBeEnhanced
 	
