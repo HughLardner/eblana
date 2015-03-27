@@ -50,15 +50,6 @@ class PlayerCharacterController {
 			return
 		}
 
-		for(int i=0; i< playerCharacterInstance.classes.size(); i++){
-			def classes = Classes.findById(params.get("classes["+i+"]").classes.id)
-			playerCharacterInstance.classes.set(i, classes)
-		}
-
-		for(int i=0; i< playerCharacterInstance.lore.size(); i++){
-			def lore = Lore.findById(params.get("lore["+i+"]").lore.id)
-			playerCharacterInstance.lore.set(i, lore)
-		}
 
 
 		playerCharacterInstance.save flush:true
@@ -91,14 +82,11 @@ class PlayerCharacterController {
 			return
 		}
 
-		for(int i=0; i< playerCharacterInstance.classes.size(); i++){
-			def classes = Classes.findById(params.get("classes["+i+"]").classes.id)
-			playerCharacterInstance.classes.set(i, classes)
+		for(int i = 0; i <playerCharacterInstance.classes.size();i++){
+			playerCharacterInstance.classes.set(i, Lore.get(params.get("classes["+i+"]").lore.id))
 		}
-
-		for(int i=0; i< playerCharacterInstance.lore.size(); i++){
-			def lore = Lore.findById(params.get("lore["+i+"]").lore.id)
-			playerCharacterInstance.lore.set(i, lore)
+		for(int i = 0; i <playerCharacterInstance.lore.size();i++){
+			playerCharacterInstance.lore.set(i, Lore.get(params.get("lore["+i+"]").lore.id))
 		}
 
 		playerCharacterInstance.save flush:true

@@ -1,3 +1,5 @@
+<g:set var="eventService" bean="eventService"/>
+<g:set var="event" value="${eventService.lastEvent()}"/>
 <style>
 table {
 	border-collapse: collapse;
@@ -23,8 +25,9 @@ table, td, th {
 	width: 100%;
 	text-align: left;
 }
-.craft{
-table-layout:auto !important;
+
+.craft {
+	table-layout: auto !important;
 }
 
 .blank_row {
@@ -134,26 +137,30 @@ ul.feat {
 								</ul></td>
 						</tr>
 					</table>
+					
+							
 					<table style="width: 100%; text-align: left;">
 						<tr>
+						<g:set var="downtime" value = "${eblana.event.Downtime.findByEventAndCharacter(event,playerCharacterInstance)}"/>
 							<td><g:message code="playerCharacter.airCrystals.label"
-									default="Air Crystals: " /> ${fieldValue(bean: playerCharacterInstance, field: "airCrystals")}
+									default="Air Crystals: " /> ${fieldValue(bean: downtime, field: "airCrystals")}
 							</td>
 							<td><g:message code="playerCharacter.earthCrystals.label"
-									default="Earth Crystals: " /> ${fieldValue(bean: playerCharacterInstance, field: "earthCrystals")}
+									default="Earth Crystals: " /> ${fieldValue(bean: downtime, field: "earthCrystals")}
 							</td>
 							<td><g:message code="playerCharacter.fireCrystals.label"
-									default="Fire Crystals: " /> ${fieldValue(bean: playerCharacterInstance, field: "fireCrystals")}
+									default="Fire Crystals: " /> ${fieldValue(bean: downtime, field: "fireCrystals")}
 							</td>
 							<td><g:message code="playerCharacter.waterCrystals.label"
-									default="Water Crystals: " /> ${fieldValue(bean: playerCharacterInstance, field: "waterCrystals")}
+									default="Water Crystals: " /> ${fieldValue(bean: downtime, field: "waterCrystals")}
 							</td>
 							<td><g:message code="playerCharacter.blendedCrystals.label"
-									default="Blended Crystals: " /> ${fieldValue(bean: playerCharacterInstance, field: "blendedCrystals")}
+									default="Blended Crystals: " /> ${fieldValue(bean: downtime, field: "blendedCrystals")}
 							</td>
 							<td><g:message code="playerCharacter.voidCrystals.label"
-									default="Void Crystals: " /> ${fieldValue(bean: playerCharacterInstance, field: "voidCrystals")}
+									default="Void Crystals: " /> ${fieldValue(bean: downtime, field: "voidCrystals")}
 							</td>
+					
 						</tr>
 					</table>
 				</td>
@@ -164,7 +171,7 @@ ul.feat {
 	<div>
 		<br>
 		<h2>Items</h2>
-		<g:each in="${playerCharacterInstance?.item.sort{ it.duration}}"
+		<g:each in="${downtime?.item}"
 			var="i">
 
 			<g:render template="/item/showTemplate" model="['itemInstance': i]" />
@@ -180,7 +187,13 @@ ul.feat {
 			<tr>
 				<td>
 					<table class="craft">
+
 						<tr>
+							
+						
+						<g:each in="${playerCharacterInstance.feat}" var="feat">
+							<g:if test="${feat.feat.type.equals("Crafting") }">
+<tr>
 							<td>Feat</td>
 							<td>Item Type</td>
 							<td>Power 1</td>
@@ -195,27 +208,26 @@ ul.feat {
 							<td class="int">Water</td>
 							<td class="int">Void</td>
 						</tr>
-
-						<tr>
-							<g:each in="${playerCharacterInstance?.recipe.sort{ it.feat}}"
-								var="i">
-								<g:render template="/recipe/playerShow" model="['instance': i]" />
-							</g:each>
-							<g:each in="${playerCharacterInstance.feat}" var="feat">
-								<g:if test="${feat.feat.type.equals("Crafting") }">
-									<g:each
-										in="${eblana.items.Recipe.findAllByRequiredSkillToCraftAndResearchCost(feat.feat,0)}"
-										var="i">
-										<tr>
-											<g:render template="/recipe/playerShow"
-												model="['instance': i]" />
-										</tr>
-									</g:each>
-									<tr class="blank_row">
-										<td colspan="13"></td>
+								<g:each in="${playerCharacterInstance?.recipe.sort{ it.feat}}"
+									var="i">
+									<g:if test="${i.requiredSkillToCraft = feat.feat}">
+										<g:render template="/recipe/playerShow"
+											model="['instance': i]" />
+									</g:if>
+								</g:each>
+								<g:each
+									in="${eblana.items.Recipe.findAllByRequiredSkillToCraftAndResearchCost(feat.feat,0)}"
+									var="i">
+									<tr>
+										<g:render template="/recipe/playerShow"
+											model="['instance': i]" />
 									</tr>
-								</g:if>
-							</g:each>
+								</g:each>
+								<tr class="blank_row">
+									<td colspan="13"></td>
+								</tr>
+							</g:if>
+						</g:each>
 
 						</tr>
 					</table>
@@ -232,7 +244,7 @@ ul.feat {
 			in="${playerCharacterInstance?.downtime.sort{ it.event.toString()}.reverse()}"
 			var="i">
 
-			<g:render template="/downtime/downtime" model="['instance': i]" />
+			<g:render template="/downtime/downtime" model="['instance': i, 'event':event]" />
 			<br>
 		</g:each>
 	</div>

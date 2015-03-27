@@ -23,7 +23,7 @@ var counterMap = {};
 var addClass = function(div){
 	var childCount = counterMap[div];
 	var templateHtml = codeGenerator.header(div+childCount);
-	var list_key = ${eblana.character.Classes.list()*.id};
+	var list_key = ${eblana.character.Classes.list().id};
 	var raw_value = "${eblana.character.Classes.list()}";
 	var list_value = raw_value.replace("[","").replace("]","").split(", ");
 	templateHtml += codeGenerator.propertySelect(div, childCount, "classes", list_key, list_value, "");
@@ -35,11 +35,11 @@ var addClass = function(div){
 var addFeat = function(div){
 	var childCount = counterMap[div];
 	var templateHtml = codeGenerator.header(div+childCount);
-	var list_key = ${eblana.character.Feat.list()*.id};
+	var list_key = ${eblana.character.Feat.list().id};
 	var raw_value = "${eblana.character.Feat.list()}";
 	var list_value = raw_value.replace("[","").replace("]","").split(", ");
 	templateHtml += codeGenerator.propertySelect(div, childCount, "feat", list_key, list_value, "Feat");
-	var effect_key = ${eblana.character.Effect.list()*.id};
+	var effect_key = ${eblana.character.Effect.list().id};
 	var effect_value = "${eblana.character.Effect.list()}";
 	var effect_value = effect_value.replace("[","").replace("]","").split(", ");
 	templateHtml += codeGenerator.propertySelect(div, childCount, "effect", effect_key, effect_value, "Effect ");
@@ -52,11 +52,11 @@ var addFeat = function(div){
 var addSpell = function(div){
 	var childCount = counterMap[div];
 	var templateHtml = codeGenerator.header(div+childCount);
-	var list_key = ${eblana.character.Spell.list()*.id};
+	var list_key = ${eblana.character.Spell.list().id};
 	var raw_value = "${eblana.character.Spell.list()}";
 	var list_value = raw_value.replace("[","").replace("]","").split(", ");
 	templateHtml += codeGenerator.propertySelect(div, childCount, "spell", list_key, list_value, "Spell");
-	var effect_key = ${eblana.character.Effect.list()*.id};
+	var effect_key = ${eblana.character.Effect.list().id};
 	var effect_value = "${eblana.character.Effect.list()}";
 	var effect_value = effect_value.replace("[","").replace("]","").split(", ");
 	templateHtml += codeGenerator.propertySelect(div, childCount, "effect1", effect_key, effect_value, "Effect 1");
@@ -70,10 +70,10 @@ var addSpell = function(div){
 var addLore = function(div){
 	var childCount = counterMap[div];
 	var templateHtml = codeGenerator.header(div+childCount);
-	var list_key = ${eblana.character.Lore.list()*.id};
+	var list_key = ${eblana.character.Lore.list().id};
 	var raw_value = "${eblana.character.Lore.list()}";
 	var list_value = raw_value.replace("[","").replace("]","").split(", ");
-	templateHtml += codeGenerator.propertySelect(div, childCount, "lore", list_key, list_value, "");
+	templateHtml += codeGenerator.propertySelect(div, childCount, list_key, list_value, "");
 	templateHtml += codeGenerator.tailer(div, childCount, deleteIcon);
 	originaljQuery(templateHtml).appendTo('div#'+codeGenerator.escapeDiv(div));
 	counterMap[div] = counterMap[div]+1;
@@ -146,7 +146,7 @@ function amended_event_unchecked(){
 var atcmplt_company = codeGenerator.autocompleteOptionCompany(prefix);
 var atcmplt_firm = codeGenerator.autocompleteOptionFirm(prefix);
 originaljQuery(function(){ // equivalent to document ready
-	originaljQuery('a.media').media({width:600,height:849}); //A4: width * 1.4142 = height 
+	originaljQuery('a.media').media({width:600,height:849}); //A4: width  1.4142 = height 
 	originaljQuery(document).on("keydown", "input.comauto", function(){ // use this if there is autocomplete for company name
 		originaljQuery(this).autocomplete(atcmplt_company);
 	});

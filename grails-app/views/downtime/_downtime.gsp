@@ -22,7 +22,10 @@
 			<table class="body">
 				<tr>
 					<td><g:message code="characterEvent.researchResults.label"
-							default="Research Results: " /><br> ${fieldValue(bean: instance, field: "finalDecision")}
+							default="Research Results: " /><br> 
+							<g:if test="${instance.event.downtimeDone}">
+							${fieldValue(bean: instance, field: "finalDecision")}
+							</g:if>
 					</td>
 				</tr>
 			</table>

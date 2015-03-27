@@ -1,5 +1,31 @@
 <%@ page import="eblana.users.SecUser"%>
 
+<div
+	class="${hasErrors(bean: userInstance, field: 'username', 'error')} ">
+	<label for="username" class="control-label"><g:message
+			code="user.username.label" default="Username" /></label>
+	<div>
+		<g:textField class="form-control" name="username"
+			value="${secUserInstance?.username}" />
+		<span class="help-inline">
+			${hasErrors(bean: userInstance, field: 'username', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
+	class="${hasErrors(bean: userInstance, field: 'email', 'error')} ">
+	<label for="username" class="control-label"><g:message
+			code="user.username.label" default="Email" /></label>
+	<div>
+		<g:textField class="form-control" name="email"
+			value="${secUserInstance?.email}" />
+		<span class="help-inline">
+			${hasErrors(bean: userInstance, field: 'email', 'error')}
+		</span>
+	</div>
+</div>
+
 <g:render template="../secUser/formUser"/>
 
 <div
