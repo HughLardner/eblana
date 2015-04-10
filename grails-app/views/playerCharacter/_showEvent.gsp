@@ -1,6 +1,8 @@
 <g:set var="eventService" bean="eventService" />
 <g:set var="event" value="${eventService.lastEvent()}" />
-<style>
+<g:set var="downtime"
+	value="${eblana.event.Downtime.findByEventAndCharacter(event,playerCharacterInstance)}" />
+<style type="text/css">
 table {
 	border-collapse: collapse;
 }
@@ -14,7 +16,8 @@ table, td, th {
 .frame {
 	padding: 10px;
 	width: 100%;
-	height: 50%
+	height: 50%;
+	page-break-inside: avoid !important;
 }
 
 .int {
@@ -43,14 +46,31 @@ div.character {
 	
 }
 
+div.section{
+	page-break-inside: avoid !important;
+}
+
 ul.feat {
 	columns: 2;
 	-webkit-columns: 2;
 	-moz-columns: 2;
 }
-</style>
 
-<section id="show-playerCharacter" class="first">
+@media screen {
+	div.divHeader {
+		display: none;
+	}
+}
+
+@media print {
+	div.divHeader {
+		position: fixed;
+		top: 0;
+	}
+}
+
+</style>
+<section id="show-playerCharacter" class="section">
 	<div class="character">
 		<h2>Character</h2>
 		<table class="frame">
@@ -85,7 +105,7 @@ ul.feat {
 					</table>
 					<table style="width: 100%; text-align: left;">
 						<tr>
-							<td style="width: 25%;"><g:message code="playerCharacter.classes.label"
+							<td><g:message code="playerCharacter.classes.label"
 									default="Classes: " />
 
 								<ul>
@@ -145,8 +165,7 @@ ul.feat {
 
 					<table style="width: 100%; text-align: left;">
 						<tr>
-							<g:set var="downtime"
-								value="${eblana.event.Downtime.findByEventAndCharacter(event,playerCharacterInstance)}" />
+
 							<td><g:message code="playerCharacter.airCrystals.label"
 									default="Air Crystals: " /> ${fieldValue(bean: downtime, field: "airCrystals")}
 							</td>
@@ -173,20 +192,11 @@ ul.feat {
 		</table>
 	</div>
 
-	<div>
-		<br>
-		<h2>Items</h2>
-		<g:each in="${downtime?.item}" var="i">
-
-			<g:render template="/item/showTemplate" model="['itemInstance': i]" />
-
-		</g:each>
-	</div>
-
-	<div>
+	<div class="section">
 
 		<br>
 		<h2>Recipes</h2>
+		<div class="divHeader">${fieldValue(bean: playerCharacterInstance, field: "name")}</div>
 
 
 
@@ -195,39 +205,42 @@ ul.feat {
 				<table class="frame">
 
 					<tr>
-					<td>
-						<table class="craft">
-							<tr>
-								<td style="padding: 5px; width:12%">Feat</td>
-								<td style="padding: 5px;width:10%">Item Type</td>
-								<td style="padding: 5px;">Power 1</td>
-								<td style="padding: 5px;">Power 2</td>
-								<td style="padding: 5px;width:7%">Attunement Time</td>
-								<td style="padding: 5px;width:5%" class="int">Total Cost</td>
-								<td style="padding: 5px;width:5%" class="int">Any Crystal</td>
-								<td style="padding: 5px;width:5%" class="int">Blended</td>
-								<td style="padding: 5px;width:5%" class="int">Air</td>
-								<td style="padding: 5px;width:5%" class="int">Earth</td>
-								<td style="padding: 5px;width:5%" class="int">Fire</td>
-								<td style="padding: 5px;width:5%" class="int">Water</td>
-								<td style="padding: 5px;width:5%" class="int">Void</td>
-							</tr>
-							<g:each in="${playerCharacterInstance?.recipe.sort{ it.feat}}"
-								var="i">
-								<g:if test="${i.requiredSkillToCraft = feat.feat}">
-									<g:render template="/recipe/playerShow" model="['instance': i]" />
-								</g:if>
-							</g:each>
-							<g:each
-								in="${eblana.items.Recipe.findAllByRequiredSkillToCraftAndResearchCost(feat.feat,0)}"
-								var="i">
+						<td>
+							<table class="craft">
 								<tr>
-									<g:render template="/recipe/playerShow" model="['instance': i]" />
+									<td style="padding: 5px; width: 12%">Feat</td>
+									<td style="padding: 5px; width: 10%">Item Type</td>
+									<td style="padding: 5px;">Power 1</td>
+									<td style="padding: 5px;">Power 2</td>
+									<td style="padding: 5px; width: 7%">Attunement Time</td>
+									<td style="padding: 5px; width: 5%" class="int">Total Cost</td>
+									<td style="padding: 5px; width: 5%" class="int">Any
+										Crystal</td>
+									<td style="padding: 5px; width: 5%" class="int">Blended</td>
+									<td style="padding: 5px; width: 5%" class="int">Air</td>
+									<td style="padding: 5px; width: 5%" class="int">Earth</td>
+									<td style="padding: 5px; width: 5%" class="int">Fire</td>
+									<td style="padding: 5px; width: 5%" class="int">Water</td>
+									<td style="padding: 5px; width: 5%" class="int">Void</td>
 								</tr>
-							</g:each>
+								<g:each in="${playerCharacterInstance?.recipe.sort{ it.feat}}"
+									var="i">
+									<g:if test="${i.requiredSkillToCraft = feat.feat}">
+										<g:render template="/recipe/playerShow"
+											model="['instance': i]" />
+									</g:if>
+								</g:each>
+								<g:each
+									in="${eblana.items.Recipe.findAllByRequiredSkillToCraftAndResearchCost(feat.feat,0)}"
+									var="i">
+									<tr>
+										<g:render template="/recipe/playerShow"
+											model="['instance': i]" />
+									</tr>
+								</g:each>
 
 
-						</table>
+							</table>
 						</td>
 					</tr>
 
@@ -239,18 +252,16 @@ ul.feat {
 
 	</div>
 
-	<div>
+
+	<div class="section">
 		<br>
-		<h2>Downtimes</h2>
+		<h2>Downtime</h2>
+		<div class="divHeader">${fieldValue(bean: playerCharacterInstance, field: "name")}</div>
 
-		<g:each
-			in="${playerCharacterInstance?.downtime.sort{ it.event.toString()}.reverse()}"
-			var="i">
-
+		<g:if test="${downtime}">
 			<g:render template="/downtime/downtime"
-				model="['instance': i, 'event':event]" />
-			<br>
-		</g:each>
+				model="['instance': downtime, 'event':event]" />
+		</g:if>
 	</div>
 
 </section>
