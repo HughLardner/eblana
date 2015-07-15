@@ -73,7 +73,7 @@ var addLore = function(div){
 	var list_key = ${eblana.character.Lore.list().id};
 	var raw_value = "${eblana.character.Lore.list()}";
 	var list_value = raw_value.replace("[","").replace("]","").split(", ");
-	templateHtml += codeGenerator.propertySelect(div, childCount, list_key, list_value, "");
+	templateHtml += codeGenerator.propertySelect(div, childCount, "lore", list_key, list_value, "");
 	templateHtml += codeGenerator.tailer(div, childCount, deleteIcon);
 	originaljQuery(templateHtml).appendTo('div#'+codeGenerator.escapeDiv(div));
 	counterMap[div] = counterMap[div]+1;

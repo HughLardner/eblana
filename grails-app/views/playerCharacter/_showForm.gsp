@@ -1,5 +1,7 @@
 <g:set var="eventService" bean="eventService" />
 <g:set var="event" value="${eventService.lastEvent()}" />
+<g:set var="downtime"
+	value="${eblana.event.Downtime.findByEventAndCharacter(event,playerCharacterInstance)}" />
 <style>
 table {
 	border-collapse: collapse;
@@ -145,8 +147,6 @@ ul.feat {
 
 					<table style="width: 100%; text-align: left;">
 						<tr>
-							<g:set var="downtime"
-								value="${eblana.event.Downtime.findByEventAndCharacter(event,playerCharacterInstance)}" />
 							<td><g:message code="playerCharacter.airCrystals.label"
 									default="Air Crystals: " /> ${fieldValue(bean: downtime, field: "airCrystals")}
 							</td>

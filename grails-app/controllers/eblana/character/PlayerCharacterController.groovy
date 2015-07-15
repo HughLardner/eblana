@@ -49,6 +49,14 @@ class PlayerCharacterController {
 			respond playerCharacterInstance.errors, view:'create'
 			return
 		}
+		
+		for(int i = 0; i <playerCharacterInstance.classes.size();i++){
+			playerCharacterInstance.classes.set(i, Classes.get(params.get("classes["+i+"]").classes?.id))
+		}
+
+		for(int i = 0; i <playerCharacterInstance.lore.size();i++){
+			playerCharacterInstance.lore.set(i, Lore.get(params.get("lore["+i+"]").lore?.id))
+		}
 
 
 
@@ -83,10 +91,11 @@ class PlayerCharacterController {
 		}
 
 		for(int i = 0; i <playerCharacterInstance.classes.size();i++){
-			playerCharacterInstance.classes.set(i, Lore.get(params.get("classes["+i+"]").lore.id))
+			playerCharacterInstance.classes.set(i, Classes.get(params.get("classes["+i+"]").classes?.id))
 		}
+
 		for(int i = 0; i <playerCharacterInstance.lore.size();i++){
-			playerCharacterInstance.lore.set(i, Lore.get(params.get("lore["+i+"]").lore.id))
+			playerCharacterInstance.lore.set(i, Lore.get(params.get("lore["+i+"]").lore?.id))
 		}
 
 		playerCharacterInstance.save flush:true
