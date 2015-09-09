@@ -212,10 +212,12 @@ ul.feat {
 								<td style="padding: 5px;width:5%" class="int">Water</td>
 								<td style="padding: 5px;width:5%" class="int">Void</td>
 							</tr>
-							<g:each in="${playerCharacterInstance?.recipe.sort{ it.feat}}"
+							<g:each in="${playerCharacterInstance?.recipe.sort{ it.requiredSkillToCraft}}"
 								var="i">
 								<g:if test="${i.requiredSkillToCraft = feat.feat}">
+								<tr>
 									<g:render template="/recipe/playerShow" model="['instance': i]" />
+									</tr>
 								</g:if>
 							</g:each>
 							<g:each
