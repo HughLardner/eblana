@@ -191,9 +191,9 @@ ul.feat {
 
 
 		<g:each in="${playerCharacterInstance.feat}" var="feat">
+		
 			<g:if test="${feat.feat.type.equals("Crafting") }">
 				<table class="frame">
-
 					<tr>
 					<td>
 						<table class="craft">
@@ -214,7 +214,7 @@ ul.feat {
 							</tr>
 							<g:each in="${playerCharacterInstance?.recipe.sort{ it.requiredSkillToCraft}}"
 								var="i">
-								<g:if test="${i.requiredSkillToCraft = feat.feat}">
+								<g:if test="${i.requiredSkillToCraft.id.equals(feat.feat.id)}">
 								<tr>
 									<g:render template="/recipe/playerShow" model="['instance': i]" />
 									</tr>
