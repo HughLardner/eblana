@@ -243,11 +243,9 @@ ul.feat {
 						</td>
 					</tr>
 
-
 				</table>
 			</g:if>
 		</g:each>
-
 
 	</div>
 
