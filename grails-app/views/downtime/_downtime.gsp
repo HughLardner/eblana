@@ -8,23 +8,37 @@
 			<table class="body">
 				<tr>
 					<td><g:message code="characterEvent.research.label"
-							default="Research: " /><br> ${fieldValue(bean: instance, field: "research")}
-					</td>
-					<td><g:message code="characterEvent.researchMethod.label"
-							default="Research Method: " /><br> ${fieldValue(bean: instance, field: "researchMethod")}
-					</td>
+							default="Goal: " /><br> ${raw(instance?.goal?.replaceAll('\n', '<br/>'))}
 
-					<td><g:message code="characterEvent.researchResources.label"
-							default="Research Resources: " /><br> ${fieldValue(bean: instance, field: "researchResources")}
 					</td>
 			</table>
+
+			<table class="body">
+				<tr>
+		<td><g:message code="characterEvent.research.label"
+				default="Research: " /><br>
+				${raw(instance?.research?.replaceAll('\n', '<br/>'))}
+			
+		</td>
+		<td><g:message code="characterEvent.researchMethod.label"
+				default="Research Method: " /><br> ${raw(instance?.researchMethod?.replaceAll('\n', '<br/>'))}
+
+		</td>
+
+		<td><g:message code="characterEvent.researchResources.label"
+				default="Research Resources: " /><br> ${raw(instance?.researchResources?.replaceAll('\n', '<br/>'))}
+
+		</td>
+	
+</table>
 
 			<table class="body">
 				<tr>
 					<td><g:message code="characterEvent.researchResults.label"
 							default="Research Results: " /><br> 
 							<g:if test="${instance.event.downtimeDone}">
-							${fieldValue(bean: instance, field: "finalDecision")}
+														${raw(instance?.finalDecision?.replaceAll('\n', '<br/>'))}
+							
 							</g:if>
 					</td>
 				</tr>

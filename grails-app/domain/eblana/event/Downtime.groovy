@@ -6,11 +6,10 @@ import eblana.items.Item
 class Downtime {
 
 	Event event
-	String research, researchResources, researchMethod
+	String research, researchResources, researchMethod, goal
 	Integer	researchScore
 	String	headOfRulesResponse, headOfPlotResponse, headOfGameComments, finalDecision
 	Integer airCrystals, earthCrystals, fireCrystals, waterCrystals, blendedCrystals, voidCrystals
-	List item = new ArrayList<Item>()
 	
 	static hasMany = [item : Item]
 	static belongsTo = [character : PlayerCharacter]
@@ -23,5 +22,6 @@ class Downtime {
    headOfPlotResponse type: 'text'
    headOfGameComments type: 'text'
    finalDecision type: 'text'
+   goal type: 'text'
 }
 }
