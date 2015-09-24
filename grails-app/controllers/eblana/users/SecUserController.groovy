@@ -139,4 +139,10 @@ class SecUserController {
 			'*'{ render status: NOT_FOUND }
 		}
 	}
+	
+	def medical(){
+		def userList = SecUser.list(sort:'surname')
+		render (view:'medical', model:[instanceList : userList])
+		
+	}
 }
