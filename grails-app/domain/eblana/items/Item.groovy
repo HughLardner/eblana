@@ -10,6 +10,7 @@ class Item {
 	String power1, power2, attunementTime, curseCure, internalNotes
 	Integer convertedCrystalCost
 	Status status
+	Boolean transferable = true
 
 
 String toString(){

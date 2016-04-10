@@ -5,6 +5,7 @@ class Event {
 	Date date
 	Integer eventNumber
 	Boolean downtimeDone
+	Boolean lastEvent
 
 	
 	String toString(){
