@@ -21,7 +21,8 @@ environments {
 			pooled = true
 			dbCreate = "update"
 			driverClassName = "com.mysql.jdbc.Driver"
-			url = "jdbc:mysql://localhost:3306/eblana?user=Eblana&password=Awe6YgHfr"
+			//url = "jdbc:mysql://localhost:3306/eblana?user=Eblana&password=Awe6YgHfr"
+			url = "jdbc:mysql://eblana.cae1e41aqjjr.us-east-1.rds.amazonaws.com:3306/eblana?user=Eblana&password=Awe6YgHfr"
 			dialect = org.hibernate.dialect.MySQL5InnoDBDialect
 			properties {
 				validationQuery = "SELECT 1"

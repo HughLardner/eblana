@@ -47,6 +47,11 @@ class SecUser {
 	}
 	
 	String toString() {
-		return username
+		if(firstName || surname){
+			return (firstName?firstName:'') + ' ' + (surname?surname:'')
+		}
+		else{
+			return username 
+		}
 	}
 }
