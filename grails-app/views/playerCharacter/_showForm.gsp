@@ -148,22 +148,22 @@ ul.feat {
 					<table style="width: 100%; text-align: left;">
 						<tr>
 							<td><g:message code="playerCharacter.airCrystals.label"
-									default="Air Crystals: " /> ${fieldValue(bean: downtime, field: "airCrystals")}
+									default="Air Crystals: " /> ${fieldValue(bean: downtime, field: "airCurrent")}
 							</td>
 							<td><g:message code="playerCharacter.earthCrystals.label"
-									default="Earth Crystals: " /> ${fieldValue(bean: downtime, field: "earthCrystals")}
+									default="Earth Crystals: " /> ${fieldValue(bean: downtime, field: "earthCurrent")}
 							</td>
 							<td><g:message code="playerCharacter.fireCrystals.label"
-									default="Fire Crystals: " /> ${fieldValue(bean: downtime, field: "fireCrystals")}
+									default="Fire Crystals: " /> ${fieldValue(bean: downtime, field: "fireCurrent")}
 							</td>
 							<td><g:message code="playerCharacter.waterCrystals.label"
-									default="Water Crystals: " /> ${fieldValue(bean: downtime, field: "waterCrystals")}
+									default="Water Crystals: " /> ${fieldValue(bean: downtime, field: "waterCurrent")}
 							</td>
 							<td><g:message code="playerCharacter.blendedCrystals.label"
-									default="Blended Crystals: " /> ${fieldValue(bean: downtime, field: "blendedCrystals")}
+									default="Blended Crystals: " /> ${fieldValue(bean: downtime, field: "blendedCurrent")}
 							</td>
 							<td><g:message code="playerCharacter.voidCrystals.label"
-									default="Void Crystals: " /> ${fieldValue(bean: downtime, field: "voidCrystals")}
+									default="Void Crystals: " /> ${fieldValue(bean: downtime, field: "voidCurrent")}
 							</td>
 
 						</tr>
