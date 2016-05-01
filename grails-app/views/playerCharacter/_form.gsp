@@ -113,7 +113,7 @@
 		<label for="classes" class="control-label">Class</label>
 		<g:render template="/template/classes"
 			model="['instance': playerCharacterInstance, 'div':'classes', 'description': 'Add Class']" />
-		
+
 	</div>
 
 	<div
@@ -130,7 +130,7 @@
 		<label for="spell" class="control-label">Spell</label>
 		<g:render template="/template/spell"
 			model="['instance': playerCharacterInstance, 'div':'spell', 'description': 'Add Spell']" />
-		
+
 	</div>
 
 	<div
@@ -138,7 +138,7 @@
 		<label for="lore" class="control-label">Lore</label>
 		<g:render template="/template/lore"
 			model="['instance': playerCharacterInstance, 'div':'lore', 'description': 'Add Lore']" />
-		
+
 	</div>
 
 	<div
@@ -209,95 +209,93 @@
 		</div>
 	</div>
 
-
-
-
-
+	<g:set var="downtime"
+		value="${eblana.event.Event.findByCurrentDowntime(true).downtime.find{it.character == playerCharacterInstance} }"></g:set>
 
 
 	<div
-		class="${hasErrors(bean: playerCharacterInstance, field: 'airCrystals', 'error')} formField">
+		class="${hasErrors(bean: downtime, field: 'airCrystals', 'error')} formField">
 		<label for="airCrystals" class="control-label"><g:message
 				code="playerCharacter.airCrystals.label" default="Air Crystals" /></label>
 		<div>
 			<g:field class="form-control" name="airCrystals" type="number"
-				value="${playerCharacterInstance.airCrystals}" />
-			<span class="help-inline"> ${hasErrors(bean: playerCharacterInstance, field: 'airCrystals', 'error')}
+				value="${downtime.airCrystals}" />
+			<span class="help-inline"> ${hasErrors(bean: downtime, field: 'airCrystals', 'error')}
 			</span>
 		</div>
 	</div>
 
 	<div
-		class="${hasErrors(bean: playerCharacterInstance, field: 'earthCrystals', 'error')} formField">
+		class="${hasErrors(bean: downtime, field: 'earthCrystals', 'error')} formField">
 		<label for="earthCrystals" class="control-label"><g:message
 				code="playerCharacter.earthCrystals.label" default="Earth Crystals" /></label>
 		<div>
 			<g:field class="form-control" name="earthCrystals" type="number"
-				value="${playerCharacterInstance.earthCrystals}" />
-			<span class="help-inline"> ${hasErrors(bean: playerCharacterInstance, field: 'earthCrystals', 'error')}
+				value="${downtime.earthCrystals}" />
+			<span class="help-inline"> ${hasErrors(bean: downtime, field: 'earthCrystals', 'error')}
 			</span>
 		</div>
 	</div>
 
 	<div
-		class="${hasErrors(bean: playerCharacterInstance, field: 'fireCrystals', 'error')} formField">
+		class="${hasErrors(bean: downtime, field: 'fireCrystals', 'error')} formField">
 		<label for="fireCrystals" class="control-label"><g:message
 				code="playerCharacter.fireCrystals.label" default="Fire Crystals" /></label>
 		<div>
 			<g:field class="form-control" name="fireCrystals" type="number"
-				value="${playerCharacterInstance.fireCrystals}" />
-			<span class="help-inline"> ${hasErrors(bean: playerCharacterInstance, field: 'fireCrystals', 'error')}
+				value="${downtime.fireCrystals}" />
+			<span class="help-inline"> ${hasErrors(bean: downtime, field: 'fireCrystals', 'error')}
 			</span>
 		</div>
 	</div>
 
 	<div
-		class="${hasErrors(bean: playerCharacterInstance, field: 'waterCrystals', 'error')} formField">
+		class="${hasErrors(bean: downtime, field: 'waterCrystals', 'error')} formField">
 		<label for="waterCrystals" class="control-label"><g:message
 				code="playerCharacter.waterCrystals.label" default="Water Crystals" /></label>
 		<div>
 			<g:field class="form-control" name="waterCrystals" type="number"
-				value="${playerCharacterInstance.waterCrystals}" />
-			<span class="help-inline"> ${hasErrors(bean: playerCharacterInstance, field: 'waterCrystals', 'error')}
+				value="${downtime.waterCrystals}" />
+			<span class="help-inline"> ${hasErrors(bean: downtime, field: 'waterCrystals', 'error')}
 			</span>
 		</div>
 	</div>
 
 	<div
-		class="${hasErrors(bean: playerCharacterInstance, field: 'blendedCrystals', 'error')} formField">
+		class="${hasErrors(bean: downtime, field: 'blendedCrystals', 'error')} formField">
 		<label for="blendedCrystals" class="control-label"><g:message
 				code="playerCharacter.blendedCrystals.label"
 				default="Blended Crystals" /></label>
 		<div>
 			<g:field class="form-control" name="blendedCrystals" type="number"
-				value="${playerCharacterInstance.blendedCrystals}" />
-			<span class="help-inline"> ${hasErrors(bean: playerCharacterInstance, field: 'blendedCrystals', 'error')}
+				value="${downtime.blendedCrystals}" />
+			<span class="help-inline"> ${hasErrors(bean: downtime, field: 'blendedCrystals', 'error')}
 			</span>
 		</div>
 	</div>
 
 	<div
-		class="${hasErrors(bean: playerCharacterInstance, field: 'voidCrystals', 'error')} formField">
+		class="${hasErrors(bean: downtime, field: 'voidCrystals', 'error')} formField">
 		<label for="voidCrystals" class="control-label"><g:message
 				code="playerCharacter.voidCrystals.label" default="Void Crystals" /></label>
 		<div>
 			<g:field class="form-control" name="voidCrystals" type="number"
-				value="${playerCharacterInstance.voidCrystals}" />
-			<span class="help-inline"> ${hasErrors(bean: playerCharacterInstance, field: 'voidCrystals', 'error')}
+				value="${downtime.voidCrystals}" />
+			<span class="help-inline"> ${hasErrors(bean: downtime, field: 'voidCrystals', 'error')}
 			</span>
 		</div>
 	</div>
-	
+
 	<div
-		class="${hasErrors(bean: playerCharacterInstance, field: 'item', 'error')} formField">
+		class="${hasErrors(bean: downtime, field: 'item', 'error')} formField">
 		<label for="item" class="control-label"><g:message
 				code="playerCharacter.item.label" default="Items" /></label>
 		<div>
 			<g:select class="form-control" id="item" name="item.id"
 				from="${eblana.items.Item.list()}" optionKey="id"
-				value="${playerCharacterInstance?.item?.id}" class="many-to-many"
+				value="${downtime?.item?.id}" class="many-to-many"
 				noSelection="['null': '']" />
-			<span class="help-inline"> ${hasErrors(bean: playerCharacterInstance, field: 'item', 'error')}
+			<span class="help-inline"> ${hasErrors(bean: downtime, field: 'item', 'error')}
 			</span>
 		</div>
 	</div>

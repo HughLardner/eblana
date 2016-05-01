@@ -9,7 +9,7 @@ class Event {
 	Boolean currentDowntime = false
 	Set<PlayerCharacter> attended = new HashSet<>()
 	
-	static hasMany = [attended : PlayerCharacter]
+	static hasMany = [attended : PlayerCharacter, downtime:Downtime]
 
 	
 	String toString(){

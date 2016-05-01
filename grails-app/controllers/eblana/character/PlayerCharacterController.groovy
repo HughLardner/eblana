@@ -2,6 +2,9 @@ package eblana.character
 
 
 import static org.springframework.http.HttpStatus.*
+import eblana.event.Downtime
+import eblana.event.Event
+import eblana.items.Item
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
@@ -57,9 +60,30 @@ class PlayerCharacterController {
 		for(int i = 0; i <playerCharacterInstance.lore.size();i++){
 			playerCharacterInstance.lore.set(i, Lore.get(params.get("lore["+i+"]").lore?.id))
 		}
-
-
-
+		def event = Event.findByCurrentDowntime(true)
+		Downtime downtime = event.downtime.find{it.character == playerCharacterInstance}
+		if(!downtime){
+			downtime = new Downtime(character:playerCharacterInstance, event:event)
+			downtime.airCurrent = params.int("airCrystals")
+			downtime.earthCurrent = params.int("earthCrystals")
+			downtime.fireCurrent = params.int("fireCrystals")
+			downtime.waterCurrent = params.int("waterCrystals")
+			downtime.blendedCurrent = params.int("blendedCrystals")
+			downtime.voidCurrent = params.int("voidCrystals")	
+			downtime.item = [] as Set
+			downtime.itemCurrent = [] as Set
+			downtime.itemCurrent.addAll(Item.findAllByIdInList(params.get("item").list('id')*.toLong()))
+		}
+		downtime.airCrystals = params.int("airCrystals")
+		downtime.earthCrystals = params.int("earthCrystals")
+		downtime.fireCrystals = params.int("fireCrystals")
+		downtime.waterCrystals = params.int("waterCrystals")
+		downtime.blendedCrystals = params.int("blendedCrystals")
+		downtime.voidCrystals = params.int("voidCrystals")
+		downtime.item.addAll(Item.findAllByIdInList(params.get("item").list('id')*.toLong()))
+		downtime.save()
+		playerCharacterInstance.save flush:true
+	
 		playerCharacterInstance.save flush:true
 
 		request.withFormat {
@@ -97,7 +121,28 @@ class PlayerCharacterController {
 		for(int i = 0; i <playerCharacterInstance.lore.size();i++){
 			playerCharacterInstance.lore.set(i, Lore.get(params.get("lore["+i+"]").lore?.id))
 		}
-
+		def event = Event.findByCurrentDowntime(true)
+		Downtime downtime = event.downtime.find{it.character == playerCharacterInstance}
+		if(!downtime){
+			downtime = new Downtime(character:playerCharacterInstance, event:event)
+			downtime.airCurrent = params.int("airCrystals")
+			downtime.earthCurrent = params.int("earthCrystals")
+			downtime.fireCurrent = params.int("fireCrystals")
+			downtime.waterCurrent = params.int("waterCrystals")
+			downtime.blendedCurrent = params.int("blendedCrystals")
+			downtime.voidCurrent = params.int("voidCrystals")
+			downtime.item = [] as Set
+			downtime.itemCurrent = [] as Set
+			downtime.itemCurrent.addAll(Item.findAllByIdInList(params.get("item").list('id')*.toLong()))
+		}
+		downtime.airCrystals = params.int("airCrystals")
+		downtime.earthCrystals = params.int("earthCrystals")
+		downtime.fireCrystals = params.int("fireCrystals")
+		downtime.waterCrystals = params.int("waterCrystals")
+		downtime.blendedCrystals = params.int("blendedCrystals")
+		downtime.voidCrystals = params.int("voidCrystals")
+		downtime.item.addAll(Item.findAllByIdInList(params.get("item").list('id')*.toLong()))
+		downtime.save()
 		playerCharacterInstance.save flush:true
 
 		request.withFormat {

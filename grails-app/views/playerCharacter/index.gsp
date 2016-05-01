@@ -24,9 +24,7 @@
 				<g:sortableColumn property="armour" title="${message(code: 'playerCharacter.armour.label', default: 'Armour')}" />
 			
 				<g:sortableColumn property="background" title="${message(code: 'playerCharacter.background.label', default: 'Background')}" />
-			
-				<g:sortableColumn property="blendedCrystals" title="${message(code: 'playerCharacter.blendedCrystals.label', default: 'Blended Crystals')}" />
-			
+						
 				<g:sortableColumn property="body" title="${message(code: 'playerCharacter.body.label', default: 'Body')}" />
 			
 			</tr>
@@ -42,9 +40,7 @@
 				<td>${fieldValue(bean: playerCharacterInstance, field: "armour")}</td>
 			
 				<td>${fieldValue(bean: playerCharacterInstance, field: "background")}</td>
-			
-				<td>${fieldValue(bean: playerCharacterInstance, field: "blendedCrystals")}</td>
-			
+					
 				<td>${fieldValue(bean: playerCharacterInstance, field: "body")}</td>
 			
 			</tr>

@@ -155,13 +155,13 @@
 					</td>
 
 				</tr>
-
+				<g:set var="downtime" value="${eblana.event.Event.findByCurrentDowntime(true).downtime.find{it.character == playerCharacterInstance} }"></g:set>
 				<tr class="prop">
 					<td valign="top" class="name"><g:message
 							code="playerCharacter.airCrystals.label" default="Air Crystals" /></td>
 
 					<td valign="top" class="value">
-						${fieldValue(bean: playerCharacterInstance, field: "airCrystals")}
+						${fieldValue(bean: downtime, field: "airCrystals")}
 					</td>
 
 				</tr>
@@ -172,7 +172,7 @@
 							default="Earth Crystals" /></td>
 
 					<td valign="top" class="value">
-						${fieldValue(bean: playerCharacterInstance, field: "earthCrystals")}
+						${fieldValue(bean: downtime, field: "earthCrystals")}
 					</td>
 
 				</tr>
@@ -183,7 +183,7 @@
 							code="playerCharacter.fireCrystals.label" default="Fire Crystals" /></td>
 
 					<td valign="top" class="value">
-						${fieldValue(bean: playerCharacterInstance, field: "fireCrystals")}
+						${fieldValue(bean: downtime, field: "fireCrystals")}
 					</td>
 
 				</tr>
@@ -194,7 +194,7 @@
 							default="Water Crystals" /></td>
 
 					<td valign="top" class="value">
-						${fieldValue(bean: playerCharacterInstance, field: "waterCrystals")}
+						${fieldValue(bean: downtime, field: "waterCrystals")}
 					</td>
 
 				</tr>
@@ -206,7 +206,7 @@
 							default="Blended Crystals" /></td>
 
 					<td valign="top" class="value">
-						${fieldValue(bean: playerCharacterInstance, field: "blendedCrystals")}
+						${fieldValue(bean: downtime, field: "blendedCrystals")}
 					</td>
 
 				</tr>
@@ -216,7 +216,7 @@
 							code="playerCharacter.voidCrystals.label" default="Void Crystals" /></td>
 
 					<td valign="top" class="value">
-						${fieldValue(bean: playerCharacterInstance, field: "voidCrystals")}
+						${fieldValue(bean: downtime, field: "voidCrystals")}
 					</td>
 
 				</tr>

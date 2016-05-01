@@ -103,36 +103,38 @@ class EventController {
 		def characters = PlayerCharacter.findAllByAlive(true)
 		characters.each{c->
 			def param = downtimeParams.get(c.id.toString())
-			def downtimeId = param.long("downtimeId")
-			def downtime
-			if(downtimeId)
-				downtime = Downtime.get(downtimeId)
-			else
-				downtime = new Downtime(event:eventInstance, character:c)
-			downtime.airCrystals = param.int("air")
-			downtime.earthCrystals = param.int("earth")
-			downtime.fireCrystals = param.int("fire")
-			downtime.waterCrystals = param.int("water")
-			downtime.blendedCrystals = param.int("blended")
-			downtime.voidCrystals = param.int("void")
+			if(param){
+				def downtimeId = param.long("downtimeId")
+				def downtime
+				if(downtimeId)
+					downtime = Downtime.get(downtimeId)
+				else
+					downtime = new Downtime(event:eventInstance, character:c)
+				downtime.airCrystals = param.int("air")
+				downtime.earthCrystals = param.int("earth")
+				downtime.fireCrystals = param.int("fire")
+				downtime.waterCrystals = param.int("water")
+				downtime.blendedCrystals = param.int("blended")
+				downtime.voidCrystals = param.int("void")
 
-			downtime.airCurrent = param.int("air")
-			downtime.earthCurrent = param.int("earth")
-			downtime.fireCurrent = param.int("fire")
-			downtime.waterCurrent = param.int("water")
-			downtime.blendedCurrent = param.int("blended")
-			downtime.voidCurrent = param.int("void")
+				downtime.airCurrent = param.int("air")
+				downtime.earthCurrent = param.int("earth")
+				downtime.fireCurrent = param.int("fire")
+				downtime.waterCurrent = param.int("water")
+				downtime.blendedCurrent = param.int("blended")
+				downtime.voidCurrent = param.int("void")
 
-			def itemString = param.get('items')
-			if(itemString.size() > 0){
-				def itemIds = param.get('items').split(',')*.toLong()
-				def items = Item.findAllByIdInList(itemIds)
-				downtime.item?.clear()
-				downtime.item = items
-				downtime.itemCurrent?.clear()
-				downtime.itemCurrent = items
+				def itemString = param.get('items')
+				if(itemString.size() > 0){
+					def itemIds = param.get('items').split(',')*.toLong()
+					def items = Item.findAllByIdInList(itemIds)
+					downtime.item?.clear()
+					downtime.item = items
+					downtime.itemCurrent?.clear()
+					downtime.itemCurrent = items
+				}
+				downtime.save()
 			}
-			downtime.save()
 		}
 		eventInstance.save flush:true
 
