@@ -1,5 +1,6 @@
 <g:set var="eventService" bean="eventService" />
-<g:set var="event" value="${eventService.lastEvent()}" />
+<g:set var="event"
+	value="${eblana.event.Event.findByCurrentDowntime(true)}" />
 <g:set var="downtime"
 	value="${eblana.event.Downtime.findByEventAndCharacter(event,playerCharacterInstance)}" />
 <style>
@@ -87,8 +88,8 @@ ul.feat {
 					</table>
 					<table style="width: 100%; text-align: left;">
 						<tr>
-							<td style="width: 25%;"><g:message code="playerCharacter.classes.label"
-									default="Classes: " />
+							<td style="width: 25%;"><g:message
+									code="playerCharacter.classes.label" default="Classes: " />
 
 								<ul>
 									<g:each in="${playerCharacterInstance?.classes}" var="c">
@@ -191,45 +192,49 @@ ul.feat {
 
 
 		<g:each in="${playerCharacterInstance.feat}" var="feat">
-		
+
 			<g:if test="${feat.feat.type.equals("Crafting") }">
 				<table class="frame">
 					<tr>
-					<td>
-						<table class="craft">
-							<tr>
-								<td style="padding: 5px; width:12%">Feat</td>
-								<td style="padding: 5px;width:10%">Item Type</td>
-								<td style="padding: 5px;">Power 1</td>
-								<td style="padding: 5px;">Power 2</td>
-								<td style="padding: 5px;width:7%">Attunement Time</td>
-								<td style="padding: 5px;width:5%" class="int">Total Cost</td>
-								<td style="padding: 5px;width:5%" class="int">Any Crystal</td>
-								<td style="padding: 5px;width:5%" class="int">Blended</td>
-								<td style="padding: 5px;width:5%" class="int">Air</td>
-								<td style="padding: 5px;width:5%" class="int">Earth</td>
-								<td style="padding: 5px;width:5%" class="int">Fire</td>
-								<td style="padding: 5px;width:5%" class="int">Water</td>
-								<td style="padding: 5px;width:5%" class="int">Void</td>
-							</tr>
-							<g:each in="${playerCharacterInstance?.recipe.sort{ it.requiredSkillToCraft}}"
-								var="i">
-								<g:if test="${i.requiredSkillToCraft.id.equals(feat.feat.id)}">
+						<td>
+							<table class="craft">
 								<tr>
-									<g:render template="/recipe/playerShow" model="['instance': i]" />
-									</tr>
-								</g:if>
-							</g:each>
-							<g:each
-								in="${eblana.items.Recipe.findAllByRequiredSkillToCraftAndResearchCost(feat.feat,0)}"
-								var="i">
-								<tr>
-									<g:render template="/recipe/playerShow" model="['instance': i]" />
+									<td style="padding: 5px; width: 12%">Feat</td>
+									<td style="padding: 5px; width: 10%">Item Type</td>
+									<td style="padding: 5px;">Power 1</td>
+									<td style="padding: 5px;">Power 2</td>
+									<td style="padding: 5px; width: 7%">Attunement Time</td>
+									<td style="padding: 5px; width: 5%" class="int">Total Cost</td>
+									<td style="padding: 5px; width: 5%" class="int">Any
+										Crystal</td>
+									<td style="padding: 5px; width: 5%" class="int">Blended</td>
+									<td style="padding: 5px; width: 5%" class="int">Air</td>
+									<td style="padding: 5px; width: 5%" class="int">Earth</td>
+									<td style="padding: 5px; width: 5%" class="int">Fire</td>
+									<td style="padding: 5px; width: 5%" class="int">Water</td>
+									<td style="padding: 5px; width: 5%" class="int">Void</td>
 								</tr>
-							</g:each>
+								<g:each
+									in="${playerCharacterInstance?.recipe.sort{ it.requiredSkillToCraft}}"
+									var="i">
+									<g:if test="${i.requiredSkillToCraft.id.equals(feat.feat.id)}">
+										<tr>
+											<g:render template="/recipe/playerShow"
+												model="['instance': i]" />
+										</tr>
+									</g:if>
+								</g:each>
+								<g:each
+									in="${eblana.items.Recipe.findAllByRequiredSkillToCraftAndResearchCost(feat.feat,0)}"
+									var="i">
+									<tr>
+										<g:render template="/recipe/playerShow"
+											model="['instance': i]" />
+									</tr>
+								</g:each>
 
 
-						</table>
+							</table>
 						</td>
 					</tr>
 
@@ -253,6 +258,42 @@ ul.feat {
 				model="['instance': i, 'event':event]" />
 			<br>
 		</g:each>
+	</div>
+
+	<div>
+		<br>
+		<h2>Transfers</h2>
+		<table class="frame">
+			<tr>
+				<td>
+					<table class="body">
+						<tr>
+							<td>From</td>
+							<td>To</td>
+							<td style="padding: 5px; width: 5%" class="int">Air</td>
+							<td style="padding: 5px; width: 5%" class="int">Earth</td>
+							<td style="padding: 5px; width: 5%" class="int">Fire</td>
+							<td style="padding: 5px; width: 5%" class="int">Water</td>
+							<td style="padding: 5px; width: 5%" class="int">Blended</td>
+							<td style="padding: 5px; width: 5%" class="int">Void</td>
+							<td>Items</td>
+						</tr>
+						<g:each in="${downtime?.to}" var="i">
+
+							<g:render template="/transfer/show"
+								model="['instance': i, 'event':event]" />
+
+						</g:each>
+						<g:each in="${downtime?.from}" var="i">
+
+							<g:render template="/transfer/show"
+								model="['instance': i, 'event':event]" />
+
+						</g:each>
+					</table>
+				</td>
+			</tr>
+		</table>
 	</div>
 
 </section>

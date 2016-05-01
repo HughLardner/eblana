@@ -91,7 +91,7 @@
 			<td>Void</td>
 			<td>Items (comma separated)</td>
 		</tr>
-		<g:each in="${PlayerCharacter.findAllByAlive(true)}" var="c">
+		<g:each in="${PlayerCharacter.findAllByAlive(true,[sort:"user.firstName"])}" var="c">
 		<g:set var="d" value="${downtimes.get(c.id)}"/>
 		<g:hiddenField  name="character.${c.id}.downtimeId" value="${d?.id}"/>
 				<tr>
@@ -100,7 +100,7 @@
 				</td>
 				<td><g:link controller="secUser" action="show"
 						id="${c?.user?.id}">
-						${c?.user?.toString()}
+						${c?.user?.firstName} ${c?.user?.surname}
 					</g:link></td>
 				<td>
 					${c.id }

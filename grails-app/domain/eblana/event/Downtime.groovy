@@ -13,8 +13,23 @@ class Downtime {
 	Integer airCurrent, earthCurrent, fireCurrent, waterCurrent, blendedCurrent, voidCurrent
 	List<Note> notes = new ArrayList<>()
 	
-	static hasMany = [item : Item, notes:Note, itemCurrent : Item]
-	static belongsTo = [character : PlayerCharacter, event: Event]
+	static hasMany = [
+		item : Item, 
+		notes:Note, 
+		itemCurrent : Item,
+		from:TransferLog, 
+		to:TransferLog
+		]
+	
+	static belongsTo = [
+		character : PlayerCharacter, 
+		event: Event
+		]
+	
+	static mappedBy=[
+		from: 'from',
+		to:'to'
+		]
 	
 	static mapping = {
    research type: 'text'

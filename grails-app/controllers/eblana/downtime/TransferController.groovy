@@ -3,6 +3,7 @@ package eblana.downtime
 import eblana.character.PlayerCharacter
 import eblana.event.Downtime
 import eblana.event.Event
+import eblana.event.TransferLog
 import eblana.items.Item
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
@@ -19,37 +20,67 @@ class TransferController {
 	def createTransfer(Downtime downtimeInstance){
 		def secUserInstance = downtimeInstance.character.user
 		if(isAuthService.hasModifyAuth(secUserInstance))
-		render (view:'create', model:[instance : downtimeInstance])
-	else
-		redirect action: 'auth', params: params
+			render (view:'create', model:[instance : downtimeInstance])
+		else
+			redirect action: 'auth', params: params
 	}
-	
+
 	@Transactional
 	def save(){
 		Downtime downtime = Downtime.get(params.long('downtime'))
-		def event = Event.findByLastEvent(true)
+		def event = downtime.event
 		def targetCharacter = PlayerCharacter.get(params.long('target'))
 		Downtime target = Downtime.findByEventAndCharacter(event, targetCharacter)
 		def itemIds = params.list('items')*.toLong()
 		def items = Item.findAllByIdInList(itemIds)
-		
-		downtime.airCurrent =-params.int('air')
-		downtime.earthCurrent =-params.int('earth')
-		downtime.fireCurrent =-params.int('fire')
-		downtime.waterCurrent =-params.int('water')
-		downtime.blendedCurrent =-params.int('blended')
-		downtime.voidCurrent =-params.int('void')
+
+		def air = params.int('air')
+		def earth = params.int('earth')
+		def fire = params.int('fire')
+		def water = params.int('water')
+		def blended = params.int('blended')
+		def voidC = params.int('void')
+
+		if(downtime.airCurrent <= air ||
+			downtime.earthCurrent <= earth ||
+			downtime.fireCurrent <= fire ||
+			downtime.waterCurrent <= water ||
+			downtime.blendedCurrent <= blended ||
+			downtime.voidCurrent <= voidC ||
+			!items.every{downtime.item.contains(it)}){
+			render "Error - you do not have what you are trying to transfer"
+		}
+		println air	
+		if(air < 0 ||
+			earth < 0 ||
+			fire < 0 ||
+			water < 0 ||
+			blended < 0 ||
+			voidC < 0
+			){
+			render "Error - you do may not transfer an negitive amount of crystals"
+		}
+
+
+
+		downtime.airCurrent =-air
+		downtime.earthCurrent =-earth
+		downtime.fireCurrent =-fire
+		downtime.waterCurrent =-water
+		downtime.blendedCurrent =-blended
+		downtime.voidCurrent =-voidC
 		downtime.item.removeAll(items)
 
-		target.airCurrent =+params.int('air')
-		target.earthCurrent =+params.int('earth')
-		target.fireCurrent =+params.int('fire')
-		target.waterCurrent =+params.int('water')
-		target.blendedCurrent =+params.int('blended')
-		target.voidCurrent =+params.int('void')
+		target.airCurrent =+air
+		target.earthCurrent =+earth
+		target.fireCurrent =+fire
+		target.waterCurrent =+water
+		target.blendedCurrent =+blended
+		target.voidCurrent =+voidC
 		target.item.addAll(items)
 		downtime.save()
 		target.save()
-		render  params 
+		new TransferLog(from:downtime, to:target, item:items, air:air, earth:earth, water:water, fire:fire, blended:blended, voidC:voidC).save()
+		redirect ( action: "createTransfer", id: downtime.id)
 	}
 }

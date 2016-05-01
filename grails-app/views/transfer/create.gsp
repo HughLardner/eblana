@@ -17,7 +17,7 @@
 					default="Air Crystals to transfer (Max: ${instance.airCurrent})" /></label>
 			<div>
 				<g:field class="form-control" name="air" type="number"
-					max="${instance.airCurrent}" min="0" value="0" />
+					max="${instance.airCurrent}" value="0" />
 			</div>
 		</div>
 
@@ -27,7 +27,7 @@
 					default="Earth Crystals to transfer (Max: ${instance.earthCurrent})" /></label>
 			<div>
 				<g:field class="form-control" name="earth" type="number"
-					max="${instance.earthCurrent}" min="0" value="0" />
+					max="${instance.earthCurrent}" value="0" />
 			</div>
 		</div>
 
@@ -102,3 +102,39 @@ table, td, th {
 
 	<g:actionSubmit value="Save" />
 </g:form>
+
+<div>
+		<br>
+		<h2>Transfers</h2>
+		<table class="frame">
+			<tr>
+				<td>
+					<table class="body">
+						<tr>
+							<td>From</td>
+							<td>To</td>
+							<td style="padding: 5px; width: 5%" class="int">Air</td>
+							<td style="padding: 5px; width: 5%" class="int">Earth</td>
+							<td style="padding: 5px; width: 5%" class="int">Fire</td>
+							<td style="padding: 5px; width: 5%" class="int">Water</td>
+							<td style="padding: 5px; width: 5%" class="int">Blended</td>
+							<td style="padding: 5px; width: 5%" class="int">Void</td>
+							<td>Items</td>
+						</tr>
+						<g:each in="${instance?.to}" var="i">
+
+							<g:render template="/transfer/show"
+								model="['instance': i, 'event':event]" />
+
+						</g:each>
+						<g:each in="${instance?.from}" var="i">
+
+							<g:render template="/transfer/show"
+								model="['instance': i, 'event':event]" />
+
+						</g:each>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
