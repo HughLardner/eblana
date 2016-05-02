@@ -2,7 +2,7 @@
 <g:set var="event"
 	value="${eblana.event.Event.findByCurrentDowntime(true)}" />
 <g:set var="downtime"
-	value="${eblana.event.Downtime.findByEventAndCharacter(event,playerCharacterInstance)}" />
+	value="${event.downtime.find{it.character == playerCharacterInstance}}" />
 <style>
 table {
 	border-collapse: collapse;

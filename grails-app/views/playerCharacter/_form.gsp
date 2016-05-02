@@ -219,7 +219,7 @@
 				code="playerCharacter.airCrystals.label" default="Air Crystals" /></label>
 		<div>
 			<g:field class="form-control" name="airCrystals" type="number"
-				value="${downtime.airCrystals}" />
+				value="${downtime?.airCrystals}" />
 			<span class="help-inline"> ${hasErrors(bean: downtime, field: 'airCrystals', 'error')}
 			</span>
 		</div>
@@ -231,7 +231,7 @@
 				code="playerCharacter.earthCrystals.label" default="Earth Crystals" /></label>
 		<div>
 			<g:field class="form-control" name="earthCrystals" type="number"
-				value="${downtime.earthCrystals}" />
+				value="${downtime?.earthCrystals}" />
 			<span class="help-inline"> ${hasErrors(bean: downtime, field: 'earthCrystals', 'error')}
 			</span>
 		</div>
@@ -243,7 +243,7 @@
 				code="playerCharacter.fireCrystals.label" default="Fire Crystals" /></label>
 		<div>
 			<g:field class="form-control" name="fireCrystals" type="number"
-				value="${downtime.fireCrystals}" />
+				value="${downtime?.fireCrystals}" />
 			<span class="help-inline"> ${hasErrors(bean: downtime, field: 'fireCrystals', 'error')}
 			</span>
 		</div>
@@ -255,7 +255,7 @@
 				code="playerCharacter.waterCrystals.label" default="Water Crystals" /></label>
 		<div>
 			<g:field class="form-control" name="waterCrystals" type="number"
-				value="${downtime.waterCrystals}" />
+				value="${downtime?.waterCrystals}" />
 			<span class="help-inline"> ${hasErrors(bean: downtime, field: 'waterCrystals', 'error')}
 			</span>
 		</div>
@@ -268,7 +268,7 @@
 				default="Blended Crystals" /></label>
 		<div>
 			<g:field class="form-control" name="blendedCrystals" type="number"
-				value="${downtime.blendedCrystals}" />
+				value="${downtime?.blendedCrystals}" />
 			<span class="help-inline"> ${hasErrors(bean: downtime, field: 'blendedCrystals', 'error')}
 			</span>
 		</div>
@@ -280,7 +280,7 @@
 				code="playerCharacter.voidCrystals.label" default="Void Crystals" /></label>
 		<div>
 			<g:field class="form-control" name="voidCrystals" type="number"
-				value="${downtime.voidCrystals}" />
+				value="${downtime?.voidCrystals}" />
 			<span class="help-inline"> ${hasErrors(bean: downtime, field: 'voidCrystals', 'error')}
 			</span>
 		</div>

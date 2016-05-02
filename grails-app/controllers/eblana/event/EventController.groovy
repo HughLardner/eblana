@@ -46,33 +46,73 @@ class EventController {
 
 	@Transactional
 	def save(Event eventInstance) {
+		params.remove "_attended"
+		bindData eventInstance, params
 		if (eventInstance == null) {
 			notFound()
 			return
 		}
 
 		if (eventInstance.hasErrors()) {
-			respond eventInstance.errors, view:'create'
+			respond eventInstance.errors, view:'edit'
 			return
 		}
+		if (params.boolean("currentDowntime")){
+			def events = Downtime.findAllByCurrentDowntime(true)
+			events.each{
+				it.currentDowntime = false
+				it.save()
+			}
+			eventInstance.currentDowntime = true
+		}
+		def downtimeParams = params.character
+		def characters = PlayerCharacter.findAllByAlive(true)
+		characters.each{c->
+			def param = downtimeParams.get(c.id.toString())
+			if(param){
+				def downtimeId = param.long("downtimeId")
+				def downtime
+				if(downtimeId)
+					downtime = Downtime.get(downtimeId)
+				else
+					downtime = new Downtime(event:eventInstance, character:c)
+				downtime.airCrystals = param.int("air")
+				downtime.earthCrystals = param.int("earth")
+				downtime.fireCrystals = param.int("fire")
+				downtime.waterCrystals = param.int("water")
+				downtime.blendedCrystals = param.int("blended")
+				downtime.voidCrystals = param.int("void")
 
-		def c = PlayerCharacter.findAllByAlive(true)
-		for (int i = 0; i < c.size(); i++){
-			def ce = new Downtime()
-			ce.character = c[i]
-			eventInstance.characterEvent.add(ce)
+				downtime.airCurrent = param.int("air")
+				downtime.earthCurrent = param.int("earth")
+				downtime.fireCurrent = param.int("fire")
+				downtime.waterCurrent = param.int("water")
+				downtime.blendedCurrent = param.int("blended")
+				downtime.voidCurrent = param.int("void")
+
+				def itemString = param.get('items')
+				if(itemString.size() > 0){
+					def itemIds = param.get('items').split(',')*.toLong()
+					def items = Item.findAllByIdInList(itemIds)
+					downtime.item?.clear()
+					downtime.item = items
+					downtime.itemCurrent?.clear()
+					downtime.itemCurrent = items
+				}
+				downtime.save()
+			}
 		}
 		eventInstance.save flush:true
 
 		request.withFormat {
 			form {
-				flash.message = message(code: 'default.created.message', args: [
-					message(code: 'eventInstance.label', default: 'Event'),
+				flash.message = message(code: 'default.updated.message', args: [
+					message(code: 'Event.label', default: 'Event'),
 					eventInstance.id
 				])
 				redirect eventInstance
 			}
-			'*' { respond eventInstance, [status: CREATED] }
+			'*'{ respond eventInstance, [status: OK] }
 		}
 	}
 
@@ -98,7 +138,14 @@ class EventController {
 			respond eventInstance.errors, view:'edit'
 			return
 		}
-
+		if (params.boolean("currentDowntime")){
+			def events = Downtime.findAllByCurrentDowntime(true)
+			events.each{
+				it.currentDowntime = false
+				it.save()
+			}
+			eventInstance.currentDowntime = true
+		}
 		def downtimeParams = params.character
 		def characters = PlayerCharacter.findAllByAlive(true)
 		characters.each{c->
