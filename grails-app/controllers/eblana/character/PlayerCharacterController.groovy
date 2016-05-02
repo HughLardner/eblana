@@ -84,8 +84,6 @@ class PlayerCharacterController {
 		downtime.save()
 		playerCharacterInstance.save flush:true
 	
-		playerCharacterInstance.save flush:true
-
 		request.withFormat {
 			form {
 				flash.message = message(code: 'default.created.message', args: [
