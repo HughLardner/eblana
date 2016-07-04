@@ -231,4 +231,14 @@ class EventController {
 			'*'{ render status: NOT_FOUND }
 		}
 	}
+	
+	def print(){
+		def players = PlayerCharacter.findAllByIdInList(params.list("printIds")*.toLong(),[readOnly:true, sort:'user.firstName'])
+		def event = Event.read(params.long("event"))
+		def results =  players.collect{player->
+			[character:player, downtime:Downtime.findByCharacterAndEvent(player, event, [readOnly:true])]
+		}
+		println results
+		render(view: "print", model: [players: results])
+	}
 }

@@ -5,6 +5,7 @@ import static org.springframework.http.HttpStatus.*
 import eblana.event.Downtime
 import eblana.event.Event
 import eblana.items.Item
+import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
@@ -188,5 +189,10 @@ class PlayerCharacterController {
 			}
 			'*'{ render status: NOT_FOUND }
 		}
+	}
+	
+	
+	def characterAPI(PlayerCharacter playerCharacterInstance) {
+		render playerCharacterInstance as JSON
 	}
 }
