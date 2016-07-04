@@ -27,9 +27,6 @@ ul.feat {
 }
 </style>
 
-<head>
-<meta name="layout" content="printing" />
-</head>
 
 <body>
 	<section id="show-playerCharacter" class="first">

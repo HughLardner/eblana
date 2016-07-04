@@ -113,3 +113,60 @@ ul.feat {
 	</tr>
 </table>
 
+<div class="section">
+
+		<br>
+		<h2>Recipes</h2>
+		<div class="divHeader">${fieldValue(bean: playerCharacterInstance, field: "name")}</div>
+
+
+
+		<g:each in="${playerCharacterInstance.feat}" var="feat">
+		
+			<g:if test="${feat.feat.type.equals("Crafting") }">
+				<table class="frame">
+					<tr>
+					<td>
+						<table class="craft">
+							<tr>
+								<td style="padding: 5px; width:12%">Feat</td>
+								<td style="padding: 5px;width:10%">Item Type</td>
+								<td style="padding: 5px;">Power 1</td>
+								<td style="padding: 5px;">Power 2</td>
+								<td style="padding: 5px;width:7%">Attunement Time</td>
+								<td style="padding: 5px;width:5%" class="int">Total Cost</td>
+								<td style="padding: 5px;width:5%" class="int">Any Crystal</td>
+								<td style="padding: 5px;width:5%" class="int">Blended</td>
+								<td style="padding: 5px;width:5%" class="int">Air</td>
+								<td style="padding: 5px;width:5%" class="int">Earth</td>
+								<td style="padding: 5px;width:5%" class="int">Fire</td>
+								<td style="padding: 5px;width:5%" class="int">Water</td>
+								<td style="padding: 5px;width:5%" class="int">Void</td>
+							</tr>
+							<g:each in="${playerCharacterInstance?.recipe.sort{ it.requiredSkillToCraft}}"
+								var="i">
+								<g:if test="${i.requiredSkillToCraft.id.equals(feat.feat.id)}">
+								<tr>
+									<g:render template="/recipe/playerShow" model="['instance': i]" />
+									</tr>
+								</g:if>
+							</g:each>
+							<g:each
+								in="${eblana.items.Recipe.findAllByRequiredSkillToCraftAndResearchCost(feat.feat,0)}"
+								var="i">
+								<tr>
+									<g:render template="/recipe/playerShow" model="['instance': i]" />
+								</tr>
+							</g:each>
+
+
+						</table>
+						</td>
+					</tr>
+
+				</table>
+			</g:if>
+		</g:each>
+
+	</div>
+
