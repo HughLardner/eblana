@@ -20,7 +20,7 @@ class PlayerCharacter {
 	List feat = new ArrayList<CharacterFeat>()
 	List spell = new ArrayList<CharacterSpell>()
 	List lore = new ArrayList<Lore>()
-	List recipe = new ArrayList<Recipe>()
+	//List recipe = new ArrayList<Recipe>()
 
 	static hasMany = [
 		classes : Classes,
