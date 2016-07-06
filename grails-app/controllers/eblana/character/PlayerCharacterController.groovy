@@ -74,7 +74,7 @@ class PlayerCharacterController {
 		downtime.waterCrystals = params.int("waterCrystals")
 		downtime.blendedCrystals = params.int("blendedCrystals")
 		downtime.voidCrystals = params.int("voidCrystals")
-		if(params.contains("item")){
+		if(params.containsKey("item")){
 			downtime.item.addAll(Item.findAllByIdInList(params.get("item")?.list('id')*.toLong()))
 		}		
 		downtime.save()
@@ -128,7 +128,7 @@ class PlayerCharacterController {
 		downtime.waterCrystals = params.int("waterCrystals")
 		downtime.blendedCrystals = params.int("blendedCrystals")
 		downtime.voidCrystals = params.int("voidCrystals")
-		if(params.contains("item")){
+		if(params.containsKey("item")){
 			downtime.item.addAll(Item.findAllByIdInList(params.get("item")?.list('id')*.toLong()))
 		}
 		downtime.save()
