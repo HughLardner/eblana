@@ -76,7 +76,8 @@ class PlayerCharacterController {
 		downtime.voidCrystals = params.int("voidCrystals")
 		if(params.contains("item"){
 			downtime.item.addAll(Item.findAllByIdInList(params.get("item")?.list('id')*.toLong()))
-		}		downtime.save()
+		}		
+		downtime.save()
 		playerCharacterInstance.save flush:true
 	
 		request.withFormat {
