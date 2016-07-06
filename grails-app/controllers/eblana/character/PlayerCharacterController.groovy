@@ -65,15 +65,8 @@ class PlayerCharacterController {
 		Downtime downtime = event.downtime.find{it.character == playerCharacterInstance}
 		if(!downtime){
 			downtime = new Downtime(character:playerCharacterInstance, event:event)
-			downtime.airCurrent = params.int("airCrystals")
-			downtime.earthCurrent = params.int("earthCrystals")
-			downtime.fireCurrent = params.int("fireCrystals")
-			downtime.waterCurrent = params.int("waterCrystals")
-			downtime.blendedCurrent = params.int("blendedCrystals")
-			downtime.voidCurrent = params.int("voidCrystals")	
 			downtime.item = [] as Set
 			downtime.itemCurrent = [] as Set
-			downtime.itemCurrent.addAll(Item.findAllByIdInList(params.get("item")?.list('id')*.toLong()))
 		}
 		downtime.airCrystals = params.int("airCrystals")
 		downtime.earthCrystals = params.int("earthCrystals")
@@ -81,8 +74,9 @@ class PlayerCharacterController {
 		downtime.waterCrystals = params.int("waterCrystals")
 		downtime.blendedCrystals = params.int("blendedCrystals")
 		downtime.voidCrystals = params.int("voidCrystals")
-		downtime.item.addAll(Item.findAllByIdInList(params.get("item")?.list('id')*.toLong()))
-		downtime.save()
+		if(params.contains("item"){
+			downtime.item.addAll(Item.findAllByIdInList(params.get("item")?.list('id')*.toLong()))
+		}		downtime.save()
 		playerCharacterInstance.save flush:true
 	
 		request.withFormat {
@@ -124,15 +118,8 @@ class PlayerCharacterController {
 		Downtime downtime = event.downtime.find{it.character == playerCharacterInstance}
 		if(!downtime){
 			downtime = new Downtime(character:playerCharacterInstance, event:event)
-			downtime.airCurrent = params.int("airCrystals")
-			downtime.earthCurrent = params.int("earthCrystals")
-			downtime.fireCurrent = params.int("fireCrystals")
-			downtime.waterCurrent = params.int("waterCrystals")
-			downtime.blendedCurrent = params.int("blendedCrystals")
-			downtime.voidCurrent = params.int("voidCrystals")
 			downtime.item = [] as Set
 			downtime.itemCurrent = [] as Set
-			downtime.itemCurrent.addAll(Item.findAllByIdInList(params.get("item")?.list('id')*.toLong()))
 		}
 		downtime.airCrystals = params.int("airCrystals")
 		downtime.earthCrystals = params.int("earthCrystals")
@@ -140,7 +127,9 @@ class PlayerCharacterController {
 		downtime.waterCrystals = params.int("waterCrystals")
 		downtime.blendedCrystals = params.int("blendedCrystals")
 		downtime.voidCrystals = params.int("voidCrystals")
-		downtime.item.addAll(Item.findAllByIdInList(params.get("item")?.list('id')*.toLong()))
+		if(params.contains("item"){
+			downtime.item.addAll(Item.findAllByIdInList(params.get("item")?.list('id')*.toLong()))
+		}
 		downtime.save()
 		playerCharacterInstance.save flush:true
 
