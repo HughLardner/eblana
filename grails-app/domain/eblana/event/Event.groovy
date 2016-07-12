@@ -11,6 +11,9 @@ class Event {
 	
 	static hasMany = [attended : PlayerCharacter, downtime:Downtime]
 
+	static mapping = {
+		sort eventNumber:"asc"
+	}
 	
 	String toString(){
 		return "Event " + eventNumber + " : " + name
