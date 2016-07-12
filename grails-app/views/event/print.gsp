@@ -116,7 +116,7 @@ ul.feat {
 													default="${lore.lore}" /><br></td>
 										</tr>
 										<tr>
-											<td>${lore.content}</td>
+											<td>${raw(lore.content)}</td>
 										</tr>
 									</g:each>
 								</table>

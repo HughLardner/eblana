@@ -19,7 +19,7 @@
 			<tr class="prop">
 				<td valign="top" class="name"><g:message code="eventLore.content.label" default="Content" /></td>
 				
-				<td valign="top" class="value">${fieldValue(bean: eventLoreInstance, field: "content")}</td>
+				<td valign="top" class="value">${raw(eventLoreInstance.content)}</td>
 				
 			</tr>
 		
