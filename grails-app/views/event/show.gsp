@@ -98,24 +98,24 @@
 						<td>Void Crystals</td>
 						<td>Items</td>
 					</tr>
-					<g:each in="${PlayerCharacter.findAllByAlive(true)}" var="c">
+					<g:each in="${PlayerCharacter.findAllByAlive(true,[sort:'user.firstName'])}" var="c">
 						<g:set var="d" value="${downtimes.get(c.id)}" />
 						<tr>
 							<td><g:checkBox class="form-control" name="printIds"
 									value="${c.id}" checked="" /></td>
-							<td>
-								${c.id}
-							</td>
-							<td><g:link controller="playerCharacter" action="show"
-									id="${c.id}">
-									${c?.encodeAsHTML()}
-								</g:link></td>
 							<td>
 								${c.user?.id}
 							</td>
 							<td><g:link controller="secUser" action="show"
 									id="${c.user?.id}">
 									${c.user?.toString()}
+								</g:link></td>
+							<td>
+								${c.id}
+							</td>
+							<td><g:link controller="playerCharacter" action="show"
+									id="${c.id}">
+									${c?.encodeAsHTML()}
 								</g:link></td>
 							<td>
 								${eventInstance.attended.contains(c)}
