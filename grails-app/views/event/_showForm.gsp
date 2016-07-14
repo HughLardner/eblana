@@ -1,28 +1,3 @@
-<style>
-table {
-	border-collapse: collapse;
-}
-
-table, td, th {
-	border: 1px solid black;
-	padding: 15px;
-}
-
-.frame {
-	padding: 0px;
-}
-
-div.character {
-	
-}
-
-ul.feat {
-	columns: 2;
-	-webkit-columns: 2;
-	-moz-columns: 2;
-}
-</style>
-
 
 
 <table style="width: 100%; text-align: left;">
@@ -129,19 +104,19 @@ ul.feat {
 					<td>
 						<table class="craft">
 							<tr>
-								<td style="padding: 5px; width:12%">Feat</td>
-								<td style="padding: 5px;width:10%">Item Type</td>
-								<td style="padding: 5px;">Power 1</td>
-								<td style="padding: 5px;">Power 2</td>
-								<td style="padding: 5px;width:7%">Attunement Time</td>
-								<td style="padding: 5px;width:5%" class="int">Total Cost</td>
-								<td style="padding: 5px;width:5%" class="int">Any Crystal</td>
-								<td style="padding: 5px;width:5%" class="int">Blended</td>
-								<td style="padding: 5px;width:5%" class="int">Air</td>
-								<td style="padding: 5px;width:5%" class="int">Earth</td>
-								<td style="padding: 5px;width:5%" class="int">Fire</td>
-								<td style="padding: 5px;width:5%" class="int">Water</td>
-								<td style="padding: 5px;width:5%" class="int">Void</td>
+								<td style="padding: 2px; width:10%; font-size:11px">Feat</td>
+								<td style="padding: 2px; width:8%; font-size:11px">Item Type</td>
+								<td style="padding: 2px; font-size:11px">Power 1</td>
+								<td style="padding: 2px; font-size:11px">Power 2</td>
+								<td style="padding: 2px;width:4%; font-size:11px">Attunement Time</td>
+								<td style="padding: 2px;width:2%; font-size:11px" class="int">Total Cost</td>
+								<td style="padding: 2px;width:2%; font-size:11px" class="int">Any Crystal</td>
+								<td style="padding: 2px;width:2%; font-size:11px" class="int">Blended</td>
+								<td style="padding: 2px;width:2%; font-size:11px" class="int">Air</td>
+								<td style="padding: 2px;width:2%; font-size:11px" class="int">Earth</td>
+								<td style="padding: 2px;width:2%; font-size:11px" class="int">Fire</td>
+								<td style="padding: 2px;width:2%; font-size:11px" class="int">Water</td>
+								<td style="padding: 2px;width:2%; font-size:11px" class="int">Void</td>
 							</tr>
 							<g:each in="${playerCharacterInstance?.recipe.sort{ it.requiredSkillToCraft}}"
 								var="i">

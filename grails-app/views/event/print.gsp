@@ -10,14 +10,40 @@ table {
 table, td, th {
 	border: 1px solid black;
 	padding: 15px;
+	table-layout: fixed;
 }
 
 .frame {
-	padding: 0px;
+	padding: 10px;
+	width: 100%;
+	height: 50%
+}
+
+.int {
+	width: 5px;
+}
+
+.body {
+	width: 100%;
+	text-align: left;
+	page-break-inside: avoid !important;
+}
+
+.craft, td.craft, th.craft{
+	padding: 1px !important;
+	width: 100%;
+	text-align: center;
+	table-layout: auto;
+	page-break-inside: avoid !important;
+}
+
+.blank_row {
+	height: 10px !important; /* Overwrite any previous rules */
+	border: none !important;
 }
 
 div.character {
-	page-break-after: always;
+	
 }
 
 ul.feat {
@@ -76,47 +102,25 @@ ul.feat {
 										</td>
 									</tr>
 								</table>
-
-								<table style="width: 100%; text-align: left;">
-									<tr>
-										<td><g:message code="characterEvent.research.label"
-												default="Research: " /><br> ${raw(playerCharacterInstance.downtime.research)}
-										</td>
-										<td><g:message code="characterEvent.researchMethod.label"
-												default="Research Method: " /><br> ${raw(playerCharacterInstance.downtime.researchMethod)}
-										</td>
-
-										<td><g:message
-												code="characterEvent.researchResources.label"
-												default="Research Resources: " /><br> ${raw(playerCharacterInstance.downtime.researchResources)}
-										</td>
-								</table>
-
-								<table style="width: 100%; text-align: left;">
-									<tr>
-										<td><g:message
-												code="characterEvent.researchResults.label"
-												default="Research Results: " /><br> ${raw(playerCharacterInstance.downtime.finalDecision)}
-										</td>
-									</tr>
-								</table>
-
+								<g:render template="/downtime/downtime"
+									model="['instance': playerCharacterInstance.downtime, 'event':'']" />
 							</div>
 
 							<div class="section">
 								<br>
 								<h2>Lore</h2>
 								<table style="width: 100%; text-align: left;">
-									<g:each in="${playerCharacterInstance.lore}"
-										var="lore">
-										
+									<g:each in="${playerCharacterInstance.lore}" var="lore">
+
 										<tr>
 											<td><g:message
 													code="characterEvent.researchResults.label"
 													default="${lore.lore}" /><br></td>
 										</tr>
 										<tr>
-											<td>${raw(lore.content)}</td>
+											<td>
+												${raw(lore.content)}
+											</td>
 										</tr>
 									</g:each>
 								</table>

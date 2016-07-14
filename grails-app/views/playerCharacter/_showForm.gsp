@@ -253,11 +253,17 @@ ul.feat {
 		<g:each
 			in="${playerCharacterInstance?.downtime.sort{ it.event.toString()}.reverse()}"
 			var="i">
-
-			<g:render template="/downtime/downtime"
-				model="['instance': i, 'event':event]" />
-			<br>
+			<h3>
+				${fieldValue(bean: i, field: "event")}
+			</h3>
+			<table class="frame">
+				<tr>
+					<td><g:render template="/downtime/downtime"
+							model="['instance': i, 'event':event]" /> <br></td>
+				</tr>
+			</table>
 		</g:each>
+
 	</div>
 
 	<div>

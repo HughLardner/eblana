@@ -1,10 +1,6 @@
-<h3>
-	${fieldValue(bean: instance, field: "event")}
-</h3>
 
-<table class="frame">
-	<tr>
-		<td>
+
+
 			<table class="body">
 				<tr>
 					<td><g:message code="characterEvent.research.label"
@@ -43,6 +39,4 @@
 					</td>
 				</tr>
 			</table>
-		</td>
-	</tr>
-</table>
+
