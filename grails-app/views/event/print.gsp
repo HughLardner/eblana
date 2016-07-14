@@ -9,19 +9,17 @@ table {
 
 table, td, th {
 	border: 1px solid black;
-	padding: 15px;
+	padding: 5px;
 	table-layout: fixed;
 }
 
 .frame {
-	padding: 10px;
+	padding: 2px;
 	width: 100%;
-	height: 50%
+	height: 10%
 }
 
-.int {
-	width: 5px;
-}
+
 
 .body {
 	width: 100%;

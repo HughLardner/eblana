@@ -1,4 +1,4 @@
-<td>${instance.requiredSkillToCraft} <g:if test="${instance.researchCost >0}"> (Researched)</g:if></td>
+<td style="font-size:10px">${instance.requiredSkillToCraft} <g:if test="${instance.researchCost >0}"> (Researched)</g:if></td>
 <td>${instance.itemType}</td>
 <td>${instance.power1}</td>
 <td>${instance.power2}</td>
