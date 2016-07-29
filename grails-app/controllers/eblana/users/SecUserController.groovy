@@ -28,7 +28,6 @@ class SecUserController {
 	}
 	@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 	def show(SecUser secUserInstance) {
-		println secUserInstance.character
 		if(isAuthService.hasModifyAuth(secUserInstance))
 			render (view:'show', model:[secUserInstance : secUserInstance])
 		else

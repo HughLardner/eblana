@@ -17,7 +17,7 @@
 
 	<section id="show-event" class="first">
 		<g:form action="print" class="form-horizontal" role="form">
-			<g:hiddenField  name="event" value="${eventInstance.id}"/>
+			<g:hiddenField name="event" value="${eventInstance.id}" />
 			<table class="table">
 				<tbody>
 					<tr class="prop">
@@ -89,6 +89,7 @@
 						<td>Player Name</td>
 						<td>Character Id</td>
 						<td>Character Name</td>
+						<td>XP</td>
 						<td>Attended</td>
 						<td>Air Crystals</td>
 						<td>Earth Crystals</td>
@@ -98,7 +99,9 @@
 						<td>Void Crystals</td>
 						<td>Items</td>
 					</tr>
-					<g:each in="${PlayerCharacter.findAllByAlive(true,[sort:'user.firstName'])}" var="c">
+					<g:each
+						in="${PlayerCharacter.findAllByAlive(true,[sort:'user.firstName'])}"
+						var="c">
 						<g:set var="d" value="${downtimes.get(c.id)}" />
 						<tr>
 							<td><g:checkBox class="form-control" name="printIds"
@@ -108,7 +111,7 @@
 							</td>
 							<td><g:link controller="secUser" action="show"
 									id="${c.user?.id}">
-									${c.user?.toString()}
+									${fieldValue(bean: c, field: "user")}
 								</g:link></td>
 							<td>
 								${c.id}
@@ -117,6 +120,9 @@
 									id="${c.id}">
 									${c?.encodeAsHTML()}
 								</g:link></td>
+							<td>
+								${c.xp}
+							</td>
 							<td>
 								${eventInstance.attended.contains(c)}
 							</td>
