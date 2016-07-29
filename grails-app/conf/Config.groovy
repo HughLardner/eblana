@@ -182,5 +182,5 @@ grails {
 	}
  }
 
-
+grails.plugin.console.enabled = true
 

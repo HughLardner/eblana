@@ -72,13 +72,15 @@ grails.project.dependency.resolution = {
 		compile ":jquery-ui:1.10.4"
 		compile ":famfamfam:1.0.1"
 		compile ":spring-security-acl:2.0-RC2"
-				
+		compile ":aws:1.7.5.0"
+		
 		
 		
 		// plugins needed at runtime but not for compilation
         runtime ":hibernate:3.6.10.7" // or ":hibernate4:4.1.11.6"
         runtime ":database-migration:1.3.8"
-		compile ":aws:1.7.5.0"
+		runtime ":console:1.5.9"
+		
         
 		
         runtime ":resources:1.2.2"

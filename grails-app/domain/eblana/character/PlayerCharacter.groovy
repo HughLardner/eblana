@@ -4,7 +4,7 @@ import eblana.background.God
 import eblana.background.Group
 import eblana.background.Settlement
 import eblana.event.Downtime
-import eblana.event.TransferLog
+import eblana.event.Event
 import eblana.items.Item
 import eblana.items.Recipe
 import eblana.users.SecUser
@@ -43,7 +43,32 @@ class PlayerCharacter {
 		return name
 	}
 
-	static mapping = { sort "name" }
+	static mapping = { 
+		sort "name" 
+		//xp formula: 'COUNT() FROM Event where'
+		}
+	
+	static transients = ['xp', 'body', 'armour', 'mana']
+	
+	public int getXp(){
+		return Event.executeQuery('from Event e where :character in elements(e.attended)',[character: this]).size()
+	}
+	
+	public int getBody(){
+		def body =  feat.feat?.body - null
+		return body.sum(1)
+	}
+	
+	public int getArmour(){
+		def armour =  feat.feat?.armour - null
+		return armour.sum(0)
+	}
+	
+	public int getMana(){
+		def mana =  feat.feat?.mana - null
+		return mana.sum(0)
+	}
+	
 
 	
 }

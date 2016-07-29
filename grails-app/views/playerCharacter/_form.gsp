@@ -36,54 +36,6 @@
 	</div>
 
 	<div
-		class="${hasErrors(bean: playerCharacterInstance, field: 'xp', 'error')} formField">
-		<label for="xp" class="control-label"><g:message
-				code="playerCharacter.xp.label" default="Xp" /></label>
-		<div>
-			<g:field class="form-control" name="xp" type="number"
-				value="${playerCharacterInstance.xp}" />
-			<span class="help-inline"> ${hasErrors(bean: playerCharacterInstance, field: 'xp', 'error')}
-			</span>
-		</div>
-	</div>
-
-	<div
-		class="${hasErrors(bean: playerCharacterInstance, field: 'armour', 'error')} formField">
-		<label for="armour" class="control-label"><g:message
-				code="playerCharacter.armour.label" default="Armour" /></label>
-		<div>
-			<g:field class="form-control" name="armour" type="number"
-				value="${playerCharacterInstance.armour}" />
-			<span class="help-inline"> ${hasErrors(bean: playerCharacterInstance, field: 'armour', 'error')}
-			</span>
-		</div>
-	</div>
-
-	<div
-		class="${hasErrors(bean: playerCharacterInstance, field: 'body', 'error')} formField">
-		<label for="body" class="control-label"><g:message
-				code="playerCharacter.body.label" default="Body" /></label>
-		<div>
-			<g:field class="form-control" name="body" type="number"
-				value="${playerCharacterInstance.body}" />
-			<span class="help-inline"> ${hasErrors(bean: playerCharacterInstance, field: 'body', 'error')}
-			</span>
-		</div>
-	</div>
-
-	<div
-		class="${hasErrors(bean: playerCharacterInstance, field: 'mana', 'error')} formField">
-		<label for="mana" class="control-label"><g:message
-				code="playerCharacter.mana.label" default="Mana" /></label>
-		<div>
-			<g:field class="form-control" name="mana" type="number"
-				value="${playerCharacterInstance.mana}" />
-			<span class="help-inline"> ${hasErrors(bean: playerCharacterInstance, field: 'mana', 'error')}
-			</span>
-		</div>
-	</div>
-
-	<div
 		class="${hasErrors(bean: playerCharacterInstance, field: 'alive', 'error')} formField">
 		<label for="alive" class="control-label"><g:message
 				code="playerCharacter.alive.label" default="Alive" /></label>
