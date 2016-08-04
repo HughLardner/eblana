@@ -152,12 +152,14 @@
 		<label for="recipe" class="control-label"><g:message
 				code="playerCharacter.recipe.label" default="Recipe" /></label>
 		<div>
-			<g:select class="form-control" name="recipe"
-				from="${eblana.items.Recipe.list()}" multiple="multiple"
-				optionKey="id" size="5"
-				value="${playerCharacterInstance?.recipe*.id}" class="many-to-many" />
-			<span class="help-inline"> ${hasErrors(bean: playerCharacterInstance, field: 'recipe', 'error')}
-			</span>
+			<g:each in="${eblana.items.Recipe.findAllByRequiredSkillToCraftInListAndResearchCostGreaterThan(playerCharacterInstance.feat.feat,0)}"
+				var="recipe" status="i">
+				<g:checkBox name="recipe" value="${recipe.id}"
+					checked="${playerCharacterInstance.recipe.contains(recipe)}" />
+				<label for="recipe">
+					${recipe}
+				</label></br>
+			</g:each>
 		</div>
 	</div>
 

@@ -132,7 +132,7 @@
 
 					<td valign="top" style="text-align: left;" class="value">
 						<ul>
-							<g:each in="${characterEventInstance.item}" var="i">
+							<g:each in="${characterEventInstance?.item}" var="i">
 								<li><g:link controller="item" action="show" id="${i.id}">
 										${i?.encodeAsHTML()}
 									</g:link></li>

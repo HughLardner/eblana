@@ -5,6 +5,7 @@ import static org.springframework.http.HttpStatus.*
 import eblana.event.Downtime
 import eblana.event.Event
 import eblana.items.Item
+import eblana.items.Recipe
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
@@ -44,6 +45,8 @@ class PlayerCharacterController {
 
 	@Transactional
 	def save(PlayerCharacter playerCharacterInstance) {
+		params.remove "_recipe"
+		bindData playerCharacterInstance, params
 		if (playerCharacterInstance == null) {
 			notFound()
 			return
@@ -98,6 +101,9 @@ class PlayerCharacterController {
 
 	@Transactional
 	def update(PlayerCharacter playerCharacterInstance) {
+		println params
+		params.remove "_recipe"
+		bindData playerCharacterInstance, params
 		if (playerCharacterInstance == null) {
 			notFound()
 			return
@@ -184,5 +190,16 @@ class PlayerCharacterController {
 	
 	def characterAPI(PlayerCharacter playerCharacterInstance) {
 		render playerCharacterInstance as JSON
+	}
+	
+	def fetchRecipes(PlayerCharacter playerCharacterInstance){
+		println "test"
+		def feat = playerCharacterInstance.feat*.feat.findAll(){
+			it.type == 'crafting'
+		} as Set
+		def recipes = Recipe.findAllByRequiredSkillToCraftInListAndResearchCost(feat, 0)
+		recipes.addAll(playerCharacterInstance.recipe)
+		println recipes
+		render(template:'recipes', model:[recipes:recipes])		
 	}
 }

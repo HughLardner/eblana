@@ -22,7 +22,8 @@
 
 					<td valign="top" class="value"><g:link controller="secUser"
 							action="show" id="${playerCharacterInstance?.user?.id}">
-							${playerCharacterInstance?.user?.firstName.encodeAsHTML()} ${playerCharacterInstance?.user?.surname}
+							${playerCharacterInstance?.user?.firstName.encodeAsHTML()}
+							${playerCharacterInstance?.user?.surname}
 						</g:link></td>
 
 				</tr>
@@ -100,7 +101,8 @@
 
 					<td valign="top" style="text-align: left;" class="value">
 						<ul>
-							<g:each in="${playerCharacterInstance.feat.sort{it.feat.name}}" var="f">
+							<g:each in="${playerCharacterInstance.feat.sort{it.feat.name}}"
+								var="f">
 								<li><g:link controller="feat" action="show" id="${f.id}">
 										${f?.encodeAsHTML()}
 										${f?.effect}
@@ -108,7 +110,6 @@
 							</g:each>
 						</ul>
 					</td>
-
 				</tr>
 
 				<tr class="prop">
@@ -117,7 +118,9 @@
 
 					<td valign="top" style="text-align: left;" class="value">
 						<ul>
-							<g:each in="${playerCharacterInstance.spell.sort{it.spell.classes.level}}" var="s">
+							<g:each
+								in="${playerCharacterInstance.spell.sort{it.spell.classes.level}}"
+								var="s">
 								<li><g:link controller="spell" action="show" id="${s.id}">
 										${s?.encodeAsHTML()}
 										${s?.effect1}
@@ -155,7 +158,8 @@
 					</td>
 
 				</tr>
-				<g:set var="downtime" value="${eblana.event.Event.findByCurrentDowntime(true).downtime.find{it.character == playerCharacterInstance} }"></g:set>
+				<g:set var="downtime"
+					value="${eblana.event.Event.findByCurrentDowntime(true).downtime.find{it.character == playerCharacterInstance} }"></g:set>
 				<tr class="prop">
 					<td valign="top" class="name"><g:message
 							code="playerCharacter.airCrystals.label" default="Air Crystals" /></td>
@@ -217,6 +221,22 @@
 
 					<td valign="top" class="value">
 						${fieldValue(bean: downtime, field: "voidCrystals")}
+					</td>
+
+				</tr>
+
+				<tr class="prop">
+					<td valign="top" class="recipe"><g:message
+							code="playerCharacter.recipe.label" default="Recipes" /></td>
+
+					<td valign="top" style="text-align: left;" class="value">
+						<ul>
+							<g:each in="${playerCharacterInstance.recipe}" var="l">
+								<li><g:link controller="recipe" action="show" id="${l.id}">
+										${l?.encodeAsHTML()}
+									</g:link></li>
+							</g:each>
+						</ul>
 					</td>
 
 				</tr>
