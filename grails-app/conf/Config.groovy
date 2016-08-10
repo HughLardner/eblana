@@ -183,4 +183,5 @@ grails {
  }
 
 grails.plugin.console.enabled = true
+grails.views.javascript.library="jquery"
 

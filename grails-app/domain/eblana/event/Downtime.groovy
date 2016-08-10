@@ -18,7 +18,8 @@ class Downtime {
 		notes:Note, 
 		itemCurrent : Item,
 		from:TransferLog, 
-		to:TransferLog
+		to:TransferLog,
+		craftLog:CraftLog
 		]
 	
 	static belongsTo = [

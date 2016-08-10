@@ -7,7 +7,8 @@ class Feat {
 	Classes prereqClass 
 	Boolean takeMoreThenOnce, visiable
 	String type
-	Integer level, body, armour, mana
+	Integer level, body, armour, mana, itemsCrafted
+	
 	
 	String toString(){
 		return name

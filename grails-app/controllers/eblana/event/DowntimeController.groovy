@@ -187,26 +187,16 @@ class DowntimeController {
 					character{ like('name',term) }
 					event{ like('name',term) }
 				}
-				or{
-					isNull("research")
+				if(params.research)
 					like('research',wrapSearchParm(params.research))
-				}
-				or{
-					isNull("researchResources")
+				if(params.resources)
 					like('researchResources',wrapSearchParm(params.resources))
-				}
-				or{
-					isNull("researchMethod")
+				if(params.method)
 					like('researchMethod',wrapSearchParm(params.method))
-				}
-				or{
-					isNull("goal")
+				if(params.goal)
 					like('goal',wrapSearchParm(params.goal))
-				}
-				or{
-					isNull("finalDecision")
+				if(params.result)
 					like('finalDecision',wrapSearchParm(params.result))
-				}
 				character{ like('name',wrapSearchParm(params.character)) }
 				event{
 					or{
