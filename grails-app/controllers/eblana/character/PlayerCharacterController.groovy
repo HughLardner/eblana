@@ -186,7 +186,9 @@ class PlayerCharacterController {
 
 	def fetchRecipeDetails={
 		def recipe = Recipe.read(params.recipe)
-		render(template:'recipeDetails', model:[recipe:recipe, downtime:params.downtime, character:params.character, div:params.div])
+		def character = PlayerCharacter.read(params.character)
+		def spells = character.spell.findAll {it.spell.classes == recipe.spellClass  }
+		render(template:'recipeDetails', model:[recipe:recipe, downtime:params.downtime, character:params.character, div:params.div, spells:spells])
 	}
 
 
@@ -216,8 +218,12 @@ class PlayerCharacterController {
 		if (air+earth+fire+water+blended+voidC != recipe?.anyCrystal)
 			render(status: 400, text: 'Incorrect amount of Any Crystals specified.')
 		def duration = 4
+		def power2 = recipe.power2
+		if(recipe.mustKnowTheSpell)
+			power2 = ": ${params.get('spell')}"
+			
 		def item = new Item(
-				name:name,power1:recipe.power1,power2:recipe.power2,
+				name:name,power1:recipe.power1,power2:power2,
 				attunementTime:recipe.attunementTime,
 				type:recipe.itemType.toString(),
 				duration:"Event ${downtime.event.eventNumber+duration}",

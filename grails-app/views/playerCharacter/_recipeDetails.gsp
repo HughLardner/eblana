@@ -28,6 +28,14 @@
 			${recipe.attunementTime}
 		</div>
 		<div>
+			<g:if test="${recipe.mustKnowTheSpell}">
+			Select Spell:
+			<g:select optionValue="" name="spell" id="spell"
+					from="${spells}"
+					noSelection="${['null':'-Choose Spell-']}" />
+			</g:if>
+		</div>
+		<div>
 			<g:message code="character.cost.label" default="Cost of Item:" />
 			<div id="table">
 				<div class="row">
@@ -62,9 +70,8 @@
 			</div>
 		</div>
 
-		<g:submitToRemote action="createItem"
-			name="createItem" value="Craft Item"
-			onFailure="error(XMLHttpRequest.responseText)"
+		<g:submitToRemote action="createItem" name="createItem"
+			value="Craft Item" onFailure="error(XMLHttpRequest.responseText)"
 			update="recipe${div}" />
 	</form>
 </g:if>

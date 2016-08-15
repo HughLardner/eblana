@@ -1,5 +1,6 @@
 package eblana.items
 
+import eblana.character.Classes
 import eblana.character.Feat
 import eblana.character.Lore
 
@@ -11,6 +12,7 @@ class Recipe {
 	Lore researchSkill1
 	ItemType itemType 
 	String itemName, power1, power2, attunementTime, duration,  researchSkill2, slot
+	Classes spellClass
 		
 	Boolean mustKnowTheSpell, baseCostOfEffectToBeAddedItemToBeEnhanced
 	
