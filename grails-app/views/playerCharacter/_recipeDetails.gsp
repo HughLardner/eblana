@@ -62,7 +62,7 @@
 			</div>
 		</div>
 
-		<g:submitToRemote update="createdItems" action="createItem"
+		<g:submitToRemote action="createItem"
 			name="createItem" value="Craft Item"
 			onFailure="error(XMLHttpRequest.responseText)"
 			update="recipe${div}" />

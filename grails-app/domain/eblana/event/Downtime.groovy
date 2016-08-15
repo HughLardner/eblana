@@ -12,31 +12,61 @@ class Downtime {
 	Integer airCrystals, earthCrystals, fireCrystals, waterCrystals, blendedCrystals, voidCrystals
 	Integer airCurrent, earthCurrent, fireCurrent, waterCurrent, blendedCurrent, voidCurrent
 	List<Note> notes = new ArrayList<>()
-	
+
 	static hasMany = [
-		item : Item, 
-		notes:Note, 
+		item : Item,
+		notes:Note,
 		itemCurrent : Item,
-		from:TransferLog, 
+		from:TransferLog,
 		to:TransferLog,
 		craftLog:CraftLog
-		]
-	
+	]
+
 	static belongsTo = [
-		character : PlayerCharacter, 
+		character : PlayerCharacter,
 		event: Event
-		]
-	
+	]
+
 	static mappedBy=[
 		from: 'from',
 		to:'to'
-		]
-	
+	]
+
 	static mapping = {
-   research type: 'text'
-   researchResources type: 'text'
-   researchMethod type: 'text'
-   finalDecision type: 'text'
-   goal type: 'text'
-}
+		research type: 'text'
+		researchResources type: 'text'
+		researchMethod type: 'text'
+		finalDecision type: 'text'
+		goal type: 'text'
+	}
+	
+	static transients = ['airCurrent', 'earthCurrent', 'fireCurrent', 'waterCurrent','blendedCurrent','voidCurrent','itemCurrent']
+	
+	public int getAirCurrent(){
+		return airCrystals + to*.air?.sum(0) - craftLog*.airCrystals?.sum(0) - from*.air?.sum(0)
+	}
+	
+	public int getEarthCurrent(){
+		return earthCrystals + to*.earth?.sum(0) - craftLog*.earthCrystals?.sum(0) - from*.earth?.sum(0)
+	}
+	
+	public int getFireCurrent(){
+		return fireCrystals + to*.fire?.sum(0) - craftLog*.fireCrystals?.sum(0) - from*.fire?.sum(0)
+	}
+	
+	public int getWaterCurrent(){
+		return waterCrystals + to*.water?.sum(0) - craftLog*.waterCrystals?.sum(0) - from*.water?.sum(0)
+	}
+	
+	public int getBlendedCurrent(){
+		return blendedCrystals + to*.blended?.sum(0) - craftLog*.blendedCrystals?.sum(0) - from*.blended?.sum(0)
+	}
+	
+	public int getVoidCurrent(){
+		return voidCrystals + to*.voidC?.sum(0) - craftLog*.voidCrystals?.sum(0) - from*.voidC?.sum(0)
+	}
+	
+	public Set<Item> getItemCurrent(){
+		return item + to*.item - from*.item + craftLog*.item
+	}
 }

@@ -20,7 +20,7 @@ class TransferController {
 	def createTransfer(Downtime downtimeInstance){
 		def secUserInstance = downtimeInstance.character.user
 		if(isAuthService.hasModifyAuth(secUserInstance))
-			render (view:'create', model:[instance : downtimeInstance])
+			render (view:'_create', model:[instance : downtimeInstance])
 		else
 			redirect action: 'auth', params: params
 	}
@@ -47,10 +47,9 @@ class TransferController {
 			downtime.waterCurrent <= water ||
 			downtime.blendedCurrent <= blended ||
 			downtime.voidCurrent <= voidC ||
-			!items.every{downtime.item.contains(it)}){
+			!items.every{downtime.itemCurrent.contains(it)}){
 			render "Error - you do not have what you are trying to transfer"
 		}
-		println air	
 		if(air < 0 ||
 			earth < 0 ||
 			fire < 0 ||
@@ -61,23 +60,6 @@ class TransferController {
 			render "Error - you do may not transfer an negitive amount of crystals"
 		}
 
-
-
-		downtime.airCurrent =-air
-		downtime.earthCurrent =-earth
-		downtime.fireCurrent =-fire
-		downtime.waterCurrent =-water
-		downtime.blendedCurrent =-blended
-		downtime.voidCurrent =-voidC
-		downtime.item.removeAll(items)
-
-		target.airCurrent =+air
-		target.earthCurrent =+earth
-		target.fireCurrent =+fire
-		target.waterCurrent =+water
-		target.blendedCurrent =+blended
-		target.voidCurrent =+voidC
-		target.item.addAll(items)
 		downtime.save()
 		target.save()
 		new TransferLog(from:downtime, to:target, item:items, air:air, earth:earth, water:water, fire:fire, blended:blended, voidC:voidC).save()

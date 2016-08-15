@@ -7,6 +7,7 @@ import eblana.event.Downtime
 import eblana.event.Event
 import eblana.items.Item
 import eblana.items.Recipe
+import eblana.users.SecUser
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
@@ -65,23 +66,6 @@ class PlayerCharacterController {
 		for(int i = 0; i <playerCharacterInstance.lore.size();i++){
 			playerCharacterInstance.lore.set(i, Lore.get(params.get("lore["+i+"]").lore?.id))
 		}
-		def event = Event.findByCurrentDowntime(true)
-		Downtime downtime = event.downtime.find{it.character == playerCharacterInstance}
-		if(!downtime){
-			downtime = new Downtime(character:playerCharacterInstance, event:event)
-			downtime.item = [] as Set
-			downtime.itemCurrent = [] as Set
-		}
-		downtime.airCrystals = params.int("airCrystals")
-		downtime.earthCrystals = params.int("earthCrystals")
-		downtime.fireCrystals = params.int("fireCrystals")
-		downtime.waterCrystals = params.int("waterCrystals")
-		downtime.blendedCrystals = params.int("blendedCrystals")
-		downtime.voidCrystals = params.int("voidCrystals")
-		if(params.containsKey("item")){
-			downtime.item.addAll(Item.findAllByIdInList(params.get("item")?.list('id')*.toLong()))
-		}
-		downtime.save()
 		playerCharacterInstance.save flush:true
 
 		request.withFormat {
@@ -102,7 +86,6 @@ class PlayerCharacterController {
 
 	@Transactional
 	def update(PlayerCharacter playerCharacterInstance) {
-		println params
 		params.remove "_recipe"
 		bindData playerCharacterInstance, params
 		if (playerCharacterInstance == null) {
@@ -122,23 +105,7 @@ class PlayerCharacterController {
 		for(int i = 0; i <playerCharacterInstance.lore.size();i++){
 			playerCharacterInstance.lore.set(i, Lore.get(params.get("lore["+i+"]").lore?.id))
 		}
-		def event = Event.findByCurrentDowntime(true)
-		Downtime downtime = event.downtime.find{it.character == playerCharacterInstance}
-		if(!downtime){
-			downtime = new Downtime(character:playerCharacterInstance, event:event)
-			downtime.item = [] as Set
-			downtime.itemCurrent = [] as Set
-		}
-		downtime.airCrystals = params.int("airCrystals")
-		downtime.earthCrystals = params.int("earthCrystals")
-		downtime.fireCrystals = params.int("fireCrystals")
-		downtime.waterCrystals = params.int("waterCrystals")
-		downtime.blendedCrystals = params.int("blendedCrystals")
-		downtime.voidCrystals = params.int("voidCrystals")
-		if(params.containsKey("item")){
-			downtime.item.addAll(Item.findAllByIdInList(params.get("item")?.list('id')*.toLong()))
-		}
-		downtime.save()
+
 		playerCharacterInstance.save flush:true
 
 		request.withFormat {
@@ -193,55 +160,35 @@ class PlayerCharacterController {
 		render playerCharacterInstance as JSON
 	}
 
-	def fetchRecipes(){
-		def character = PlayerCharacter.read(params.character)
-		def feat = Feat.read(params.feat)
-		def recipes = Recipe.findAllByRequiredSkillToCraftAndResearchCost(feat, 0) as Set
-		recipes.addAll(character.recipe.findAll{it.requiredSkillToCraft == feat})
-		render(template:'recipes', model:[recipes:recipes, downtime:params.downtime, character:params.character])
-	}
-	
-	def fetchRecipesCont(character, feat){
+	def fetchRecipes(character, feat){
 		def recipes = Recipe.findAllByRequiredSkillToCraftAndResearchCost(feat, 0) as Set
 		recipes.addAll(character.recipe.findAll{it.requiredSkillToCraft == feat})
 		return recipes
 	}
 
-	def genDowntime(PlayerCharacter character){
-		def downtime = character.downtime.find(){
+	def genDowntime(SecUser user){
+		PlayerCharacter character = user.character.find{it.alive==true}
+		Downtime downtime = character.downtime.find(){
 			it.event.currentDowntime == true
 		}
-		def feat = character.feat*.feat.findAll{it.type == 'Crafting'}
-		def crafted = downtime.craftLog
-		//crafted.addAll(feat.findAll {it.r})
-	
-		def recipes = feat.collect{
-			fetchRecipesCont(character,it)
+		def feat = []
+		character.feat*.feat.findAll{it.type == 'Crafting'}.each {current->
+			current.itemsCrafted.times{ feat.add(current) }
 		}
-		render(view:'genDowntime', model:[downtime:downtime, character:character, feat:feat, recipes:recipes])
+		def crafted = downtime.craftLog
+		crafted.each{
+			feat.remove(it.recipe.requiredSkillToCraft)
+		}
+		def recipes = feat.collect{ fetchRecipes(character,it) }
+		render(view:'genDowntime', model:[downtime:downtime, character:character, recipes:recipes, crafted:crafted])
 	}
 
-	def fetchRecipeDetails={
 
-		
+	def fetchRecipeDetails={
 		def recipe = Recipe.read(params.recipe)
 		render(template:'recipeDetails', model:[recipe:recipe, downtime:params.downtime, character:params.character, div:params.div])
 	}
-	
-	def checkCrafted={
-		println params
-		def character = PlayerCharacter.read(params.character)
-		def downtime = Downtime.read(params.downtime)
-		def feat = Feat.read(params.feat)
-		def crafted = downtime.craftLog.findAll {
-			it.recipe.requiredSkillToCraft == feat
-		}
-		println crafted
-		def craftedCollection = crafted.collect{
-			render(template:'craftedItem', model:[item:it.item, craftLog:it])
-		}
-		render(template:'craftedItemList', model:[craftedCollection:craftedCollection])
-	}
+
 
 	def createItem={
 		def name =  params.name
@@ -275,7 +222,7 @@ class PlayerCharacterController {
 				type:recipe.itemType.toString(),
 				duration:"Event ${downtime.event.eventNumber+duration}",
 				internalNotes:"Crafted by ${character}",
-				slot:recipe.slot).save()
+				slot:recipe.slot, created:downtime.event).save()
 		def craftLog = new CraftLog(
 				item:item,
 				airCrystals:air+recipe.airCrystals,

@@ -25,6 +25,8 @@ This menu is used to show function that can be triggered on the content (an obje
 				</g:link></li>
 			<li class=""><g:link controller="user">Admin</g:link></li>
 			<li class=""><g:render template="/_common/modals/deleteTextLink" />
+			<li class=""><g:link controller="playerCharacter" action="genDowntime" id="${params.id }">Downtime</g:link></li>
+
 		</sec:ifAllGranted>
 		<g:if
 			test="${ params.action == 'show' || params.action == 'edit' || params.action == 'showLogin'}">

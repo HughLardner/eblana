@@ -25,28 +25,34 @@
 		});
 	}
 
-	function checkCrafted(feat,character,downtime,div){
-		var divToUpdate = '#recipe'+div
-		$.ajax({ 
-		    url: '${g.createLink(action:'checkCrafted' )}', 
-		    type:"GET", 
-		    data:{feat:feat,character:character,downtime:downtime,div:div},
-		    success:function(data) {
-		        $(divToUpdate).html(data);
-		    }
-		});
-	}
+
 </script>
 	<div>
+		<h2>Crafting</h2>
 		<g:each var="recipeList" in="${recipes}" status="i">
 			<div id="recipe${i}">
-				<script>
-				window.onload = function() {
-					checkCrafted(${recipeList[0].requiredSkillToCraft.id}, ${character.id},${downtime.id},${i});
-					};
-				</script>
+				<g:message code="character.recipe.label" default="Select Recipe:" />
+				<g:select optionKey="id" optionValue="" name="recipe" id="recipes"
+					from="${recipeList}"
+					onchange="fetchRecipeDetails(this.value,${character.id},${downtime.id},'${i}')"
+					noSelection="${['null':'-Choose item to craft for '+recipeList[0].requiredSkillToCraft+'-']}" />
+				<div id="recipeDetails${i}">
+					<g:render template="recipeDetails" />
+				</div>
 			</div>
 		</g:each>
+	</div>
+	<div>
+		<h3>Previously Crafted</h3>
+		<g:each var="craft" in="${crafted}" status="i">
+			<g:render template="/craftLog/show"
+				model="['craftLogInstance': craft]" />
+		</g:each>
+	</div>
+	<div id="transfers">
+		<h2>Transfers</h2>
+			<g:render template="/transfer/create"
+				model="['instance': downtime]" />
 	</div>
 </body>
 

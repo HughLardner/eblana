@@ -11,6 +11,7 @@ class Item {
 	Integer convertedCrystalCost
 	Status status
 	Boolean transferable = true
+	Event created
 
 
 String toString(){

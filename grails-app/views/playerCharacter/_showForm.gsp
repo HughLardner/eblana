@@ -177,7 +177,7 @@ ul.feat {
 	<div>
 		<br>
 		<h2>Items</h2>
-		<g:each in="${downtime?.item}" var="i">
+		<g:each in="${downtime?.itemCurrent}" var="i">
 
 			<g:render template="/item/showTemplate" model="['itemInstance': i]" />
 
