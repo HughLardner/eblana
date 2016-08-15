@@ -218,7 +218,7 @@ class PlayerCharacterController {
 		def duration = 4
 		def item = new Item(
 				name:name,power1:recipe.power1,power2:recipe.power2,
-				attunmentTime:recipe.attunementTime,
+				attunementTime:recipe.attunementTime,
 				type:recipe.itemType.toString(),
 				duration:"Event ${downtime.event.eventNumber+duration}",
 				internalNotes:"Crafted by ${character}",
