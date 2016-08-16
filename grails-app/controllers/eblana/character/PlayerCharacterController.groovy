@@ -160,9 +160,11 @@ class PlayerCharacterController {
 		render playerCharacterInstance as JSON
 	}
 
-	def fetchRecipes(character, feat){
-		def recipes = Recipe.findAllByRequiredSkillToCraftAndResearchCost(feat, 0) as Set
-		recipes.addAll(character.recipe.findAll{it.requiredSkillToCraft == feat})
+	def fetchRecipes(character, Feat feat, recipes){
+		if(feat.prereqFeat)
+			recipes.addAll(fetchRecipes(character, feat.prereqFeat, recipes))
+		recipes.addAll(Recipe.findAllByRequiredSkillToCraftAndResearchCost(feat, 0) as Set)
+		recipes.addAll(character.recipe.findAll{it.requiredSkillToCraft.id == feat.id})
 		return recipes
 	}
 
@@ -179,7 +181,7 @@ class PlayerCharacterController {
 		crafted.each{
 			feat.remove(it.recipe.requiredSkillToCraft)
 		}
-		def recipes = feat.collect{ fetchRecipes(character,it) }
+		def recipes = feat.collect{ fetchRecipes(character,it,[] as Set) }
 		render(view:'genDowntime', model:[downtime:downtime, character:character, recipes:recipes, crafted:crafted])
 	}
 
