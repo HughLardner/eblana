@@ -1,4 +1,7 @@
 <%@ page import="eblana.event.CraftLog"%>
+
+
+
 <section id="show-craftLog" class="first">
 	<table class="table">
 		<tbody>
@@ -13,23 +16,9 @@
 				<td><g:message code="craftLog.cost.label"
 						default="Cost of Item:" /></td>
 				<td>
-					<div id="table">
-						<div class="row">
-							<span class="cell">Air</span> <span class="cell">Earth</span> <span
-								class="cell">Fire</span><span class="cell">Water</span><span
-								class="cell">Blended</span><span class="cell">Void</span>
-						</div>
-						<div class="row">
-							<span class="cell"> ${fieldValue(bean: craftLogInstance, field: "airCrystals")}
-							</span> <span class="cell"> ${fieldValue(bean: craftLogInstance, field: "earthCrystals")}
-							</span> <span class="cell"> ${fieldValue(bean: craftLogInstance, field: "fireCrystals")}
-							</span><span class="cell"> ${fieldValue(bean: craftLogInstance, field: "waterCrystals")}
-							</span><span class="cell"> ${fieldValue(bean: craftLogInstance, field: "blendedCrystals")}
-							</span><span class="cell"> ${fieldValue(bean: craftLogInstance, field: "voidCrystals")}
-							</span>
-						</div>
-					</div>
-
+					<g:render
+						template="/recipe/cost"
+						model="['instance': craftLogInstance]" />
 				</td>
 			</tr>
 			<tr class="prop">

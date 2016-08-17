@@ -30,44 +30,13 @@
 		<div>
 			<g:if test="${recipe.mustKnowTheSpell}">
 			Select Spell:
-			<g:select optionValue="" name="spell" id="spell"
-					from="${spells}"
+			<g:select optionValue="" name="spell" id="spell" from="${spells}"
 					noSelection="${['null':'-Choose Spell-']}" />
 			</g:if>
 		</div>
 		<div>
 			<g:message code="character.cost.label" default="Cost of Item:" />
-			<div id="table">
-				<div class="row">
-					<span class="cell">Air</span> <span class="cell">Earth</span> <span
-						class="cell">Fire</span><span class="cell">Water</span><span
-						class="cell">Blended</span><span class="cell">Void</span><span
-						class="cell">Any</span>
-				</div>
-				<div class="row">
-					<span class="cell"> ${recipe.airCrystals }
-					</span> <span class="cell"> ${recipe.earthCrystals }
-					</span> <span class="cell"> ${recipe.fireCrystals }
-					</span><span class="cell"> ${recipe.waterCrystals }
-					</span><span class="cell"> ${recipe.blendedCrystals }
-					</span><span class="cell"> ${recipe.voidCrystals }
-					</span><span class="cell"> ${recipe.anyCrystal}
-					</span>
-				</div>
-				<g:if test="${recipe.anyCrystal >0 }">
-					<div class="row">
-						<span class="cell"><input name="air" type="number" min="0"
-							max="${recipe.anyCrystal }" /></span> <span class="cell"><input
-							name="earth" type="number" min="0" max="${recipe.anyCrystal }" /></span>
-						<span class="cell"><input name="fire" type="number" min="0"
-							max="${recipe.anyCrystal }" /></span><span class="cell"><input
-							name="water" type="number" min="0" max="${recipe.anyCrystal }" /></span><span
-							class="cell"><input name="blended" type="number" min="0"
-							max="${recipe.anyCrystal }" /></span><span class="cell"><input
-							name="voidC" type="number" min="0" max="${recipe.anyCrystal }" /></span>
-					</div>
-				</g:if>
-			</div>
+			<g:render template="/recipe/cost" model="['instance': recipe]" />
 		</div>
 
 		<g:submitToRemote action="createItem" name="createItem"

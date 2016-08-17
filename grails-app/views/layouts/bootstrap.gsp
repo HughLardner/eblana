@@ -16,6 +16,9 @@ body {
 </style>
 <link rel="stylesheet"
 	href="${resource(dir:'css',file:'bootstrap-responsive.css')}">
+<link rel="stylesheet"
+	href="${resource(dir:'css',file:'stylesheet.css')}" type="text/css" />
+
 <r:layoutResources />
 <g:layoutHead />
 <!-- Fav and touch icons -->
@@ -36,7 +39,7 @@ body {
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<g:set var="entityName"
-			value="${message(code: params.controller+'.label', default: params.controller.substring(0,1).toUpperCase() + params.controller.substring(1).toLowerCase())}" />
+							value="${message(code: params.controller+'.label', default: params.controller.substring(0,1).toUpperCase() + params.controller.substring(1).toLowerCase())}" />
 						<sec:ifAllGranted roles="ROLE_ADMIN">
 							<li class="${ params.action == "list" ? 'active' : '' }"><g:link
 									action="list">
@@ -49,6 +52,11 @@ body {
 									<g:message code="default.new.label" args="[entityName]" />
 								</g:link></li>
 							<li><g:link controller="user">Admin</g:link></li>
+							<li><g:link controller="event">Event</g:link></li>
+							<li><g:link controller="item">Items</g:link></li>
+							<li><g:link controller="Recipe">Recipe</g:link></li>
+							<li><g:link controller="Spell">Spell</g:link></li>
+							<li><g:link controller="feat">Feat</g:link></li>
 							<li><g:render template="/_common/modals/deleteTextLink" />
 							<li class=""><g:link controller="playerCharacter"
 									action="genDowntime" id="${params.id }">Downtime</g:link></li>
@@ -75,7 +83,7 @@ body {
 	</div>
 
 	<!-- main content -->
-	<div id="page-content">
+	<div class="container" id="page-content">
 		<g:layoutBody />
 	</div>
 	<!-- end main content -->
