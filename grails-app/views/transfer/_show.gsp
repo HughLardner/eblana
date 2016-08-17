@@ -5,22 +5,22 @@
 	<td>
 		${instance.to.character }
 	</td>
-	<td>
+	<td class="air">
 		${instance.air }
 	</td>
-	<td>
+	<td class="earth">
 		${instance.earth }
 	</td>
-	<td>
+	<td class="fire">
 		${instance.fire }
 	</td>
-	<td>
+	<td class="water">
 		${instance.water }
 	</td>
-	<td>
+	<td class="blended">
 		${instance.blended }
 	</td>
-	<td>
+	<td class="void">
 		${instance.voidC }
 	</td>
 	<td>
