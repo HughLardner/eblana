@@ -7,7 +7,7 @@ class Item {
 	Boolean singleUse
 	String duration
 	String type
-	String power1, power2, attunementTime, curseCure, internalNotes
+	String power1, power2, attunementTime, curseCure, internalNotes, slot
 	Integer convertedCrystalCost
 	Status status
 	Boolean transferable = true

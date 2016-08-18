@@ -13,6 +13,8 @@
 	href="${resource(dir:'css',file:'bootstrap-responsive.css')}">
 <link rel="stylesheet"
 	href="${resource(dir:'css',file:'stylesheet.css')}" type="text/css" />
+<link rel="stylesheet"
+	href="${resource(dir:'css',file:'main.css')}" type="text/css" />
 
 <r:layoutResources />
 <g:layoutHead />

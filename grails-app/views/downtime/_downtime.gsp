@@ -74,10 +74,10 @@
 	<div class="row row-eq-height">
 		<g:each in="${instance?.itemCurrent}" var="item" status="i">
 			<g:if test="${i%3==0 }">
-			</div>
+				</div>
 				<div class="row row-eq-height">
 			</g:if>
-			<div class="col-xs-4 bordered">
+			<div class="col-xs-4">
 				<g:render template="/item/showTemplate"
 					model="['itemInstance': item]" />
 	</div>
