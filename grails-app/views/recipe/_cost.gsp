@@ -1,13 +1,13 @@
 <table class="table table-bordered table-condensed">
 	<tr class="row">
-		<th class="air">Air</th>
-		<th class="earth">Earth</th>
-		<th class="fire">Fire</th>
-		<th class="water">Water</th>
-		<th class="blended">Blended</th>
-		<th class="void">Void</th>
+		<th class="air col-sm-1">Air</th>
+		<th class="earth col-sm-1">Earth</th>
+		<th class="fire col-sm-1">Fire</th>
+		<th class="water col-sm-1">Water</th>
+		<th class="blended col-sm-1">Blended</th>
+		<th class="void col-sm-1">Void</th>
 		<g:if test="${instance.hasProperty('anyCrystal')}">
-			<th class="blended">Any</th>
+			<th class="blended col-sm-1">Any</th>
 		</g:if>
 	</tr>
 	<tr class="row">
@@ -37,22 +37,7 @@
 	</tr>
 	<g:if
 		test="${instance.hasProperty('anyCrystal') && recipe.anyCrystal >0}">
-		<style>
-input {
-	display: block !important;
-	padding: 0 !important;
-	margin: 0 !important;
-	border: 0 !important;
-	width: 100% !important;
-	border-radius: 0 !important;
-	line-height: 1 !important;
-}
 
-td {
-	margin: 0 !important;
-	padding: 0 !important;
-}
-</style>
 		<tr class="row">
 			<td class="air"><input name="air" td="number" min="0"
 				max="${recipe.anyCrystal }" /></td>

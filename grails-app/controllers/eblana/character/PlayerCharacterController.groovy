@@ -222,7 +222,7 @@ class PlayerCharacterController {
 		def duration = 4
 		def power2 = recipe.power2
 		if(recipe.mustKnowTheSpell)
-			power2 = ": ${params.get('spell')}"
+			power2 = "${params.get('spell')}"
 			
 		def item = new Item(
 				name:name,power1:recipe.power1,power2:power2,

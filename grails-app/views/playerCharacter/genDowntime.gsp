@@ -30,7 +30,7 @@
 	<div>
 		<h2>Crafting</h2>
 		<g:each var="recipeList" in="${recipes}" status="i">
-			<div id="recipe${i}">
+			<div id="recipe${i}" class="row">
 				<g:message code="character.recipe.label" default="Select Recipe:" />
 				<g:select optionKey="id" optionValue="" name="recipe" id="recipes"
 					from="${recipeList}"

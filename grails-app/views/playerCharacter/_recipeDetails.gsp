@@ -10,37 +10,54 @@
 		<g:hiddenField name="character" value="${character }" />
 		<g:hiddenField name="downtime" value="${downtime }" />
 
-		<div>
-			<g:message code="character.feat.label" default="Name of Item:" />
-			<input name="name" type="text" />
+		<div class="row">
+			<div class="col-xs-12">
+				<g:message code="character.feat.label" default="Name of Item:" />
+				<input name="name" type="text" />
+			</div>
 		</div>
-		<div>
-			Item Type:
-			${recipe.itemType}
+		<div class="row">
+			<div class="col-xs-12">
+				Item Type:
+				${recipe.itemType}
+			</div>
 		</div>
-		<div>
-			Item powers:
-			${recipe.power1}
-			${recipe.power2}
+		<div class="row">
+			<div class="col-xs-12">
+				Item powers:
+				${recipe.power1}
+				${recipe.power2}
+			</div>
 		</div>
-		<div>
-			Attunement Time:
-			${recipe.attunementTime}
+		<div class="row">
+			<div class="col-xs-12">
+				Attunement Time:
+				${recipe.attunementTime}
+			</div>
 		</div>
-		<div>
-			<g:if test="${recipe.mustKnowTheSpell}">
+		<div class="row">
+			<div class="col-xs-12">
+				<g:if test="${recipe.mustKnowTheSpell}">
 			Select Spell:
 			<g:select optionValue="" name="spell" id="spell" from="${spells}"
-					noSelection="${['null':'-Choose Spell-']}" />
-			</g:if>
+						noSelection="${['null':'-Choose Spell-']}" />
+				</g:if>
+			</div>
 		</div>
-		<div>
-			<g:message code="character.cost.label" default="Cost of Item:" />
-			<g:render template="/recipe/cost" model="['instance': recipe]" />
+		<div class="row">
+			<div class="col-xs-2">
+				<g:message code="character.cost.label" default="Cost of Item:" />
+			</div>
+			<div class="col-xs-6">
+				<g:render template="/recipe/cost" model="['instance': recipe]" />
+			</div>
 		</div>
-
-		<g:submitToRemote action="createItem" name="createItem"
-			value="Craft Item" onFailure="error(XMLHttpRequest.responseText)"
-			update="recipe${div}" />
+		<div class="row">
+			<div class="col-xs-12">
+				<g:submitToRemote action="createItem" name="createItem"
+					value="Craft Item" onFailure="error(XMLHttpRequest.responseText)"
+					update="recipe${div}" />
+			</div>
+		</div>
 	</form>
 </g:if>

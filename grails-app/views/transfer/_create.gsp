@@ -76,12 +76,16 @@
 		<div>
 			<br>
 			<h2>Items</h2>
-			<g:each in="${instance?.itemCurrent}" var="i">
-
-				<g:if test="${i?.transferable}">
-					<input type="checkbox" name="items" value="${i.id }">
-					<g:render template="/item/showTemplate" model="['itemInstance': i]" />
-					<br>
+			<g:each in="${instance?.itemCurrent}" var="item" status="i">
+				<g:if test="${item?.transferable}">
+					<div class="row row-eq-height">
+						<div class="col-xs-4">
+							<input type="checkbox" name="items" value="${item.id }">
+							<g:render template="/item/showTemplate"
+								model="['itemInstance': item]" />
+							<br>
+						</div>
+					</div>
 				</g:if>
 			</g:each>
 		</div>
@@ -94,36 +98,30 @@
 	<div>
 		<br>
 		<h2>Transfers</h2>
-		<table class="frame">
+		<table class="table">
 			<tr>
-				<td>
-					<table class="body">
-						<tr>
-							<td>From</td>
-							<td>To</td>
-							<td style="padding: 5px; width: 5%" class="int">Air</td>
-							<td style="padding: 5px; width: 5%" class="int">Earth</td>
-							<td style="padding: 5px; width: 5%" class="int">Fire</td>
-							<td style="padding: 5px; width: 5%" class="int">Water</td>
-							<td style="padding: 5px; width: 5%" class="int">Blended</td>
-							<td style="padding: 5px; width: 5%" class="int">Void</td>
-							<td>Items</td>
-						</tr>
-						<g:each in="${instance?.to}" var="i">
-
-							<g:render template="/transfer/show"
-								model="['instance': i, 'event':event]" />
-
-						</g:each>
-						<g:each in="${instance?.from}" var="i">
-
-							<g:render template="/transfer/show"
-								model="['instance': i, 'event':event]" />
-
-						</g:each>
-					</table>
-				</td>
+				<th>From</th>
+				<th>To</th>
+				<th class="air">Air</th>
+				<th class="earth">Earth</th>
+				<th class="fire">Fire</th>
+				<th class="water">Water</th>
+				<th class="blended">Blended</th>
+				<th class="void">Void</th>
+				<th>Items</th>
 			</tr>
+			<g:each in="${instance?.to}" var="i">
+
+				<g:render template="/transfer/show"
+					model="['instance': i, 'event':event]" />
+
+			</g:each>
+			<g:each in="${instance?.from}" var="i">
+
+				<g:render template="/transfer/show"
+					model="['instance': i, 'event':event]" />
+
+			</g:each>
 		</table>
 	</div>
 </div>

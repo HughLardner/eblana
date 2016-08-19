@@ -84,21 +84,12 @@ class EventController {
 				downtime.blendedCrystals = param.int("blended")
 				downtime.voidCrystals = param.int("void")
 
-				downtime.airCurrent = param.int("air")
-				downtime.earthCurrent = param.int("earth")
-				downtime.fireCurrent = param.int("fire")
-				downtime.waterCurrent = param.int("water")
-				downtime.blendedCurrent = param.int("blended")
-				downtime.voidCurrent = param.int("void")
-
 				def itemString = param.get('items')
 				if(itemString.size() > 0){
 					def itemIds = param.get('items').split(',')*.toLong()
 					def items = Item.findAllByIdInList(itemIds)
 					downtime.item?.clear()
 					downtime.item = items
-					downtime.itemCurrent?.clear()
-					downtime.itemCurrent = items
 				}
 				downtime.save()
 			}
@@ -165,21 +156,12 @@ class EventController {
 				downtime.blendedCrystals = param.int("blended")
 				downtime.voidCrystals = param.int("void")
 
-				downtime.airCurrent = param.int("air")
-				downtime.earthCurrent = param.int("earth")
-				downtime.fireCurrent = param.int("fire")
-				downtime.waterCurrent = param.int("water")
-				downtime.blendedCurrent = param.int("blended")
-				downtime.voidCurrent = param.int("void")
-
 				def itemString = param.get('items')
 				if(itemString.size() > 0){
 					def itemIds = param.get('items').split(',')*.toLong()
 					def items = Item.findAllByIdInList(itemIds)
 					downtime.item?.clear()
 					downtime.item = items
-					downtime.itemCurrent?.clear()
-					downtime.itemCurrent = items
 				}
 				downtime.save()
 			}
