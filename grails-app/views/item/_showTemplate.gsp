@@ -2,16 +2,16 @@
 
 <div class="image">
 	<img class="item__image" alt="" src="${resource(dir:'images',file:'bg1.png')}" />
+	<div id="item"></div>
 	<p class="image__content item__header">Academy of Eblana</p>
 	<div class="image__content item__name">
 		${fieldValue(bean: itemInstance, field: "name")}
 	</div>
-	<div class="image__content item__power1">
-		${fieldValue(bean: itemInstance, field: "power1")}
+	<div class="image__content item__power resize">
+		<p>${fieldValue(bean: itemInstance, field: "power1")}<br>
+		${fieldValue(bean: itemInstance, field: "power2")}</p>
 	</div>
-	<div class="image__content item__power2">
-		${fieldValue(bean: itemInstance, field: "power2")}
-	</div>
+	
 	<div class="image__content item__slot">
 		Attunes to:
 		${fieldValue(bean: itemInstance, field: "slot")}
@@ -33,6 +33,8 @@
 		${fieldValue(bean: itemInstance, field: "id")}
 	</div>
 </div>
+
+
 
 
 
