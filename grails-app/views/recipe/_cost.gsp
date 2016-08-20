@@ -37,7 +37,6 @@
 	</tr>
 	<g:if
 		test="${instance.hasProperty('anyCrystal') && recipe.anyCrystal >0}">
-
 		<tr class="row">
 			<td class="air"><input name="air" td="number" min="0"
 				max="${recipe.anyCrystal }" /></td>
@@ -51,6 +50,7 @@
 				max="${recipe.anyCrystal }" /></td>
 			<td class="void"><input name="voidC" type="number" min="0"
 				max="${recipe.anyCrystal }" /></td>
+			<td></td>
 		</tr>
 	</g:if>
 </table>

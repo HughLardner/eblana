@@ -175,7 +175,7 @@ class PlayerCharacterController {
 		}
 		def feat = []
 		character.feat*.feat.findAll{it.type == 'Crafting'}.each {current->
-			current.itemsCrafted.times{ feat.add(current) }
+			current?.itemsCrafted?.times{ feat.add(current) }
 		}
 		def crafted = downtime.craftLog
 		crafted.each{
@@ -219,7 +219,9 @@ class PlayerCharacterController {
 			render(status: 400, text: 'Insuffient Void Crystals.')
 		if (air+earth+fire+water+blended+voidC != recipe?.anyCrystal)
 			render(status: 400, text: 'Incorrect amount of Any Crystals specified.')
-		def duration = 4
+			
+		def sustainable = sustainable(character, recipe.requiredSkillToCraft)?1:0
+		def duration = 4 + sustainable
 		def power2 = recipe.power2
 		if(recipe.mustKnowTheSpell)
 			power2 = "${params.get('spell')}"
@@ -241,5 +243,14 @@ class PlayerCharacterController {
 				voidCrystals:voidC+recipe.voidCrystals,
 				recipe:recipe, downtime:downtime).save()
 		render(template:'craftedItem', model:[item:item, craftLog:craftLog])
+	}
+	
+	def sustainable(PlayerCharacter character, Feat feat){
+		while(feat.prereqFeat){
+			feat = feat.prereqFeat
+		}
+		return character.feat*.feat.find{
+			it.sustainable == true && it.prereqFeat == feat
+		}
 	}
 }

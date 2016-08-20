@@ -52,12 +52,10 @@
 				<g:render template="/recipe/cost" model="['instance': recipe]" />
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-xs-12">
-				<g:submitToRemote action="createItem" name="createItem"
-					value="Craft Item" onFailure="error(XMLHttpRequest.responseText)"
-					update="recipe${div}" />
-			</div>
+		<div class="btn-group">
+			<g:submitToRemote class="btn btn-primary" action="createItem"
+				name="createItem" value="Craft Item"
+				onFailure="error(XMLHttpRequest.responseText)" update="recipe${div}" />
 		</div>
 	</form>
 </g:if>

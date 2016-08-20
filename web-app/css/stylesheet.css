@@ -24,6 +24,18 @@
 	.bordered, .outlined {
 		outline: 1px solid black;
 	}
+	input {
+		display: block;
+		padding: 0;
+		margin: 0;
+		border: 0;
+		width: 100%;
+		text-align:right;
+		color:black;
+	}
+	td {
+		
+	}
 	.image {
 		position: relative;
 		width: 100%; /* for IE 6 */
@@ -56,7 +68,7 @@
 		height: 55%;
 		font-style: italic;
 		display: flex;
-		font-size: 16px; 
+		font-size: 16px;
 		align-items: center;
 		justify-content: center; /* align vertical */
 	}
@@ -163,7 +175,7 @@
 		height: 55%;
 		font-style: italic;
 		display: flex;
-		font-size: 16.6px; 
+		font-size: 16.6px;
 		align-items: center;
 		justify-content: center; /* align vertical */
 	}

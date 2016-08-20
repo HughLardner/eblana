@@ -76,20 +76,20 @@
 	class="${hasErrors(bean: eventInstance, field: 'attended', 'error')} ">
 	<label for="attended" class="control-label"><g:message
 			code="event.name.label" default="Returns" /></label>
-	<table>
+	<table class="table">
 		<tr>
-			<td>PID</td>
-			<td>Player</td>
-			<td>CID</td>
-			<td>Character</td>
-			<td>Attended</td>
-			<td>Air</td>
-			<td>Earth</td>
-			<td>Fire</td>
-			<td>Water</td>
-			<td>Blended</td>
-			<td>Void</td>
-			<td>Items (comma separated)</td>
+			<th>PID</th>
+			<th>Player</th>
+			<th>CID</th>
+			<th>Character</th>
+			<th>Attended</th>
+			<th class="air">Air</th>
+			<th class="earth">Earth</th>
+			<th class="fire">Fire</th>
+			<th class="water">Water</th>
+			<th class="blended">Blended</th>
+			<th class="void">Void</th>
+			<th>Items (comma separated)</th>
 		</tr>
 		<g:each in="${PlayerCharacter.findAllByAlive(true,[sort:"user.firstName"])}" var="c">
 		<g:set var="d" value="${downtimes.get(c.id)}"/>
@@ -112,17 +112,17 @@
 				<td><g:checkBox class="form-control" name="attended"
 						value="${c.id}"
 						checked="${eventInstance?.attended.contains(c)?:''}" /></td>
-			<td><g:field type="number" class="form-control" name="character.${c.id}.air"
+			<td class="air"><g:field type="number" class="form-control" name="character.${c.id}.air"
 			value="${d?.airCrystals}" /></td>
-			<td><g:field type="number" class="form-control" name="character.${c.id}.earth"
+			<td class="earth"><g:field type="number" class="form-control" name="character.${c.id}.earth"
 			value="${d?.earthCrystals}" /></td>
-			<td><g:field type="number" class="form-control" name="character.${c.id}.fire"
+			<td class="fire"><g:field type="number" class="form-control" name="character.${c.id}.fire"
 			value="${d?.fireCrystals}" /></td>
-			<td><g:field type="number" class="form-control" name="character.${c.id}.water"
+			<td class="water"><g:field type="number" class="form-control" name="character.${c.id}.water"
 			value="${d?.waterCrystals}" /></td>
-			<td><g:field type="number" class="form-control" name="character.${c.id}.blended"
+			<td class="blended"><g:field type="number" class="form-control" name="character.${c.id}.blended"
 			value="${d?.blendedCrystals}" /></td>
-			<td><g:field type="number" class="form-control" name="character.${c.id}.void"
+			<td class="void"><g:field type="number" class="form-control" name="character.${c.id}.void"
 			value="${d?.voidCrystals}" /></td>
 			<td><g:textField class="form-control" name="character.${c.id}.items"
 			value="${d?org.apache.commons.lang.StringUtils.join(d?.item*.id,','):''}" /></td>

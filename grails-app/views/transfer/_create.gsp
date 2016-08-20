@@ -89,10 +89,11 @@
 				</g:if>
 			</g:each>
 		</div>
-
-		<g:submitToRemote update="transfers" action="save"
-			controller="transfer" name="Transfer" value="Transfer"
-			onFailure="error(XMLHttpRequest.responseText)" />
+		<div class="btn-group">
+			<g:submitToRemote class="btn btn-primary" update="transfers"
+				action="save" controller="transfer" name="Transfer" value="Transfer"
+				onFailure="error(XMLHttpRequest.responseText)" />
+		</div>
 	</g:form>
 
 	<div>
