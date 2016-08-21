@@ -67,6 +67,9 @@ class Downtime {
 	}
 	
 	public Set<Item> getItemCurrent(){
-		return item + to*.item.flatten() - from*.item.flatten() + craftLog*.item
+		item.addAll(to*.item.flatten())
+		item.addAll(craftLog*.item)
+		item.removeAll{ it.id in from*.item.flatten().id}
+		return item
 	}
 }
