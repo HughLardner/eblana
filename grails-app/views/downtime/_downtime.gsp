@@ -36,53 +36,18 @@
 	</div>
 </div>
 
-<div class="row row-eq-height">
-	<div class="col-xs-2 bordered air">
-		<g:message code="playerCharacter.airCrystals.label"
-			default="Air Crystals: " />
-		${fieldValue(bean: instance, field: "airCurrent")}
-	</div>
-	<div class="col-xs-2 bordered earth">
-		<g:message code="playerCharacter.earthCrystals.label"
-			default="Earth Crystals: " />
-		${fieldValue(bean: instance, field: "earthCurrent")}
-	</div>
-	<div class="col-xs-2 bordered fire">
-		<g:message code="playerCharacter.fireCrystals.label"
-			default="Fire Crystals: " />
-		${fieldValue(bean: instance, field: "fireCurrent")}
-	</div>
-	<div class="col-xs-2 bordered water">
-		<g:message code="playerCharacter.waterCrystals.label"
-			default="Water Crystals: " />
-		${fieldValue(bean: instance, field: "waterCurrent")}
-	</div>
-	<div class="col-xs-2 bordered blended">
-		<g:message code="playerCharacter.blendedCrystals.label"
-			default="Blended Crystals: " />
-		${fieldValue(bean: instance, field: "blendedCurrent")}
-	</div>
-	<div class="col-xs-2 bordered void">
-		<g:message code="playerCharacter.voidCrystals.label"
-			default="Void Crystals: " />
-		${fieldValue(bean: instance, field: "voidCurrent")}
-	</div>
-</div>
+<g:render template="/downtime/resources" model="['instance': instance]" />
 
 <div>
 	<h2>Items</h2>
-	<div class="row row-eq-height">
+	<div class="row">
 		<g:each in="${instance?.itemCurrent}" var="item" status="i">
-			<g:if test="${i%3==0 }">
-				</div>
-				<div class="row row-eq-height">
-			</g:if>
 			<div class="col-xs-4">
 				<g:render template="/item/showTemplate"
 					model="['itemInstance': item]" />
+			</div>
+		</g:each>
 	</div>
-	</g:each>
-</div>
 </div>
 
 <div>

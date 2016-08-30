@@ -27,3 +27,9 @@ autoSizeText = function() {
 };
 
 window.onload = autoSizeText;
+
+$(document).ready(function(e){
+	$(".img-check").click(function(){
+		$(this).toggleClass("check");
+	});
+});

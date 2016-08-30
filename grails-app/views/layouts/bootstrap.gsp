@@ -91,6 +91,6 @@
 
 	<script src="http://code.jquery.com/jquery.js"></script>
 	<script src="${resource(dir:'js',file:'bootstrap.js')}"></script>
-	<script src="${resource(dir:'js',file:'autoSizr.js')}"></script>
+	<script src="${resource(dir:'js',file:'styling.js')}"></script>
 </body>
 </html>

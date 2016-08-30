@@ -179,7 +179,12 @@ class PlayerCharacterController {
 		}
 		def crafted = downtime.craftLog
 		crafted.each{
-			feat.remove(it.recipe.requiredSkillToCraft)
+			if(!feat.remove(it.recipe.requiredSkillToCraft)){
+				def toRemove = Feat.findByPrereqFeatAndSustainable(it.recipe.requiredSkillToCraft, false,[readOnly:true])
+				if(!feat.remove(toRemove)){
+					feat.remove(Feat.findByPrereqFeatAndSustainable(toRemove, false,[readOnly:true]))
+				}
+			}
 		}
 		def recipes = feat.collect{ fetchRecipes(character,it,[] as Set) }
 		render(view:'genDowntime', model:[downtime:downtime, character:character, recipes:recipes, crafted:crafted])
@@ -190,7 +195,7 @@ class PlayerCharacterController {
 		def recipe = Recipe.read(params.recipe)
 		def character = PlayerCharacter.read(params.character)
 		def spells = character.spell.findAll {it.spell.classes == recipe.spellClass  }
-		render(template:'recipeDetails', model:[recipe:recipe, downtime:params.downtime, character:params.character, div:params.div, spells:spells])
+		render(template:'recipeDetails', model:[recipe:recipe, downtime:Downtime.read(params.downtime), character:params.character, div:params.div, spells:spells])
 	}
 
 

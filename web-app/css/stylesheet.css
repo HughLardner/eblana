@@ -24,17 +24,21 @@
 	.bordered, .outlined {
 		outline: 1px solid black;
 	}
-	input {
+	.input-crystal {
 		display: block;
 		padding: 0;
 		margin: 0;
 		border: 0;
 		width: 100%;
-		text-align:right;
-		color:black;
+		text-align: right;
+		color: black;
 	}
-	td {
-		
+	.check {
+		opacity: 0.5;
+		color: #996;
+	}
+	#item {
+		color: black;
 	}
 	.image {
 		position: relative;

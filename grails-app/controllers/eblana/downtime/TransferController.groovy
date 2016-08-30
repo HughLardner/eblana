@@ -2,11 +2,11 @@ package eblana.downtime
 
 import eblana.character.PlayerCharacter
 import eblana.event.Downtime
-import eblana.event.Event
 import eblana.event.TransferLog
 import eblana.items.Item
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
+import grails.validation.ValidationException
 
 /**
  * TransferController
@@ -27,6 +27,7 @@ class TransferController {
 
 	@Transactional
 	def save(){
+		println params
 		Downtime downtime = Downtime.get(params.long('downtime'))
 		def event = downtime.event
 		def targetCharacter = PlayerCharacter.get(params.long('target'))
@@ -41,23 +42,24 @@ class TransferController {
 		def blended = params.int('blended')
 		def voidC = params.int('void')
 
-		if(downtime.airCurrent <= air ||
-			downtime.earthCurrent <= earth ||
-			downtime.fireCurrent <= fire ||
-			downtime.waterCurrent <= water ||
-			downtime.blendedCurrent <= blended ||
-			downtime.voidCurrent <= voidC ||
-			!items.every{downtime.itemCurrent.contains(it)}){
-			render "Error - you do not have what you are trying to transfer"
+		if(downtime.airCurrent < air ||
+		downtime.earthCurrent < earth ||
+		downtime.fireCurrent < fire ||
+		downtime.waterCurrent < water ||
+		downtime.blendedCurrent < blended ||
+		downtime.voidCurrent < voidC ||
+		!items.every{downtime.itemCurrent.contains(it)}
+		){
+			throw new ValidationException("Error - you do not have what you are trying to transfer", downtime.errors)
 		}
 		if(air < 0 ||
-			earth < 0 ||
-			fire < 0 ||
-			water < 0 ||
-			blended < 0 ||
-			voidC < 0
-			){
-			render "Error - you do may not transfer an negitive amount of crystals"
+		earth < 0 ||
+		fire < 0 ||
+		water < 0 ||
+		blended < 0 ||
+		voidC < 0
+		){
+			throw new ValidationException("Error - you do may not transfer an negitive amount of crystals", downtime.errors)
 		}
 
 		downtime.save()
