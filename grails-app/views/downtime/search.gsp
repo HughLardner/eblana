@@ -3,7 +3,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="layout" content="kickstart" />
+<meta name="layout" content="bootstrap" />
 <title>Downtime Search</title>
 </head>
 <body>

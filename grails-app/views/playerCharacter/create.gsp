@@ -3,7 +3,7 @@
 <html>
 
 <head>
-	<meta name="layout" content="kickstart" />
+	<meta name="layout" content="bootstrap" />
 	<g:set var="entityName" value="${message(code: 'playerCharacter.label', default: 'PlayerCharacter')}" />
 	<title><g:message code="default.create.label" args="[entityName]" /></title>
 </head>

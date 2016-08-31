@@ -3,7 +3,7 @@
 <html>
 
 <head>
-	<meta name="layout" content="kickstart" />
+	<meta name="layout" content="bootstrap" />
 	<g:set var="entityName" value="${message(code: 'eventLore.label', default: 'EventLore')}" />
 	<title><g:message code="default.create.label" args="[entityName]" /></title>
 </head>

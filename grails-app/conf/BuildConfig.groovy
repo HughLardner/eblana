@@ -63,7 +63,7 @@ grails.project.dependency.resolution = {
         compile ':cache:1.1.1'
 		//compile ':spring-security-core:1.2.6'
 		//compile ':searchable:0.6.5'
-		compile ":kickstart-with-bootstrap:1.1.0"
+		//compile ":kickstart-with-bootstrap:1.1.0"
 		//compile ":jquery-ui:1.10.3"
 		compile ":jquery:1.11.1"
 		compile ":ajaxdependancyselection:0.37"

@@ -4,7 +4,7 @@
 <html>
 
 <head>
-	<meta name="layout" content="kickstart" />
+	<meta name="layout" content="bootstrap" />
 	<g:set var="entityName" value="${message(code: '_DemoPage.label', default: '_DemoPage')}" />
 	<title><g:message code="default.list.label" args="[entityName]" /></title>
 </head>

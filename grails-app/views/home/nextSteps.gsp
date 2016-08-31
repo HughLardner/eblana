@@ -2,7 +2,7 @@
 
 <head>
 	<title>Next Steps</title>
-	<meta name="layout" content="kickstart" />
+	<meta name="layout" content="bootstrap" />
 </head>
 
 <body>

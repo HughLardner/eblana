@@ -68,7 +68,7 @@
 		<div class="btn-group">
 			<g:submitToRemote class="btn btn-primary" update="transfers"
 				action="save" controller="transfer" name="Transfer" value="Transfer"
-				onFailure="error(XMLHttpRequest.responseText)" />
+				onFailure="error(XMLHttpRequest.responseText)" before="if (!confirm('Confirm Transfer?')) {return false;}"/>
 		</div>
 	</g:form>
 

@@ -45,7 +45,7 @@
 		</div>
 		<div class="btn-group">
 			<g:submitToRemote class="btn btn-primary" action="createItem"
-				name="createItem" value="Craft Item"
+				name="createItem" value="Craft Item"  before="if (!confirm('Confirm Craft?')) {return false;}"
 				onFailure="error(XMLHttpRequest.responseText)" update="recipe${div}" />
 		</div>
 	</form>

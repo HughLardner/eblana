@@ -35,13 +35,13 @@ class TransferController {
 		def itemIds = params.list('items')*.toLong()
 		def items = Item.findAllByIdInList(itemIds)
 
-		def air = params.int('air')
-		def earth = params.int('earth')
-		def fire = params.int('fire')
-		def water = params.int('water')
-		def blended = params.int('blended')
-		def voidC = params.int('void')
-
+		def air = params.int('air')?:0
+		def earth = params.int('earth')?:0
+		def fire = params.int('fire')?:0
+		def water = params.int('water')?:0
+		def blended = params.int('blended')?:0
+		def voidC = params.int('voidC')?:0
+		
 		if(downtime.airCurrent < air ||
 		downtime.earthCurrent < earth ||
 		downtime.fireCurrent < fire ||
