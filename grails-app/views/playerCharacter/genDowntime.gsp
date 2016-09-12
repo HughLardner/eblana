@@ -25,16 +25,14 @@
 		    }
 		});
 	}
-
-
-</script>
+	</script>
 	<div>
 		<h1>
 			${character }
 		</h1>
 		<div id="resources">
 			<g:render template="/downtime/resources"
-					model="['instance': downtime]" />
+				model="['instance': downtime]" />
 		</div>
 	</div>
 

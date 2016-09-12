@@ -1,61 +1,100 @@
 
-<%@ page import="eblana.items.Item" %>
+<%@ page import="eblana.items.Item"%>
+<%@ page import="eblana.event.Event"%>
 <!DOCTYPE html>
 <html>
 
 <head>
-	<meta name="layout" content="bootstrap" />
-	<g:set var="entityName" value="${message(code: 'item.label', default: 'Item')}" />
-	<title><g:message code="default.index.label" args="[entityName]" /></title>
+<meta name="layout" content="bootstrap" />
+<g:set var="entityName"
+	value="${message(code: 'item.label', default: 'Item')}" />
+<title><g:message code="default.index.label" args="[entityName]" /></title>
 </head>
 
 <body>
-
-<section id="index-item" class="first">
-
-	<table class="table table-bordered margin-top-medium">
-		<thead>
-			<tr>
-			
-				<g:sortableColumn property="attunementTime" title="${message(code: 'item.attunementTime.label', default: 'Attunement Time')}" />
-			
-				<g:sortableColumn property="convertedCrystalCost" title="${message(code: 'item.convertedCrystalCost.label', default: 'Converted Crystal Cost')}" />
-			
-				<g:sortableColumn property="curseCure" title="${message(code: 'item.curseCure.label', default: 'Curse Cure')}" />
-			
-				<g:sortableColumn property="duration" title="${message(code: 'item.duration.label', default: 'Duration')}" />
-			
-				<g:sortableColumn property="internalNotes" title="${message(code: 'item.internalNotes.label', default: 'Internal Notes')}" />
-			
-				<g:sortableColumn property="name" title="${message(code: 'item.name.label', default: 'Name')}" />
-			
-			</tr>
-		</thead>
-		<tbody>
-		<g:each in="${itemInstanceList}" status="i" var="itemInstance">
-			<tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-			
-				<td><g:link action="show" id="${itemInstance.id}">${fieldValue(bean: itemInstance, field: "attunementTime")}</g:link></td>
-			
-				<td>${fieldValue(bean: itemInstance, field: "convertedCrystalCost")}</td>
-			
-				<td>${fieldValue(bean: itemInstance, field: "curseCure")}</td>
-			
-				<td>${fieldValue(bean: itemInstance, field: "duration")}</td>
-			
-				<td>${fieldValue(bean: itemInstance, field: "internalNotes")}</td>
-			
-				<td>${fieldValue(bean: itemInstance, field: "name")}</td>
-			
-			</tr>
-		</g:each>
-		</tbody>
-	</table>
-	<div>
-		<bs:paginate total="${itemInstanceCount}" />
-	</div>
-</section>
-
+	<section id="index-item" class="first">
+		<g:form class="form-inline" action="index">
+			<div class="form-group">
+				<label for="id">Item ID</label> <input name="id" type="number"
+					class="form-control" id="id" placeholder="ID">
+			</div>
+			<div class="form-group">
+				<label for="name">Name</label> <input name="name"
+					class="form-control" id="name" placeholder="Name">
+			</div>
+			<div class="form-group">
+				<label for="power1">Power</label> <input name="power1" type="text"
+					class="form-control" id="power1" placeholder="Power">
+			</div>
+			<div class="form-group">
+				<label for="type">Type</label>
+				<g:select name="type" class="form-control" id="type" from="${type}"
+					noSelection="${['':'Select Type...']}" />
+			</div>
+			<div class="form-group">
+				<label for="duration">Valid Until</label>
+				<g:select name="duration" class="form-control" id="duration"
+					from="${duration}" noSelection="${['':'Select Duration...']}" />
+			</div>
+			<div class="form-group">
+				<label for="created">Created</label>
+				<g:select name="created" class="form-control" id="created"
+					from="${events}" noSelection="${['null':'Select Event...']}" />
+			</div>
+			<div class="form-group">
+				<label for="internal">Internal Notes</label> <input name="internal"
+					type="text" class="form-control" id="internal" placeholder="Note">
+			</div>
+			<div class="form-group">
+				<label for="feat">Level</label>
+				<g:select name="feat" class="form-control" id="feat" from="${feat}"
+					noSelection="${['null':'Select Feat...']}" />
+			</div>
+			<div class="form-group">
+				<label for="proposed" class="col-xs-3">Proposed</label>
+				<div class="col-xs-9">
+					<div class="radio">
+						<label class="radio-inline" for="proposed">True</label><input
+							type="radio" name="proposed" class="form-control" id="proposed"
+							value="True">
+					</div>
+					<div class="radio">
+						<label class="radio-inline" for="proposed">False</label><input
+							type="radio" name="proposed" class="form-control" id="proposed"
+							value="False">
+					</div>
+					<div class="radio">
+						<label class="radio-inline" for="proposed">N/A</label><input
+							type="radio" name="proposed" class="form-control" id="proposed"
+							value="null" checked="true">
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="transferable" class="col-xs-3">Transferable</label>
+				<div class="col-xs-9">
+					<div class="radio">
+						<label class="radio-inline" for="transferable">True</label><input
+							type="radio" name="transferable" class="form-control" id="transferable"
+							value="True">
+					</div>
+					<div class="radio">
+						<label class="radio-inline" for="transferable">False</label><input
+							type="radio" name="transferable" class="form-control" id="transferable"
+							value="False">
+					</div>
+					<div class="radio">
+						<label class="radio-inline" for="transferable">N/A</label><input
+							type="radio" name="transferable" class="form-control" id="transferable"
+							value="null" checked="true">
+					</div>
+				</div>
+			</div>
+			<g:submitToRemote class="btn btn-default" update="items"
+				action="search" name="search" value="Search" onComplete="autoSizeText();"/>
+		</g:form>
+		<div id="items"></div>
+	</section>
 </body>
 
 </html>

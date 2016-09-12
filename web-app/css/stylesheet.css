@@ -42,7 +42,8 @@
 	}
 	.image {
 		position: relative;
-		width: 100%; /* for IE 6 */
+				width: 7.5cm; /* for IE 6 */
+		height: 4.1cm;
 	}
 	.image__content {
 		position: absolute;
@@ -78,7 +79,7 @@
 	}
 	.item__attunementTime {
 		top: 75%;
-		font-size: 14px;
+		font-size: 12px;
 	}
 	.item__slot {
 		top: 65%;
@@ -95,7 +96,7 @@
 		top: 75%;
 		text-align: right;
 		width: 100%;
-		font-size: 14px;
+		font-size: 12px;
 	}
 	.item__id {
 		top: 85%;

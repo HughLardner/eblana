@@ -195,7 +195,36 @@ class PlayerCharacterController {
 		def recipe = Recipe.read(params.recipe)
 		def character = PlayerCharacter.read(params.character)
 		def spells = character.spell.findAll {it.spell.classes == recipe.spellClass  }
-		render(template:'recipeDetails', model:[recipe:recipe, downtime:Downtime.read(params.downtime), character:params.character, div:params.div, spells:spells])
+		def downtime = Downtime.read(params.downtime)
+		def items = downtime.itemCurrent.findAll{it.level?.id == recipe?.baseItem?.id}
+		render(template:'recipeDetails', model:[recipe:recipe, downtime:downtime, character:character.id, div:params.div, spells:spells, items:items])
+		
+	}
+	
+	def fetchRecipeDetailsAdd={
+		def recipe = Recipe.read(params.recipe)
+		def character = PlayerCharacter.read(params.character)
+		def spells = character.spell.findAll {it.spell.classes == recipe.spellClass  }
+		def downtime = Downtime.read(params.downtime)
+		def item = Item.read(params.item)
+		if(recipe.power1)
+		item.power1 += "\n${recipe.power1}"
+		if(recipe.power2)
+		item.power2 += "\n${recipe.power2}"
+		def sustainable = sustainable(character, recipe.requiredSkillToCraft)?1:0
+		def duration = 4 + sustainable
+		item.duration = "Event ${downtime.event.eventNumber+duration}"
+		render (template:'/recipe/reforge', model:[itemInstance:item, recipeToAdd:recipe])
+		}
+	
+	def fetchRecipetoAdd ={
+		def character = PlayerCharacter.read(params.character)
+		def item = Item.read(params.item)
+		def recipe = Recipe.read(params.recipe)
+		def spells = character.spell.findAll {it.spell.classes == recipe.spellClass  }
+		def recipes = fetchRecipes(character, recipe.featToAdd, [])
+		recipes.removeAll{it.itemType.toString() != item.type}
+		render(template:'/recipe/addPower', model:[recipe:recipes, item:item])
 	}
 
 

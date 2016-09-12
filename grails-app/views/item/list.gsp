@@ -21,13 +21,13 @@
 			
 				<g:sortableColumn property="convertedCrystalCost" title="${message(code: 'item.convertedCrystalCost.label', default: 'Converted Crystal Cost')}" />
 			
+				<th><g:message code="item.created.label" default="Created" /></th>
+			
 				<g:sortableColumn property="curseCure" title="${message(code: 'item.curseCure.label', default: 'Curse Cure')}" />
 			
 				<g:sortableColumn property="duration" title="${message(code: 'item.duration.label', default: 'Duration')}" />
 			
 				<g:sortableColumn property="internalNotes" title="${message(code: 'item.internalNotes.label', default: 'Internal Notes')}" />
-			
-				<g:sortableColumn property="name" title="${message(code: 'item.name.label', default: 'Name')}" />
 			
 			</tr>
 		</thead>
@@ -39,13 +39,13 @@
 			
 				<td>${fieldValue(bean: itemInstance, field: "convertedCrystalCost")}</td>
 			
+				<td>${fieldValue(bean: itemInstance, field: "created")}</td>
+			
 				<td>${fieldValue(bean: itemInstance, field: "curseCure")}</td>
 			
 				<td>${fieldValue(bean: itemInstance, field: "duration")}</td>
 			
 				<td>${fieldValue(bean: itemInstance, field: "internalNotes")}</td>
-			
-				<td>${fieldValue(bean: itemInstance, field: "name")}</td>
 			
 			</tr>
 		</g:each>

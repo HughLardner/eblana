@@ -18,6 +18,14 @@
 				</div>
 			</div>
 
+			<div class="${hasErrors(bean: itemInstance, field: 'created', 'error')} ">
+				<label for="created" class="control-label"><g:message code="item.created.label" default="Created" /></label>
+				<div>
+					<g:select class="form-control" id="created" name="created.id" from="${eblana.event.Event.list()}" optionKey="id" value="${itemInstance?.created?.id}" class="many-to-one" noSelection="['null': '']"/>
+					<span class="help-inline">${hasErrors(bean: itemInstance, field: 'created', 'error')}</span>
+				</div>
+			</div>
+
 			<div class="${hasErrors(bean: itemInstance, field: 'curseCure', 'error')} ">
 				<label for="curseCure" class="control-label"><g:message code="item.curseCure.label" default="Curse Cure" /></label>
 				<div>
@@ -39,6 +47,14 @@
 				<div>
 					<g:textField class="form-control" name="internalNotes" value="${itemInstance?.internalNotes}"/>
 					<span class="help-inline">${hasErrors(bean: itemInstance, field: 'internalNotes', 'error')}</span>
+				</div>
+			</div>
+
+			<div class="${hasErrors(bean: itemInstance, field: 'level', 'error')} ">
+				<label for="level" class="control-label"><g:message code="item.level.label" default="Level" /></label>
+				<div>
+					<g:select class="form-control" id="level" name="level.id" from="${eblana.character.Feat.list()}" optionKey="id" value="${itemInstance?.level?.id}" class="many-to-one" noSelection="['null': '']"/>
+					<span class="help-inline">${hasErrors(bean: itemInstance, field: 'level', 'error')}</span>
 				</div>
 			</div>
 
@@ -66,6 +82,14 @@
 				</div>
 			</div>
 
+			<div class="${hasErrors(bean: itemInstance, field: 'proposed', 'error')} ">
+				<label for="proposed" class="control-label"><g:message code="item.proposed.label" default="Proposed" /></label>
+				<div>
+					<bs:checkBox name="proposed" value="${itemInstance?.proposed}" />
+					<span class="help-inline">${hasErrors(bean: itemInstance, field: 'proposed', 'error')}</span>
+				</div>
+			</div>
+
 			<div class="${hasErrors(bean: itemInstance, field: 'singleUse', 'error')} ">
 				<label for="singleUse" class="control-label"><g:message code="item.singleUse.label" default="Single Use" /></label>
 				<div>
@@ -74,11 +98,27 @@
 				</div>
 			</div>
 
+			<div class="${hasErrors(bean: itemInstance, field: 'slot', 'error')} ">
+				<label for="slot" class="control-label"><g:message code="item.slot.label" default="Slot" /></label>
+				<div>
+					<g:textField class="form-control" name="slot" value="${itemInstance?.slot}"/>
+					<span class="help-inline">${hasErrors(bean: itemInstance, field: 'slot', 'error')}</span>
+				</div>
+			</div>
+
 			<div class="${hasErrors(bean: itemInstance, field: 'status', 'error')} ">
 				<label for="status" class="control-label"><g:message code="item.status.label" default="Status" /></label>
 				<div>
-					<g:select class="form-control" name="status" from="${eblana.items.Item$Status?.values()}" keys="${eblana.items.Item$Status.values()*.name()}" value="${itemInstance?.status?.name()}" noSelection="['': '']"/>
+					<g:select class="form-control" name="status" from="${eblana.items.Status?.values()}" keys="${eblana.items.Status.values()*.name()}" value="${itemInstance?.status?.name()}" noSelection="['': '']"/>
 					<span class="help-inline">${hasErrors(bean: itemInstance, field: 'status', 'error')}</span>
+				</div>
+			</div>
+
+			<div class="${hasErrors(bean: itemInstance, field: 'transferable', 'error')} ">
+				<label for="transferable" class="control-label"><g:message code="item.transferable.label" default="Transferable" /></label>
+				<div>
+					<bs:checkBox name="transferable" value="${itemInstance?.transferable}" />
+					<span class="help-inline">${hasErrors(bean: itemInstance, field: 'transferable', 'error')}</span>
 				</div>
 			</div>
 

@@ -1,5 +1,6 @@
 package eblana.items
 
+import eblana.character.Feat
 import eblana.event.Event
 
 class Item {
@@ -11,7 +12,9 @@ class Item {
 	Integer convertedCrystalCost
 	Status status
 	Boolean transferable = true
+	Boolean proposed 
 	Event created
+	Feat level
 
 
 String toString(){

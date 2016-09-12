@@ -42,7 +42,7 @@
 	<h2>Items</h2>
 	<div class="row">
 		<g:each in="${instance?.itemCurrent}" var="item" status="i">
-			<div class="col-xs-4">
+			<div class="span3">
 				<g:render template="/item/showTemplate"
 					model="['itemInstance': item]" />
 			</div>

@@ -8,11 +8,12 @@ class Recipe {
 	
 	Integer airCrystals, earthCrystals, fireCrystals, waterCrystals, blendedCrystals, voidCrystals, anyCrystal, researchCost
 	String internalNotes
-	Feat requiredSkillToCraft 
+	Feat requiredSkillToCraft, baseItem, featToAdd 
 	Lore researchSkill1
 	ItemType itemType 
 	String itemName, power1, power2, attunementTime, duration,  researchSkill2, slot
 	Classes spellClass
+	Boolean reforge
 		
 	Boolean mustKnowTheSpell, baseCostOfEffectToBeAddedItemToBeEnhanced
 	
