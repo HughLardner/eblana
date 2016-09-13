@@ -11,11 +11,25 @@
 <g:set var="entityName"
 	value="${message(code: 'event.label', default: 'Event')}" />
 <title><g:message code="default.show.label" args="[entityName]" /></title>
+
 </head>
 
 <body>
-
+<jq:plugin name="redirect"/>
+	<script>
+function printItems(){
+	$.ajax({ 
+	    url: '${g.createLink(action:'fetchItems', controller:'item' )}', 
+	    type:"GET", 
+	    data:{event:document.getElementById('event').value},
+	    success:function(data) {
+		    $.redirect('${g.createLink(controller:"item", action:"printItems")}', {'ids': data});
+	    }
+	});
+}
+</script>
 	<section id="show-event" class="first">
+		<button onclick="printItems()">Print Items</button>
 		<g:form action="print" class="form-horizontal" role="form">
 			<g:hiddenField name="event" value="${eventInstance.id}" />
 			<table class="table">
@@ -29,57 +43,41 @@
 						</td>
 
 					</tr>
-
 					<tr class="prop">
 						<td valign="top" class="name"><g:message
 								code="event.name.label" default="Name" /></td>
-
 						<td valign="top" class="value">
 							${fieldValue(bean: eventInstance, field: "name")}
 						</td>
-
 					</tr>
-
 					<tr class="prop">
 						<td valign="top" class="name"><g:message
 								code="event.name.label" default="Date" /></td>
-
 						<td valign="top" class="value">
 							${fieldValue(bean: eventInstance, field: "date")}
 						</td>
-
 					</tr>
-
 					<tr class="prop">
 						<td valign="top" class="name"><g:message
 								code="event.name.label" default="Downtime Open" /></td>
-
 						<td valign="top" class="value">
 							${fieldValue(bean: eventInstance, field: "lastEvent")}
 						</td>
-
 					</tr>
-
 					<tr class="prop">
 						<td valign="top" class="name"><g:message
 								code="event.name.label" default="Current Downtime" /></td>
-
 						<td valign="top" class="value">
 							${fieldValue(bean: eventInstance, field: "currentDowntime")}
 						</td>
-
 					</tr>
-
 					<tr class="prop">
 						<td valign="top" class="name"><g:message
 								code="event.name.label" default="Downtime Done" /></td>
-
 						<td valign="top" class="value">
 							${fieldValue(bean: eventInstance, field: "downtimeDone")}
 						</td>
-
 					</tr>
-
 					<tr class="prop">
 						<td valign="top" class="name"><g:message
 								code="event.characterEvent.label" default="Attended" /></td>
@@ -153,10 +151,8 @@
 								</ul></td>
 						</tr>
 					</g:each>
-
 				</tbody>
 			</table>
-
 			<g:submitButton name="print" class="btn btn-primary" value="Print" />
 		</g:form>
 	</section>

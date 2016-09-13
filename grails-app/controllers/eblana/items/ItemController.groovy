@@ -4,6 +4,7 @@ package eblana.items
 import static org.springframework.http.HttpStatus.*
 import eblana.character.Feat
 import eblana.event.Event
+import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
@@ -17,6 +18,8 @@ class ItemController {
 
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 	def searchService
+	def grailsApplication
+	
 	def index(Integer max) {
 		params.max = Math.min(max ?: 10, 100)
 		def type = Item.executeQuery("select distinct(i.type) from Item i where i.type is not null") as Set
@@ -133,5 +136,18 @@ class ItemController {
 			}
 			'*'{ render status: NOT_FOUND }
 		}
+	}
+	
+	def printItems(){
+		def ids = params.list('ids[]')*.toLong()	
+		def list = Item.findAllByIdInList(ids, [readOnly:true])
+		render(view:'printItems', model:[itemInstanceList:list])
+		
+	}
+	
+	def fetchItems(){
+		def items = Item.executeQuery("select id from Item where created.id = ?", [params.long('event')])
+		def g = grailsApplication.mainContext.getBean('org.codehaus.groovy.grails.plugins.web.taglib.ApplicationTagLib')
+		render items as JSON
 	}
 }

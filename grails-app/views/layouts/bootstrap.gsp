@@ -15,7 +15,7 @@
 	href="${resource(dir:'css',file:'stylesheet.css')}" type="text/css" />
 <link rel="stylesheet" href="${resource(dir:'css',file:'main.css')}"
 	type="text/css" />
-
+<g:javascript library="jquery" plugin="jquery"/>
 <r:layoutResources />
 <g:layoutHead />
 <!-- Fav and touch icons -->
@@ -88,8 +88,6 @@
 		<g:layoutBody />
 	</div>
 	<!-- end main content -->
-
-	<script src="http://code.jquery.com/jquery.js"></script>
 	<script src="${resource(dir:'js',file:'bootstrap.js')}"></script>
 	<script src="${resource(dir:'js',file:'styling.js')}"></script>
 </body>

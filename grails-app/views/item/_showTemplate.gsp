@@ -1,5 +1,4 @@
 <%@ page import="eblana.items.Item"%>
-
 <div class="image">
 	<img class="item__image" alt=""
 		src="${resource(dir:'images',file:'bg1.png')}" />
@@ -9,15 +8,9 @@
 			${fieldValue(bean: itemInstance, field: "name")}
 		</div>
 		<div class="image__content item__power resize">
-			<p>
-				${fieldValue(bean: itemInstance, field: "power1")}<br>
-				${fieldValue(bean: itemInstance, field: "power2")}
-			</p>
-		</div>
-
-		<div class="image__content item__slot">
-			Attunes to:
-			${fieldValue(bean: itemInstance, field: "slot")}
+			${fieldValue(bean: itemInstance, field: "power1")}<br>
+				${fieldValue(bean: itemInstance, field: "power2")}<br>
+				Attunes to:	${fieldValue(bean: itemInstance, field: "slot")}	
 		</div>
 		<div class="image__content item__attunementTime">
 			Attunement Time:
@@ -37,7 +30,6 @@
 		</div>
 	</div>
 </div>
-
 
 
 
