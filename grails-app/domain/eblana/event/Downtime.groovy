@@ -67,9 +67,18 @@ class Downtime {
 	}
 	
 	public Set<Item> getItemCurrent(){
-		item.addAll(to*.item.flatten())
-		item.addAll(craftLog*.item)
-		item.removeAll{ it.id in from*.item.flatten().id}
-		return item
+		def current = item
+		current.addAll(to*.item.flatten())
+		current.addAll(craftLog*.item)
+		current.removeAll{ it.id in from*.item.flatten().id}
+		return current.unique(itemComparator)
 	}
+	
+	//#TODO: ugly way to do this - need to work out why not treating items with the same id as the same item
+	def itemComparator = [
+		equals: { delegate.equals(it) },
+		compare: { first, second ->
+			first.id <=> second.id
+		}
+	] as Comparator
 }

@@ -140,14 +140,13 @@ class ItemController {
 	
 	def printItems(){
 		def ids = params.list('ids[]')*.toLong()	
-		def list = Item.findAllByIdInList(ids, [readOnly:true])
+		def list = Item.findAllByIdInList(ids, [readOnly:true, sort:'type'])
 		render(view:'printItems', model:[itemInstanceList:list])
 		
 	}
 	
 	def fetchItems(){
 		def items = Item.executeQuery("select id from Item where created.id = ?", [params.long('event')])
-		def g = grailsApplication.mainContext.getBean('org.codehaus.groovy.grails.plugins.web.taglib.ApplicationTagLib')
 		render items as JSON
 	}
 }

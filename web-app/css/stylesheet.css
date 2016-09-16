@@ -51,7 +51,7 @@
 
 .image {
 	position: relative;
-	width: 100%; /* for IE 6 */
+	width: 100%;
 	height: 100%;
 }
 
@@ -123,12 +123,7 @@ p.item__header {
 	font-size: 0.7em;
 }
 
-.item-print {
-	width: 294px; /* for IE 6 */
-	height: 165px;
-	float: left;
-	padding: 5px
-}
+
 
 /*
  * Row with equal height columns
@@ -141,8 +136,8 @@ p.item__header {
 	display: flex;
 }
 
-<code>
-ul {
+<
+code>ul {
 	width: 760px;
 	margin-bottom: 20px;
 	overflow: hidden;
@@ -174,9 +169,94 @@ li {
 	width: 16.666%;
 }
 
-</code>
+</
+code>.cont {
+	
+}
+.item-print {
+	width: 294px;
+	height: 165px;
+	padding: 5px;
+	float:left;
+}
+.consumable {
+	width: 494px;
+	height: 165px;
+	border: 1px solid #000;
+	padding : 5px;
+	margin: 0px;
+		float:left;
+	
+}
+
+.rotateObj {
+	position: relative;
+	height: 155px;
+}
+
+.rotateObj h3 {
+	position: relative;
+	float: left;
+	width: 25px;
+	height: 100%;
+	border: 1px solid #000;
+	margin-top :0px;
+}
+
+.rotateObj h3 span {
+	width: 155px; /* same as height of .rotateObj */
+	-webkit-transform-origin: 11px 11px;
+	display: inline-block;
+	-webkit-transform: rotate(90deg);
+	text-align: center;
+}
+
+.rotateObj .content {
+	float: left;
+	width: 294px;
+	height: 100%;
+	padding: 0px;
+}
+.consumable-clear{
+	clear: both;		
+}
+
+.item-scroll{
+	width: 294px;
+	height: 3.8cm;
+	padding: 5px;
+	float:left;
+	color:red;
+}
+
 @media screen {
 }
 
 @media print {
+	body {
+		margin: 10px;
+		padding: 10px;
+	}
+	@page {
+		size: A4;
+	}
+
+    .consumable, .item-print { 
+        page-break-inside:avoid; 
+    }
+}
+	/*
+.label{
+        width: 9.91cm; 
+        height: 3.81cm; 
+        padding: .05cm;
+        margin-right: .0cm; 
+        outline: 1px dotted; 
+        }
+    .page-break  {
+        clear: left;
+        display:block;
+        page-break-after:always;
+        }
+	*/
 }

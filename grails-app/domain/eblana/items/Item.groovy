@@ -12,16 +12,18 @@ class Item {
 	Integer convertedCrystalCost
 	Status status
 	Boolean transferable = true
-	Boolean proposed 
+	Boolean proposed
 	Event created
 	Feat level
 
 
-String toString(){
-	return id +" : "+name+" : " + type
+	String toString(){
+		return id +" : "+name+" : " + type
 	}
 
-
+	def consumable(){
+		['Crystal','Mana Crystal','Oil','Poison','Potion'].contains(type)
+	}
 }
 
 enum Status {
