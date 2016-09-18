@@ -1,35 +1,41 @@
 
-<div class="row row-eq-height">
-	<div class="col-xs-12 bordered">
-		<g:message code="characterEvent.research.label" default="Goal: " />
-		<br>
+<div class="row row-eq-height bordered avoid-break">
+	<div class="col-xs-2 bordered">
+		<h5>Goal:</h5>
+	</div>
+	<div class="col-xs-10">
 		${raw(instance?.goal?.replaceAll('\n', '<br/>'))}
 	</div>
 </div>
-<div class="row row-eq-height">
-	<div class="col-xs-4 bordered">
-		<g:message code="characterEvent.research.label" default="Research: " />
-		<br>
+<div class="row row-eq-height bordered avoid-break">
+	<div class="col-xs-2 bordered">
+		<h5>Research:</h5>
+	</div>
+	<div class="col-xs-10">
 		${raw(instance?.research?.replaceAll('\n', '<br/>'))}
 	</div>
-	<div class="col-xs-4 bordered">
-		<g:message code="characterEvent.researchMethod.label"
-			default="Research Method: " />
-		<br>
+</div>
+<div class="row row-eq-height bordered avoid-break">
+	<div class="col-xs-2 bordered">
+		<h5>Research Method:</h5>
+	</div>
+	<div class="col-xs-10">
 		${raw(instance?.researchMethod?.replaceAll('\n', '<br/>'))}
 	</div>
-	<div class="col-xs-4 bordered">
-		<g:message code="characterEvent.researchResources.label"
-			default="Research Resources: " />
-		<br>
+</div>
+<div class="row row-eq-height bordered avoid-break">
+	<div class="col-xs-2 bordered">
+		<h5>Research Resources: </h5>
+	</div>
+	<div class="col-xs-10">
 		${raw(instance?.researchResources?.replaceAll('\n', '<br/>'))}
 	</div>
 </div>
-<div class="row row-eq-height">
-	<div class="col-xs-12 bordered">
-		<g:message code="characterEvent.researchResults.label"
-			default="Research Results: " />
-		<br>
+<div class="row row-eq-height bordered avoid-break">
+	<div class="col-xs-2 bordered">
+		<h5>Research Results:</h5>
+	</div>
+	<div class="col-xs-10">
 		<g:if test="${instance.event.downtimeDone}">
 			${raw(instance?.finalDecision?.replaceAll('\n', '<br/>'))}
 		</g:if>
@@ -38,7 +44,7 @@
 
 <g:render template="/downtime/resources" model="['instance': instance]" />
 
-<div>
+<div class="item-downtime">
 	<h2>Items</h2>
 	<div class="row">
 		<g:each in="${instance?.itemCurrent}" var="item" status="i">

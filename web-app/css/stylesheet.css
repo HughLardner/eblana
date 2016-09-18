@@ -123,8 +123,6 @@ p.item__header {
 	font-size: 0.7em;
 }
 
-
-
 /*
  * Row with equal height columns
  * --------------------------------------------------
@@ -136,10 +134,10 @@ p.item__header {
 	display: flex;
 }
 
-<
-code>ul {
-	width: 760px;
+ul {
+	width: 100%;
 	margin-bottom: 20px;
+	padding-left: 20px;
 	overflow: hidden;
 	list-style-type: circle;
 }
@@ -169,24 +167,24 @@ li {
 	width: 16.666%;
 }
 
-</
-code>.cont {
+.cont {
 	
 }
+
 .item-print {
 	width: 294px;
 	height: 165px;
 	padding: 5px;
-	float:left;
+	float: left;
 }
+
 .consumable {
 	width: 494px;
 	height: 165px;
 	border: 1px solid #000;
-	padding : 5px;
+	padding: 5px;
 	margin: 0px;
-		float:left;
-	
+	float: left;
 }
 
 .rotateObj {
@@ -200,7 +198,7 @@ code>.cont {
 	width: 25px;
 	height: 100%;
 	border: 1px solid #000;
-	margin-top :0px;
+	margin-top: 0px;
 }
 
 .rotateObj h3 span {
@@ -217,22 +215,26 @@ code>.cont {
 	height: 100%;
 	padding: 0px;
 }
-.consumable-clear{
-	clear: both;		
+
+.consumable-clear {
+	clear: both;
 }
 
-.item-scroll{
+.item-scroll {
 	width: 294px;
 	height: 3.8cm;
 	padding: 5px;
-	float:left;
-	color:red;
+	float: left;
+	color: red;
 }
 
 @media screen {
 }
 
 @media print {
+	a[href]:after {
+		content: none;
+	}
 	body {
 		margin: 10px;
 		padding: 10px;
@@ -240,12 +242,53 @@ code>.cont {
 	@page {
 		size: A4;
 	}
-
-    .consumable, .item-print { 
-        page-break-inside:avoid; 
-    }
+	.consumable, .item-print, .recipe, .avoid-break {
+		page-break-inside: avoid;
+	}
+	.recipe {
+		font-size: 8pt;
+		padding: 1px;
+	}
+	thead {
+		display: table-header-group;
+	}
+	.character {
+		font-size: 8pt;
+		page-break-after: always;
+	}
+	.item-downtime {
+		display: none;
+	}
+	th.air, td.air, .air {
+		background-color: lightBlue !important;
+		-webkit-print-color-adjust: exact;
+	}
+	th.earth, td.earth, .earth {
+		background-color: green !important;
+		-webkit-print-color-adjust: exact;
+		color: white !important;
+	}
+	th.fire, td.fire, .fire {
+		background-color: red !important;
+		-webkit-print-color-adjust: exact;
+		color: white !important;
+	}
+	th.water, td.water, .water {
+		background-color: blue !important;
+		-webkit-print-color-adjust: exact;
+		color: white !important;
+	}
+	.blended {
+		background-color: white !important;
+		-webkit-print-color-adjust: exact;
+	}
+	th.void, td.void, .void {
+		background-color: black !important;
+		-webkit-print-color-adjust: exact;
+		color: white !important;
+	}
 }
-	/*
+/*
 .label{
         width: 9.91cm; 
         height: 3.81cm; 

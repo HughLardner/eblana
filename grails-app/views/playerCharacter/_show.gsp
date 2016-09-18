@@ -34,7 +34,7 @@
 	<div class="col-xs-2 bordered">
 		<g:message code="playerCharacter.classes.label" default="Classes: " />
 		<ul id="single">
-			<g:each in="${playerCharacterInstance?.classes}" var="c">
+			<g:each in="${playerCharacterInstance?.classes?.sort{it.id}}" var="c">
 				<li>
 					${c?.encodeAsHTML()}
 				</li>
