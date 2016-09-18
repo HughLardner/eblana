@@ -32,7 +32,7 @@
 	class="help-inline"> ${hasErrors(bean: featInstance, field: 'prereqSpecies', 'error')}
 </span></td>
 
-<td><bs:checkBox name="takeMoreThenOnce"
+<td><g:checkBox name="takeMoreThenOnce"
 		value="${featInstance?.takeMoreThenOnce}" /> <span
 	class="help-inline"> ${hasErrors(bean: featInstance, field: 'takeMoreThenOnce', 'error')}
 </span></td>
@@ -41,6 +41,6 @@
 		value="${featInstance?.type}" /> <span class="help-inline"> ${hasErrors(bean: featInstance, field: 'type', 'error')}
 </span></td>
 
-<td><bs:checkBox name="visiable" value="${featInstance?.visiable}" />
+<td><g:checkBox name="visiable" value="${featInstance?.visiable}" />
 	<span class="help-inline"> ${hasErrors(bean: featInstance, field: 'visiable', 'error')}
 </span></td>

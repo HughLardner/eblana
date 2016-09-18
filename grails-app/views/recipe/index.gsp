@@ -89,7 +89,7 @@
 			</tbody>
 		</table>
 		<div>
-			<bs:paginate total="${recipeInstanceCount}" />
+			<g:paginate total="${recipeInstanceCount}" />
 		</div>
 	</section>
 

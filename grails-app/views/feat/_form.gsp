@@ -77,7 +77,7 @@
 	<label for="takeMoreThenOnce" class="control-label"><g:message
 			code="feat.takeMoreThenOnce.label" default="Take More Then Once" /></label>
 	<div>
-		<bs:checkBox name="takeMoreThenOnce"
+		<g:checkBox name="takeMoreThenOnce"
 			value="${featInstance?.takeMoreThenOnce}" />
 		<span class="help-inline">
 			${hasErrors(bean: featInstance, field: 'takeMoreThenOnce', 'error')}
@@ -102,7 +102,7 @@
 	<label for="visiable" class="control-label"><g:message
 			code="feat.visiable.label" default="Visiable" /></label>
 	<div>
-		<bs:checkBox name="visiable" value="${featInstance?.visiable}" />
+		<g:checkBox name="visiable" value="${featInstance?.visiable}" />
 		<span class="help-inline">
 			${hasErrors(bean: featInstance, field: 'visiable', 'error')}
 		</span>

@@ -48,7 +48,7 @@
 	<label for="accountExpired" class="control-label"><g:message
 			code="secUser.accountExpired.label" default="Account Expired" /></label>
 	<div>
-		<bs:checkBox name="accountExpired"
+		<g:checkBox name="accountExpired"
 			value="${secUserInstance?.accountExpired}" />
 		<span class="help-inline">
 			${hasErrors(bean: secUserInstance, field: 'accountExpired', 'error')}
@@ -61,7 +61,7 @@
 	<label for="accountLocked" class="control-label"><g:message
 			code="secUser.accountLocked.label" default="Account Locked" /></label>
 	<div>
-		<bs:checkBox name="accountLocked"
+		<g:checkBox name="accountLocked"
 			value="${secUserInstance?.accountLocked}" />
 		<span class="help-inline">
 			${hasErrors(bean: secUserInstance, field: 'accountLocked', 'error')}
@@ -74,7 +74,7 @@
 	<label for="enabled" class="control-label"><g:message
 			code="secUser.enabled.label" default="Enabled" /></label>
 	<div>
-		<bs:checkBox name="enabled" value="${secUserInstance?.enabled}" />
+		<g:checkBox name="enabled" value="${secUserInstance?.enabled}" />
 		<span class="help-inline">
 			${hasErrors(bean: secUserInstance, field: 'enabled', 'error')}
 		</span>
@@ -86,7 +86,7 @@
 	<label for="passwordExpired" class="control-label"><g:message
 			code="secUser.passwordExpired.label" default="Password Expired" /></label>
 	<div>
-		<bs:checkBox name="passwordExpired"
+		<g:checkBox name="passwordExpired"
 			value="${secUserInstance?.passwordExpired}" />
 		<span class="help-inline">
 			${hasErrors(bean: secUserInstance, field: 'passwordExpired', 'error')}

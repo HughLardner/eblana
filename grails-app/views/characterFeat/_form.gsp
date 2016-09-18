@@ -29,7 +29,7 @@
 			<div class="${hasErrors(bean: characterFeatInstance, field: 'open', 'error')} ">
 				<label for="open" class="control-label"><g:message code="characterFeat.open.label" default="Open" /></label>
 				<div>
-					<bs:checkBox name="open" value="${characterFeatInstance?.open}" />
+					<g:checkBox name="open" value="${characterFeatInstance?.open}" />
 					<span class="help-inline">${hasErrors(bean: characterFeatInstance, field: 'open', 'error')}</span>
 				</div>
 			</div>

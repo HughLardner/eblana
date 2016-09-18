@@ -36,7 +36,7 @@
 		</tbody>
 	</table>
 	<div>
-		<bs:paginate total="${speciesInstanceCount}" />
+		<g:paginate total="${speciesInstanceCount}" />
 	</div>
 </section>
 

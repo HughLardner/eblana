@@ -13,7 +13,7 @@
 			<div class="${hasErrors(bean: speciesInstance, field: 'visiable', 'error')} ">
 				<label for="visiable" class="control-label"><g:message code="species.visiable.label" default="Visiable" /></label>
 				<div>
-					<bs:checkBox name="visiable" value="${speciesInstance?.visiable}" />
+					<g:checkBox name="visiable" value="${speciesInstance?.visiable}" />
 					<span class="help-inline">${hasErrors(bean: speciesInstance, field: 'visiable', 'error')}</span>
 				</div>
 			</div>

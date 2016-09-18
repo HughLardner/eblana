@@ -44,7 +44,7 @@
 		</tbody>
 	</table>
 	<div>
-		<bs:paginate total="${spellInstanceCount}" />
+		<g:paginate total="${spellInstanceCount}" />
 	</div>
 </section>
 

@@ -32,7 +32,7 @@
 		</tbody>
 	</table>
 	<div>
-		<bs:paginate total="${loreInstanceCount}" />
+		<g:paginate total="${loreInstanceCount}" />
 	</div>
 </section>
 

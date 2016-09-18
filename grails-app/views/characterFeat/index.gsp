@@ -48,7 +48,7 @@
 		</tbody>
 	</table>
 	<div>
-		<bs:paginate total="${characterFeatInstanceCount}" />
+		<g:paginate total="${characterFeatInstanceCount}" />
 	</div>
 </section>
 

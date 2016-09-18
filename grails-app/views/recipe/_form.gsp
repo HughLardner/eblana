@@ -225,7 +225,7 @@
 			code="recipe.baseCostOfEffectToBeAddedItemToBeEnhanced.label"
 			default="Base Cost Of Effect To Be Added Item To Be Enhanced" /></label>
 	<div>
-		<bs:checkBox name="baseCostOfEffectToBeAddedItemToBeEnhanced"
+		<g:checkBox name="baseCostOfEffectToBeAddedItemToBeEnhanced"
 			value="${recipeInstance?.baseCostOfEffectToBeAddedItemToBeEnhanced}" />
 		<span class="help-inline">
 			${hasErrors(bean: recipeInstance, field: 'baseCostOfEffectToBeAddedItemToBeEnhanced', 'error')}
@@ -238,7 +238,7 @@
 	<label for="mustKnowTheSpell" class="control-label"><g:message
 			code="recipe.mustKnowTheSpell.label" default="Must Know The Spell" /></label>
 	<div>
-		<bs:checkBox name="mustKnowTheSpell"
+		<g:checkBox name="mustKnowTheSpell"
 			value="${recipeInstance?.mustKnowTheSpell}" />
 		<span class="help-inline">
 			${hasErrors(bean: recipeInstance, field: 'mustKnowTheSpell', 'error')}

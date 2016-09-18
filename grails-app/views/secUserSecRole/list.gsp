@@ -36,7 +36,7 @@
 		</tbody>
 	</table>
 	<div>
-		<bs:paginate total="${secUserSecRoleInstanceCount}" />
+		<g:paginate total="${secUserSecRoleInstanceCount}" />
 	</div>
 </section>
 

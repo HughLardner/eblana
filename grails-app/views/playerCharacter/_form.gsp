@@ -40,7 +40,7 @@
 		<label for="alive" class="control-label"><g:message
 				code="playerCharacter.alive.label" default="Alive" /></label>
 		<div>
-			<bs:checkBox name="alive" value="${playerCharacterInstance?.alive}" />
+			<g:checkBox name="alive" value="${playerCharacterInstance?.alive}" />
 			<span class="help-inline"> ${hasErrors(bean: playerCharacterInstance, field: 'alive', 'error')}
 			</span>
 		</div>

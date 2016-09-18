@@ -24,7 +24,7 @@
 	</span> <label for="open" class="control-label"><g:message
 			code="characterFeat.open.label" default="Open" /></label>
 
-	<bs:checkBox name="feat[${i}].open" value="${feat?.open}" />
+	<g:checkBox name="feat[${i}].open" value="${feat?.open}" />
 	<span class="help-inline"> ${hasErrors(bean: feat, field: 'open', 'error')}
 	</span> <label for="source" class="control-label"><g:message
 			code="characterFeat.source.label" default="Source" /></label>

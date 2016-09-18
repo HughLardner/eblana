@@ -52,7 +52,7 @@
 		</tbody>
 	</table>
 	<div>
-		<bs:paginate total="${craftLogInstanceCount}" />
+		<g:paginate total="${craftLogInstanceCount}" />
 	</div>
 </section>
 
