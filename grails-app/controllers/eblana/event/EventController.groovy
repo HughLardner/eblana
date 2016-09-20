@@ -231,7 +231,7 @@ class EventController {
 		String results = ''
 		downtimes?.each{downtime->
 			results += "${downtime?.character?.user?.id}&#9;${downtime?.character?.user?.toString()}&#9;${downtime?.character?.id}&#9;${downtime?.character?.toString()}&#9;${downtime?.airCurrent}&#9;${downtime?.earthCurrent}&#9;${downtime?.fireCurrent}&#9;${downtime.waterCurrent}&#9;${downtime?.blendedCurrent}&#9;${downtime?.voidCurrent}&#9;"
-			downtime?.itemCurrent.each{item->
+			downtime?.itemCurrent.sort{it.id}.each{item->
 				results+="${item.id}, "
 			}
 			results+='<br />'

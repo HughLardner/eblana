@@ -16,7 +16,6 @@ class Item {
 	Event created
 	Feat level
 
-
 	String toString(){
 		return id +" : "+name+" : " + type
 	}
