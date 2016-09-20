@@ -29,7 +29,8 @@ function printItems(){
 }
 </script>
 	<section id="show-event" class="first">
-		<button onclick="printItems()">Print Items</button>
+		<button onclick="printItems()" class="btn btn-primary">Print Items</button>
+		<a href="${g.createLink(action:"printLabels", id:eventInstance.id)}" class="btn btn-primary">Print Labels</a>
 		<g:form action="print" class="form-horizontal" role="form">
 			<g:hiddenField name="event" value="${eventInstance.id}" />
 			<table class="table">
