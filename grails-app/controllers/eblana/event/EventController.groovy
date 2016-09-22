@@ -218,10 +218,11 @@ class EventController {
 	def print(){
 		def players = PlayerCharacter.findAllByIdInList(params.list("printIds")*.toLong(),[readOnly:true, sort:'user.firstName'])
 		def event = Event.read(params.long("event"))
+		def preEvent = Event.findByEventNumber(event.eventNumber-1,[readOnly:true])
 		def fullLores = EventLore.findAllByEvent(event)
 		def results =  players.collect{player->
 			def lore = fullLores.findAll{player.lore.id.contains(it.lore.id)}
-			[character:player, downtime:Downtime.findByCharacterAndEvent(player, event, [readOnly:true]), lore:lore]
+			[character:player, downtime:Downtime.findByCharacterAndEvent(player, preEvent, [readOnly:true]), lore:lore]
 		}
 		render(view: "print", model: [players: results])
 	}
