@@ -23,6 +23,13 @@
 				</tr>
 				<tr class="prop">
 					<td valign="top" class="name"><g:message
+							code="secUser.id.label" default="Player Id" /></td>
+					<td valign="top" class="value">
+						${fieldValue(bean: secUserInstance, field: "id")}
+					</td>
+				</tr>
+				<tr class="prop">
+					<td valign="top" class="name"><g:message
 							code="secUser.username.label" default="First Name" /></td>
 					<td valign="top" class="value">
 						${fieldValue(bean: secUserInstance, field: "firstName")}
