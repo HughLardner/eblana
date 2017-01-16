@@ -13,7 +13,7 @@
 		<br>
 		<h2>Downtimes</h2>
 		<g:each
-			in="${playerCharacterInstance?.downtime.sort{ it.event.toString()}.reverse()}"
+			in="${playerCharacterInstance?.downtime.sort{ it.event.eventNumber}.reverse()}"
 			var="downtime">
 			<h3>
 				${fieldValue(bean: downtime, field: "event")}
