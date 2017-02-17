@@ -1,8 +1,8 @@
 dataSource {
 	pooled = true
 	driverClassName = "com.mysql.jdbc.Driver"
-	username = "Eblana"
-	password = "Awe6YgHfr"
+	//username = "Eblana"
+	//password = "Awe6YgHfr"
 	//Awe6YgHfr
 }
 hibernate {
@@ -43,12 +43,15 @@ environments {
 	}
 	production {
 		dataSource {
-			username = "Eblana"
-			password = "Awe6YgHfr"
+			//username = "Eblana"
+			username = "e83ccf6mnrnceyel"
+			//password = "Awe6YgHfr"
+			password = "kj2g3df5kss09jy6"
 			pooled = true
 			dbCreate = "update"
 			driverClassName = "com.mysql.jdbc.Driver"
-			url = "jdbc:mysql://eblana.cae1e41aqjjr.us-east-1.rds.amazonaws.com:3306/eblana?user=Eblana&password=Awe6YgHfr"
+			//url = "jdbc:mysql://eblana.cae1e41aqjjr.us-east-1.rds.amazonaws.com:3306/eblana?user=Eblana&password=Awe6YgHfr"
+			url = "jdbc:mysql://e83ccf6mnrnceyel:kj2g3df5kss09jy6@vlvlnl1grfzh34vj.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/qtqqt3euljtjntrp"
 			dialect = org.hibernate.dialect.MySQL5InnoDBDialect
 			properties {
 				validationQuery = "SELECT 1"
