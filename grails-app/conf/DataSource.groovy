@@ -61,6 +61,8 @@ environments {
 				timeBetweenEvictionRunsMillis = 1800000
 				numTestsPerEvictionRun = 3
 				minEvictableIdleTimeMillis = 1800000
+				maxActive = 5
+				maxIdle = 2
 			}
 		}
 	}
