@@ -1,5 +1,4 @@
 <%@ page import="eblana.character.PlayerCharacter"%>
-<%@ page import="org.codehaus.groovy.grails.commons.ConfigurationHolder"%>
 
 <g:javascript src="codeGenerator.js" />
 
