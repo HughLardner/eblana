@@ -1,11 +1,9 @@
-<%@ page import="org.codehaus.groovy.grails.commons.ConfigurationHolder" %>
 <g:javascript src="jquery.media.js" />
 <g:javascript src="codeGenerator.js"/>
 
 <script type="text/javascript">
 var originaljQuery = {};
 originaljQuery = jQuery.noConflict(true);
-var prefix = "${ConfigurationHolder.getConfig().getProperty('urlPrefix')}";
 var deleteIcon = "${resource(dir:'images/skin',file:'database_delete.png')}";
 
 var counterMap = {};
