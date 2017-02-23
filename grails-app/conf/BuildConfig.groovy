@@ -14,9 +14,9 @@ grails.project.fork = [
     // configure settings for the test-app JVM, uses the daemon by default
     test: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, daemon:true],
     // configure settings for the run-app JVM
-    run: [maxMemory: 500, minMemory: 500, debug: false, maxPerm: 128, forkReserve:false],
+    run: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve:false],
     // configure settings for the run-war JVM
-    war: [maxMemory: 500, minMemory: 500, debug: false, maxPerm: 128, forkReserve:false],
+    war: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve:false],
     // configure settings for the Console UI JVM
     console: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256]
 ]
@@ -56,11 +56,12 @@ grails.project.dependency.resolution = {
 
     plugins {
         // plugins for the build system only
-        build ":tomcat:7.0.50"
+        build ":tomcat:7.0.55.2" // or ":tomcat:8.0.20"
 
         // plugins for the compile step
-        compile ":scaffolding:2.0.1"
-        compile ':cache:1.1.1'
+        compile ":scaffolding:2.1.2"
+        compile ':cache:1.1.8'
+		compile ":asset-pipeline:2.1.5"
 		//compile ':spring-security-core:1.2.6'
 		//compile ':searchable:0.6.5'
 		//compile ":kickstart-with-bootstrap:1.1.0"
@@ -78,13 +79,12 @@ grails.project.dependency.resolution = {
 		
 		
 		// plugins needed at runtime but not for compilation
-        runtime ":hibernate:3.6.10.7" // or ":hibernate4:4.1.11.6"
-        runtime ":database-migration:1.3.8"
+		runtime  ":hibernate:3.6.10.18" // or  ":hibernate4:4.3.8.1"       
+		runtime ":database-migration:1.4.0"
 		runtime ":console:1.5.9"
 		
         
-		
-        runtime ":resources:1.2.2"
+        //runtime ":resources:1.2.7"
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0.1"
         //runtime ":cached-resources:1.1"
