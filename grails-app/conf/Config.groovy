@@ -171,10 +171,10 @@ grails.plugin.springsecurity.interceptUrlMap = [
 
 grails {
 	mail {
-	  host = "smtp.gmail.com"
+	  host = "smtp.sendgrid.net"
 	  port = 465
-	  username = "eblanaautomated@gmail.com"
-	  password = "Awe6YgHfr"
+	  username = "apikey"
+	  password = "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"
 	  props = ["mail.smtp.auth":"true",
 			   "mail.smtp.socketFactory.port":"465",
 			   "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
