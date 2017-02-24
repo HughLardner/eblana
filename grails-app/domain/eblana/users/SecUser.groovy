@@ -50,7 +50,7 @@ class SecUser {
 		if(firstName || surname){
 			return "${firstName?:''} ${surname?:''}"
 		}else{
-			return username 
+			return username?:'Null' 
 		}
 	}
 }

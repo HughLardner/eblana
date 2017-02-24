@@ -15,6 +15,21 @@ grails.project.groupId = appName // change this to alter the default package nam
 
 // The ACCEPT header will not be used for content negotiation for user agents containing the following strings (defaults to the 4 major rendering engines)
 grails.mime.disable.accept.header.userAgents = ['Gecko', 'WebKit', 'Presto', 'Trident']
+grails.mime.types = [ // the first one is the default format
+    all:           '*/*', // 'all' maps to '*' or the first available format in withFormat
+    atom:          'application/atom+xml',
+    css:           'text/css',
+    csv:           'text/csv',
+    form:          'application/x-www-form-urlencoded',
+    html:          ['text/html','application/xhtml+xml'],
+    js:            'text/javascript',
+    json:          ['application/json', 'text/json'],
+    multipartForm: 'multipart/form-data',
+    rss:           'application/rss+xml',
+    text:          'text/plain',
+    hal:           ['application/hal+json','application/hal+xml'],
+    xml:           ['text/xml', 'application/xml']
+]
 
 grails.gorm.default.constraints = {
 	'*'(nullable: true)
@@ -24,42 +39,8 @@ grails.gorm.default.mapping = {
 	version false
 }
 
-grails.mime.types = [ // the first one is the default format
-	all:           '*/*', // 'all' maps to '*' or the first available format in withFormat
-	atom:          'application/atom+xml',
-	css:           'text/css',
-	csv:           'text/csv',
-	form:          'application/x-www-form-urlencoded',
-	html:          [
-		'text/html',
-		'application/xhtml+xml'
-	],
-	js:            'text/javascript',
-	json:          [
-		'application/json',
-		'text/json'
-	],
-	multipartForm: 'multipart/form-data',
-	rss:           'application/rss+xml',
-	text:          'text/plain',
-	hal:           [
-		'application/hal+json',
-		'application/hal+xml'
-	],
-	xml:           [
-		'text/xml',
-		'application/xml']
-]
-
-grails.gorm.default.mapping = {
-	version false
-}
-
 // URL Mapping Cache Max Size, defaults to 5000
 //grails.urlmapping.cache.maxsize = 1000
-
-// What URL patterns should be processed by the resources plugin
-grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*']
 
 // Legacy setting for codec used to encode data with ${}
 grails.views.default.codec = "html"
@@ -82,12 +63,11 @@ grails {
             }
         }
         // escapes all not-encoded output at final stage of outputting
-        filteringCodecForContentType {
-            //'text/html' = 'html'
-        }
+        // filteringCodecForContentType.'text/html' = 'html'
     }
 }
- 
+
+
 grails.converters.encoding = "UTF-8"
 // scaffolding templates configuration
 grails.scaffolding.templates.domainSuffix = 'Instance'
@@ -107,18 +87,24 @@ grails.exceptionresolver.params.exclude = ['password']
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
 
+// configure passing transaction's read-only attribute to Hibernate session, queries and criterias
+// set "singleSession = false" OSIV mode in hibernate configuration after enabling
+grails.hibernate.pass.readonly = false
+// configure passing read-only to OSIV session by default, requires "singleSession = false" OSIV mode
+grails.hibernate.osiv.readonly = false
+
 environments {
     development {
         grails.logging.jul.usebridge = true
     }
     production {
         grails.logging.jul.usebridge = false
-        //grails.serverURL = "http://eblanalarp.herokuapp.com"
+        // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }
 
 // log4j configuration
-log4j = {
+log4j.main = {
     // Example of changing the log pattern for the default console appender:
     //
     //appenders {
@@ -138,6 +124,7 @@ log4j = {
            'net.sf.ehcache.hibernate'
 }
 
+
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'eblana.users.SecUser'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'eblana.users.SecUserSecRole'
@@ -151,17 +138,13 @@ grails.plugin.springsecurity.ui.password.maxLength=64
 grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/secUser/showLogin'
 grails.plugin.springsecurity.logout.afterLogoutUrl = '/'
-//grails.plugin.springsecurity.securityConfigType = 'Requestmap'
-grails.plugin.springsecurity.interceptUrlMap = [
-    '/':                              ['permitAll'],
-    '/index':                         ['permitAll'],
-    '/index.gsp':                     ['permitAll'],
-    '/**/js/**':                      ['permitAll'],
-    '/**/css/**':                     ['permitAll'],
-    '/**/images/**':                  ['permitAll'],
-    '/**/favicon.ico':                ['permitAll'],
-    '/login/**':                      ['permitAll'],
-    '/logout/**':                     ['permitAll'],
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+	'/**/js/**':                      ['permitAll'],
+	'/**/css/**':                     ['permitAll'],
+	'/**/images/**':                  ['permitAll'],
+	'/**/favicon.ico':                ['permitAll'],
+	'/login/**':                      ['permitAll'],
+	'/logout/**':                     ['permitAll'],
 	'/register/**':                   ['permitAll'],
 	'/user/**':                       ['ROLE_ADMIN'],
 	'/role/**':                       ['ROLE_ADMIN'],
@@ -171,17 +154,13 @@ grails.plugin.springsecurity.interceptUrlMap = [
 
 grails {
 	mail {
-	  host = "smtp.gmail.com"
+	  host = "smtp.sendgrid.net"
 	  port = 465
-	  username = "eblanaautomated@gmail.com"
-	  password = "Awe6YgHfr"
+	  username = "apikey"
+	  password = "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"
 	  props = ["mail.smtp.auth":"true",
 			   "mail.smtp.socketFactory.port":"465",
 			   "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
 			   "mail.smtp.socketFactory.fallback":"false"]
 	}
  }
-
-grails.plugin.console.enabled = true
-grails.views.javascript.library="jquery"
-

@@ -1,15 +1,40 @@
 class UrlMappings {
 
 	static mappings = {
-		"/$controller/$action?/$id?(.$format)?"{
-			constraints {
-				// apply constraints here
-			}
+
+		/*
+		 * Pages without controller
+		 */
+		//		"/"				(view:"/index")
+		"/about"		(view:"/siteinfo/about")
+		"/blog"			(view:"/siteinfo/blog")
+		"/systeminfo"	(view:"/siteinfo/systeminfo")
+		"/contact"		(view:"/siteinfo/contact")
+		"/terms"		(view:"/siteinfo/terms")
+		"/imprint"		(view:"/siteinfo/imprint")
+		"/nextSteps"	(view:"/home/nextSteps")
+
+		/*
+		 * Pages with controller
+		 * WARN: No domain/controller should be named "api" or "mobile" or "web"!
+		 */
+		"/"	{
+			controller	= 'home'
+			action		= { 'index' }
+			view		= { 'index' }
 		}
+		"/$controller/$action?/$id?"{
+			constraints { controller(matches:/^((?!(api|mobile|web)).*)$/) }
+		}
+
 		/*
 		 * System Pages without controller
 		 */
-        "/"(view:"/index")
-        "500"(view:'/error')
+		"403"(controller: "errors", action: "error403")
+		"500"(controller: "errors", action: "error500")
+		"500"(controller: "errors", action: "error403",
+		exception: AccessDeniedException)
+		"500"(controller: "errors", action: "error403",
+		exception: NotFoundException)
 	}
 }
