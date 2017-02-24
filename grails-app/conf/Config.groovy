@@ -157,7 +157,7 @@ grails {
 	  host = "smtp.sendgrid.net"
 	  port = 465
 	  username = "apikey"
-	  password = "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"
+	  password = System.getenv("EMAIL_KEY")
 	  props = ["mail.smtp.auth":"true",
 			   "mail.smtp.socketFactory.port":"465",
 			   "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
