@@ -224,6 +224,8 @@ class PlayerCharacterController {
 		def item = Item.read(params.item)
 		def recipe = Recipe.read(params.recipe)
 		def spells = character.spell.findAll {it.spell.classes == recipe.spellClass  }
+		println 'Recipe: ' + recipe
+		println 'feat: ' + recipe.featToAdd
 		def recipes = fetchRecipes(character, recipe.featToAdd, [])
 		recipes.removeAll{it.itemType.toString() != item.type}
 		render(template:'/recipe/addPower', model:[recipe:recipes, item:item])
