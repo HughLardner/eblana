@@ -137,15 +137,15 @@ class DowntimeController {
 		}
 	}
 
+	@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 	def craft(Downtime downtime){
-		println downtime
 		render(view : "craft", model:[downtime:downtime]);
 	}
 
 	def search(){
 		render(view:'search')
 	}
-
+	@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 	def String wrapSearchParm(value) {
 		'%'+value+'%'
 	}

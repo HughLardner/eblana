@@ -15,11 +15,8 @@
 		<g:each
 			in="${playerCharacterInstance?.downtime.sort{ it.event.eventNumber}.reverse()}"
 			var="downtime">
-			<h3>
-				${fieldValue(bean: downtime, field: "event")}
-			</h3>
-			<td><g:render template="/downtime/downtime"
-					model="['instance': downtime, 'event':event]" /> <br></td>
+			<g:render template="/downtime/downtime"
+					model="['instance': downtime, 'event':event]" /> <br>
 
 		</g:each>
 </section>

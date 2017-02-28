@@ -168,11 +168,9 @@ class PlayerCharacterController {
 		return recipes
 	}
 
-	def genDowntime(SecUser user){
-		PlayerCharacter character = user.character.find{it.alive==true}
-		Downtime downtime = character.downtime.find(){
-			it.event.currentDowntime == true
-		}
+	@Secured(['ROLE_ADMIN', 'ROLE_USER'])
+	def genDowntime(Downtime downtime){
+		PlayerCharacter character = downtime.character
 		def feat = []
 		character.feat*.feat.findAll{it.type == 'Crafting'}.each {current->
 			current?.itemsCrafted?.times{ feat.add(current) }

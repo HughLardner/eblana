@@ -1,4 +1,11 @@
-
+<div class="row avoid-break">
+	<div class="col-xs-10">
+		<h3>
+			${fieldValue(bean: instance, field: "event")}
+		</h3>
+	</div>
+	<a class="btn btn-primary col-xs-2" href="${createLink(controller:'PlayerCharacter', action:'genDowntime', id:instance.id)}"><g:message code="default.button.reset.label" default="Downtime" /></a>
+</div>
 <div class="row row-eq-height bordered avoid-break">
 	<div class="col-xs-2 bordered">
 		<h5>Goal:</h5>
@@ -25,7 +32,7 @@
 </div>
 <div class="row row-eq-height bordered avoid-break">
 	<div class="col-xs-2 bordered">
-		<h5>Research Resources: </h5>
+		<h5>Research Resources:</h5>
 	</div>
 	<div class="col-xs-10">
 		${raw(instance?.researchResources?.replaceAll('\n', '<br/>'))}
