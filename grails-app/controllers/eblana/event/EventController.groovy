@@ -131,7 +131,7 @@ class EventController {
 			return
 		}
 		if (params.boolean("currentDowntime")){
-			def events = Downtime.findAllByCurrentDowntime(true)
+			def events = Event.findAllByCurrentDowntime(true)
 			events.each{
 				it.currentDowntime = false
 				it.save()
