@@ -4,7 +4,9 @@
 			${fieldValue(bean: instance, field: "event")}
 		</h3>
 	</div>
+	<g:if test="${instance.event.currentDowntime && !instance.event.downtimeDone }">
 	<a class="btn btn-primary col-xs-2" href="${createLink(controller:'PlayerCharacter', action:'genDowntime', id:instance.id)}"><g:message code="default.button.reset.label" default="Downtime" /></a>
+</g:if>
 </div>
 <div class="row row-eq-height bordered avoid-break">
 	<div class="col-xs-2 bordered">

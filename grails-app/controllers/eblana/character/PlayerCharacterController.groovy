@@ -17,17 +17,19 @@ import grails.transaction.Transactional
  * A controller class handles incoming web requests and performs actions such as redirects, rendering views and so on.
  */
 @Transactional(readOnly = true)
-@Secured(['ROLE_ADMIN'])
+	@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class PlayerCharacterController {
 
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 	def springSecurityService
-
+	def isAuthService
+	
+	@Secured(['ROLE_ADMIN'])
 	def index(Integer max) {
 		params.max = Math.min(max ?: 10, 100)
 		respond PlayerCharacter.list(params), model:[playerCharacterInstanceCount: PlayerCharacter.count()]
 	}
-
+	@Secured(['ROLE_ADMIN'])
 	def list(Integer max) {
 		params.max = Math.min(max ?: 10, 100)
 		respond PlayerCharacter.list(params), model:[playerCharacterInstanceCount: PlayerCharacter.count()]
@@ -36,15 +38,15 @@ class PlayerCharacterController {
 	def show(PlayerCharacter playerCharacterInstance) {
 		respond playerCharacterInstance
 	}
-
+	@Secured(['ROLE_ADMIN'])
 	def showAll(Integer max){
 		respond PlayerCharacter.findAllByAlive(true), model:[playerCharacterInstanceCount: PlayerCharacter.count()]
 	}
-
+	@Secured(['ROLE_ADMIN'])
 	def create() {
 		respond new PlayerCharacter(params)
 	}
-
+	@Secured(['ROLE_ADMIN'])
 	@Transactional
 	def save(PlayerCharacter playerCharacterInstance) {
 		params.remove "_recipe"
@@ -79,11 +81,11 @@ class PlayerCharacterController {
 			'*' { respond playerCharacterInstance, [status: CREATED] }
 		}
 	}
-
+	@Secured(['ROLE_ADMIN'])
 	def edit(PlayerCharacter playerCharacterInstance) {
 		respond playerCharacterInstance
 	}
-
+	@Secured(['ROLE_ADMIN'])
 	@Transactional
 	def update(PlayerCharacter playerCharacterInstance) {
 		params.remove "_recipe"
@@ -119,7 +121,7 @@ class PlayerCharacterController {
 			'*'{ respond playerCharacterInstance, [status: OK] }
 		}
 	}
-
+	@Secured(['ROLE_ADMIN'])
 	@Transactional
 	def delete(PlayerCharacter playerCharacterInstance) {
 
@@ -155,7 +157,7 @@ class PlayerCharacterController {
 		}
 	}
 
-
+	@Secured(['ROLE_ADMIN'])
 	def characterAPI(PlayerCharacter playerCharacterInstance) {
 		render playerCharacterInstance as JSON
 	}
@@ -168,8 +170,8 @@ class PlayerCharacterController {
 		return recipes
 	}
 
-	@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 	def genDowntime(Downtime downtime){
+		if(isAuthService.hasModifyAuth(downtime.character.user)){
 		PlayerCharacter character = downtime.character
 		def feat = []
 		character.feat*.feat.findAll{it.type == 'Crafting'}.each {current->
@@ -186,6 +188,8 @@ class PlayerCharacterController {
 		}
 		def recipes = feat.collect{ fetchRecipes(character,it,[] as Set) }
 		render(view:'genDowntime', model:[downtime:downtime, character:character, recipes:recipes, crafted:crafted])
+		}else
+			redirect action: 'auth', params: params
 	}
 
 

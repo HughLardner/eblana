@@ -37,7 +37,7 @@
 							class="input-crystal" max="${instance.voidCurrent }" /></td>
 					</tr>
 				</table>
-				
+
 			</div>
 		</div>
 
@@ -68,7 +68,10 @@
 		<div class="btn-group">
 			<g:submitToRemote class="btn btn-primary" update="transfers"
 				action="save" controller="transfer" name="Transfer" value="Transfer"
-				onFailure="error(XMLHttpRequest.responseText)" before="if (!confirm('Confirm Transfer?')) {return false;}" onComplete="autoSizeText();"/>
+				onFailure="error(XMLHttpRequest.responseText)"
+				before="if (!confirm('Confirm Transfer?')) {return false;}"
+				onComplete="autoSizeText();"
+				onSuccess="fetchResources()" />
 		</div>
 	</g:form>
 

@@ -83,7 +83,7 @@
 					name="createItem" value="Craft Item"
 					before="if (!confirm('Confirm Craft?')) {return false;}"
 					onFailure="error(XMLHttpRequest.responseText)"
-					update="recipe${div}" />
+					update="recipe${div}" onSuccess="fetchResources()"/>
 			</div>
 		</g:else>
 	</form>

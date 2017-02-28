@@ -25,6 +25,18 @@
 		    }
 		});
 	}
+	
+	function fetchResources(){
+		$.ajax({ 
+		    url: '${g.createLink(controller:'downtime', action:'resources', id:downtime.id )}', 
+		    type:"GET", 
+		    data:{},
+		    success:function(data) {
+		        $(resources).html(data);
+		    }
+		});
+	}
+	
 	</script>
 	<div>
 		<h1>

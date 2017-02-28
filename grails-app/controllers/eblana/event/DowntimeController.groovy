@@ -15,8 +15,9 @@ import grails.transaction.Transactional
 class DowntimeController {
 
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+	def isAuthService
 
-	def index(Integer max) {
+		def index(Integer max) {
 		params.max = Math.min(max ?: 10, 100)
 		respond Downtime.list(params), model:[characterEventInstanceCount: Downtime.count()]
 	}
@@ -207,5 +208,13 @@ class DowntimeController {
 			}
 		}
 		render(template:'searchResults', model:[searchresults:list, count:list.size()])
+	}
+
+	@Secured(['ROLE_ADMIN', 'ROLE_USER'])
+	def resources(Downtime downtime){
+		if(isAuthService.hasModifyAuth(downtime.character.user))
+			render(template:'resources', model:[instance:downtime])
+		else
+			redirect action: 'auth', params: params
 	}
 }
