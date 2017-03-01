@@ -60,8 +60,6 @@
 						<li><g:link controller="Spell">Spell</g:link></li>
 						<li><g:link controller="feat">Feat</g:link></li>
 						<li><g:render template="/_common/modals/deleteTextLink" />
-						<li class=""><g:link controller="playerCharacter"
-								action="genDowntime" id="${params.id }">Downtime</g:link></li>
 					</sec:ifAllGranted>
 					<g:if
 						test="${ params.action == 'show' || params.action == 'edit' || params.action == 'showLogin'}">
