@@ -30,7 +30,7 @@
 		</td>
 	</tr>
 	<g:if
-		test="${instance.hasProperty('anyCrystal') && recipe.anyCrystal >0}">
+		test="${instance.hasProperty('anyCrystal') && instance.anyCrystal >0}">
 		<tr class="row">
 			<th>Any Cost (Total: ${fieldValue(bean: instance, field: "anyCrystal")})
 			</th>

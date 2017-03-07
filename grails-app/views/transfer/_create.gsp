@@ -52,7 +52,7 @@
 						<div class="col-md-4">
 							<div class="checkbox">
 								<label class="btn btn-primary"> <input type="checkbox"
-									name="items" value="${item.id }" hidden="true">
+									name="items" value="${item?.id }" hidden="true">
 									<div class="img-check">
 										<g:render template="/item/showTemplate"
 											model="['itemInstance': item, 'downtime':instance]" />

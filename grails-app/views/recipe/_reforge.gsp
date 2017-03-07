@@ -1,19 +1,19 @@
 
 			<div class="form-group">
 				Item Type:
-				${recipe.itemType}
+				${powerToAdd.itemType}
 			</div>
 			<div class="form-group">
 				Item powers:
-				${recipe.power1}
-				${recipe.power2}
+				${powerToAdd.power1}
+				${powerToAdd.power2}
 			</div>
 			<div class="form-group">
 				Attunement Time:
-				${recipe.attunementTime}
+				${powerToAdd.attunementTime}
 			</div>
 			<div class="form-group">
-				<g:if test="${recipe.mustKnowTheSpell}">
+				<g:if test="${powerToAdd.mustKnowTheSpell}">
 			Select Spell:
 			<g:select optionValue="" name="spell" id="spell" from="${spells}"
 						noSelection="${['null':'-Choose Spell-']}" />
@@ -34,13 +34,14 @@
 				</div>
 				<div class="col-xs-10">
 					<g:render template="/recipe/cost"
-						model="['instance': recipe, 'downtime':downtime]" />
+						model="['instance': powerToAdd, 'downtime':downtime]" />
 				</div>
 			</div>
+			
 			<div class="btn-group">
-			<!--<g:submitToRemote class="btn btn-primary" action="createItem"
+			<g:submitToRemote class="btn btn-primary" action="reforge"
 					name="createItem" value="Craft Item"
 					before="if (!confirm('Confirm Craft?')) {return false;}"
 					onFailure="error(XMLHttpRequest.responseText)"
-					update="recipe${div}" onSuccess="fetchResources()"/> -->
+					update="recipe${div}" onSuccess="fetchResources()"/> 
 			</div>

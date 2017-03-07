@@ -8,7 +8,7 @@
 			$.ajax({ 
 			    url: '${g.createLink(action:'fetchRecipetoAdd' )}', 
 			    type:"GET", 
-			    data:{recipe:recipe,character:character, item:item},
+			    data:{recipe:recipe,character:character, item:item, div:${div}},
 			    success:function(data) {
 			        $('#reforgeDetails').html(data);
 			    }
@@ -27,9 +27,9 @@
 					<g:each in="${items}" var="item" status="i">
 						<div class="col-md-4">
 							<div class="checkbox" id="form">
-								<label class="btn btn-primary"> <input type="checkbox"
+								<label class="btn btn-primary"> <input type="radio"
 									onclick="fetchAddable(this.value, ${character }, ${recipe?.id })"
-									name="items" value="${item.id }" hidden="true">
+									name="item" value="${item.id }" hidden="true">
 									<div class="img-check">
 										<g:render template="/item/showTemplate"
 											model="['itemInstance': item, 'downtime':downtime]" />

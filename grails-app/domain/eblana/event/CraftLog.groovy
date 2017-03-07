@@ -18,7 +18,7 @@ class CraftLog {
 //	Date	dateCreated
 //	Date	lastUpdated
 	
-	Item item
+	Item item, itemReforged
 	Integer airCrystals, earthCrystals, fireCrystals, waterCrystals, blendedCrystals, voidCrystals	
 	Recipe recipe
 	String name

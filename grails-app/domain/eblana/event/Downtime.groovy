@@ -70,7 +70,8 @@ class Downtime {
 		def current = item
 		current.addAll(to*.item.flatten())
 		current.addAll(craftLog*.item)
-		current.removeAll{ it.id in from*.item.flatten().id}
+		current.removeAll{ it.id in from*.item?.flatten()?.id}
+		current.removeAll{it.id in craftLog*.itemReforged?.id}
 		return current.unique(itemComparator)
 	}
 	
