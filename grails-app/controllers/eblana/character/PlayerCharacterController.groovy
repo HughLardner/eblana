@@ -233,20 +233,34 @@ class PlayerCharacterController {
 		def recipe = Recipe.read(params.recipe)
 		def character = PlayerCharacter.read(params.character)
 		def downtime = Downtime.read(params.downtime)
-		if (downtime.airCurrent < recipe?.airCrystals + air)
+		if (downtime.airCurrent < recipe?.airCrystals + air){
 			render(status: 400, text: 'Insuffient Air Crystals.')
-		if (downtime.earthCurrent < recipe?.earthCrystals + earth)
+			return
+		}
+		if (downtime.earthCurrent < recipe?.earthCrystals + earth){
 			render(status: 400, text: 'Insuffient Earth Crystals.')
-		if (downtime.fireCurrent < recipe?.fireCrystals + fire)
+			return
+		}
+		if (downtime.fireCurrent < recipe?.fireCrystals + fire){
 			render(status: 400, text: 'Insuffient Fire Crystals.')
-		if (downtime.waterCurrent < recipe?.waterCrystals + water)
+			return
+		}
+		if (downtime.waterCurrent < recipe?.waterCrystals + water){
 			render(status: 400, text: 'Insuffient Water Crystals.')
-		if (downtime.blendedCurrent < recipe?.blendedCrystals + blended)
+			return
+		}
+		if (downtime.blendedCurrent < recipe?.blendedCrystals + blended){
 			render(status: 400, text: 'Insuffient Blended Crystals.')
-		if (downtime.voidCurrent < recipe?.voidCrystals + voidC)
+			return
+		}
+		if (downtime.voidCurrent < recipe?.voidCrystals + voidC){
 			render(status: 400, text: 'Insuffient Void Crystals.')
-		if (air+earth+fire+water+blended+voidC != recipe?.anyCrystal)
+			return
+		}
+		if (air+earth+fire+water+blended+voidC != recipe?.anyCrystal){
 			render(status: 400, text: 'Incorrect amount of Any Crystals specified.')
+			return
+		}
 
 		def sustainable = sustainable(character, recipe.requiredSkillToCraft)?1:0
 		def duration = 4 + sustainable
@@ -286,20 +300,34 @@ class PlayerCharacterController {
 		def blended = params.int('blended')?:0
 		def voidC = params.int('voidC')?:0
 
-		if (downtime.airCurrent < reforgeRecipe?.airCrystals + recipe?.airCrystals + air)
+		if (downtime.airCurrent < reforgeRecipe?.airCrystals + recipe?.airCrystals + air){
 			render(status: 400, text: 'Insuffient Air Crystals.')
-		if (downtime.earthCurrent < reforgeRecipe?.earthCrystals + recipe?.earthCrystals + earth)
+			return
+		}
+		if (downtime.earthCurrent < reforgeRecipe?.earthCrystals + recipe?.earthCrystals + earth){
 			render(status: 400, text: 'Insuffient Earth Crystals.')
-		if (downtime.fireCurrent < reforgeRecipe?.fireCrystals + recipe?.fireCrystals + fire)
+			return
+		}			
+		if (downtime.fireCurrent < reforgeRecipe?.fireCrystals + recipe?.fireCrystals + fire){
 			render(status: 400, text: 'Insuffient Fire Crystals.')
-		if (downtime.waterCurrent < reforgeRecipe?.waterCrystals + recipe?.waterCrystals + water)
+			return
+		}
+		if (downtime.waterCurrent < reforgeRecipe?.waterCrystals + recipe?.waterCrystals + water){
 			render(status: 400, text: 'Insuffient Water Crystals.')
-		if (downtime.blendedCurrent < reforgeRecipe?.blendedCrystals + recipe?.blendedCrystals + blended)
+			return
+		}
+		if (downtime.blendedCurrent < reforgeRecipe?.blendedCrystals + recipe?.blendedCrystals + blended){
 			render(status: 400, text: 'Insuffient Blended Crystals.')
-		if (downtime.voidCurrent < reforgeRecipe?.voidCrystals + recipe?.voidCrystals + voidC)
+			return
+		}
+		if (downtime.voidCurrent < reforgeRecipe?.voidCrystals + recipe?.voidCrystals + voidC){
 			render(status: 400, text: 'Insuffient Void Crystals.')
-		if (air+earth+fire+water+blended+voidC != recipe?.anyCrystal)
+			return
+		}
+		if (air+earth+fire+water+blended+voidC != recipe?.anyCrystal){
 			render(status: 400, text: 'Incorrect amount of Any Crystals specified.')
+			return
+		}
 
 		def sustainable = sustainable(character, recipe.requiredSkillToCraft)?1:0
 		def duration = 4 + sustainable
