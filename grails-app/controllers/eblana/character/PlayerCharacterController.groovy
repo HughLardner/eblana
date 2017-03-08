@@ -198,7 +198,7 @@ class PlayerCharacterController {
 		def character = PlayerCharacter.read(params.character)
 		def spells = character.spell.findAll {it.spell.classes == recipe.spellClass  }
 		def downtime = Downtime.read(params.downtime)
-		def items = downtime.itemCurrent.findAll{it.level?.id == recipe?.baseItem?.id}
+		def items = downtime.itemCurrent.findAll{it.level?.id == recipe?.baseItem?.id && it.created != downtime.event}
 		render(template:'recipeDetails', model:[recipe:recipe, downtime:downtime, character:character.id, div:params.div, spells:spells, items:items])
 	}
 
@@ -310,7 +310,6 @@ class PlayerCharacterController {
 				duration:"Event ${downtime.event.eventNumber+duration}",
 				internalNotes:"${item.internalNotes}<br> Reforged by ${character}",
 				slot:item.slot, created:downtime.event, level:reforgeRecipe.requiredSkillToCraft).save()
-		println newItem
 		def craftLog = new CraftLog(
 				item:newItem, itemReforged:item,
 				airCrystals:air+recipe.airCrystals+reforgeRecipe?.airCrystals,
