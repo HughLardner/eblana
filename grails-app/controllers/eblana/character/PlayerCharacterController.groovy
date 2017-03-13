@@ -306,7 +306,7 @@ class PlayerCharacterController {
 		if (downtime.earthCurrent < reforgeRecipe?.earthCrystals + recipe?.earthCrystals + earth){
 			render(status: 400, text: 'Insuffient Earth Crystals.')
 			return
-		}			
+		}
 		if (downtime.fireCurrent < reforgeRecipe?.fireCrystals + recipe?.fireCrystals + fire){
 			render(status: 400, text: 'Insuffient Fire Crystals.')
 			return
