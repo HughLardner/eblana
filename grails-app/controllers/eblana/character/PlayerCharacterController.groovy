@@ -198,7 +198,7 @@ class PlayerCharacterController {
 		def character = PlayerCharacter.read(params.character)
 		def spells = character.spell.findAll {it.spell.classes == recipe.spellClass  }
 		def downtime = Downtime.read(params.downtime)
-		def items = downtime.itemCurrent.findAll{it.level?.id == recipe?.baseItem?.id && it.created != downtime.event}
+		def items = downtime.itemCurrent.findAll{it.level?.id == recipe?.baseItem?.id && it.created.id != downtime.event.id}
 		render(template:'recipeDetails', model:[recipe:recipe, downtime:downtime, character:character.id, div:params.div, spells:spells, items:items])
 	}
 
