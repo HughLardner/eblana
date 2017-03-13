@@ -205,7 +205,6 @@ class PlayerCharacterController {
 	def fetchRecipeDetailsAdd={
 		def powerToAdd = Recipe.read(params.powerToAdd)
 		def character = PlayerCharacter.read(params.character)
-		def spells = character.spell.findAll {it.spell.classes == recipe.spellClass  }
 		def downtime = Downtime.read(params.downtime)
 		def item = Item.read(params.item)
 		render (template:'/recipe/reforge', model:[itemInstance:item, powerToAdd:powerToAdd, downtime:downtime, recipe:Recipe.read(params.recipe), div:params.div])
@@ -307,7 +306,7 @@ class PlayerCharacterController {
 		if (downtime.earthCurrent < reforgeRecipe?.earthCrystals + recipe?.earthCrystals + earth){
 			render(status: 400, text: 'Insuffient Earth Crystals.')
 			return
-		}
+		}			
 		if (downtime.fireCurrent < reforgeRecipe?.fireCrystals + recipe?.fireCrystals + fire){
 			render(status: 400, text: 'Insuffient Fire Crystals.')
 			return
