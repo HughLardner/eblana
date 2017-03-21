@@ -194,20 +194,20 @@ class PlayerCharacterController {
 
 
 	def fetchRecipeDetails={
-		def recipe = Recipe.read(params.recipe)
-		def character = PlayerCharacter.read(params.character)
+		def recipe = Recipe.read(params.long('recipe'))
+		def character = PlayerCharacter.read(params.long('character'))
 		def spells = character.spell.findAll {it.spell.classes == recipe.spellClass  }
-		def downtime = Downtime.read(params.downtime)
-		def items = downtime.itemCurrent.findAll{it.level?.id == recipe?.baseItem?.id && it.created.id != downtime.event.id}
+		def downtime = Downtime.read(params.long('downtime'))
+		def items = downtime.itemCurrent.findAll{it.level?.id == recipe?.baseItem?.id && it.created?.id != downtime.event?.id}
 		render(template:'recipeDetails', model:[recipe:recipe, downtime:downtime, character:character.id, div:params.div, spells:spells, items:items])
 	}
 
 	def fetchRecipeDetailsAdd={
-		def powerToAdd = Recipe.read(params.powerToAdd)
-		def character = PlayerCharacter.read(params.character)
-		def downtime = Downtime.read(params.downtime)
-		def item = Item.read(params.item)
-		render (template:'/recipe/reforge', model:[itemInstance:item, powerToAdd:powerToAdd, downtime:downtime, recipe:Recipe.read(params.recipe), div:params.div])
+		def powerToAdd = Recipe.read(params.long('powerToAdd'))
+		def character = PlayerCharacter.read(params.long('character'))
+		def downtime = Downtime.read(params.long('downtime'))
+		def item = Item.read(params.long('item'))
+		render (template:'/recipe/reforge', model:[itemInstance:item, powerToAdd:powerToAdd, downtime:downtime, recipe:Recipe.read(params.long('recipe')), div:params.div])
 	}
 
 	def fetchRecipetoAdd ={
@@ -229,34 +229,41 @@ class PlayerCharacterController {
 		def water = params.int('water')?:0
 		def blended = params.int('blended')?:0
 		def voidC = params.int('voidC')?:0
-		def recipe = Recipe.read(params.recipe)
-		def character = PlayerCharacter.read(params.character)
-		def downtime = Downtime.read(params.downtime)
+		def recipe = Recipe.read(params.long('recipe'))
+		def character = PlayerCharacter.read(params.long('character'))
+		def downtime = Downtime.read(params.long('downtime'))
 		if (downtime.airCurrent < recipe?.airCrystals + air){
+			log.warn("Downtime: ${downtime.id} Insuffient Air Crystals. Recipe: ${recipe.id} Name: ${name}")
 			render(status: 400, text: 'Insuffient Air Crystals.')
 			return
 		}
 		if (downtime.earthCurrent < recipe?.earthCrystals + earth){
+			log.warn("Downtime: ${downtime.id} Insuffient Earth Crystals. Recipe: ${recipe.id} Name: ${name}")
 			render(status: 400, text: 'Insuffient Earth Crystals.')
 			return
 		}
 		if (downtime.fireCurrent < recipe?.fireCrystals + fire){
+			log.warn("Downtime: ${downtime.id} Insuffient Fire Crystals. Recipe: ${recipe.id} Name: ${name}")
 			render(status: 400, text: 'Insuffient Fire Crystals.')
 			return
 		}
 		if (downtime.waterCurrent < recipe?.waterCrystals + water){
+			log.warn("Downtime: ${downtime.id} Insuffient Water Crystals. Recipe: ${recipe.id} Name: ${name}")
 			render(status: 400, text: 'Insuffient Water Crystals.')
 			return
 		}
 		if (downtime.blendedCurrent < recipe?.blendedCrystals + blended){
+			log.warn("Downtime: ${downtime.id} Insuffient Blended Crystals. Recipe: ${recipe.id} Name: ${name}")
 			render(status: 400, text: 'Insuffient Blended Crystals.')
 			return
 		}
 		if (downtime.voidCurrent < recipe?.voidCrystals + voidC){
+			log.warn("Downtime: ${downtime.id} Insuffient Void Crystals. Recipe: ${recipe.id} Name: ${name}")
 			render(status: 400, text: 'Insuffient Void Crystals.')
 			return
 		}
 		if (air+earth+fire+water+blended+voidC != recipe?.anyCrystal){
+			log.warn("Downtime: ${downtime.id} Incorrect amount of Any Crystals specified. Recipe: ${recipe.id} Name: ${name}")
 			render(status: 400, text: 'Incorrect amount of Any Crystals specified.')
 			return
 		}
@@ -300,30 +307,37 @@ class PlayerCharacterController {
 		def voidC = params.int('voidC')?:0
 
 		if (downtime.airCurrent < reforgeRecipe?.airCrystals + recipe?.airCrystals + air){
+			log.warn("Downtime: ${downtime.id} Insuffient Air Crystals. Recipe: ${recipe.id} Name: ${name}")
 			render(status: 400, text: 'Insuffient Air Crystals.')
 			return
 		}
 		if (downtime.earthCurrent < reforgeRecipe?.earthCrystals + recipe?.earthCrystals + earth){
+			log.warn("Downtime: ${downtime.id} Insuffient Earth Crystals. Recipe: ${recipe.id} Name: ${name}")
 			render(status: 400, text: 'Insuffient Earth Crystals.')
 			return
 		}
 		if (downtime.fireCurrent < reforgeRecipe?.fireCrystals + recipe?.fireCrystals + fire){
+			log.warn("Downtime: ${downtime.id} Insuffient Fire Crystals. Recipe: ${recipe.id} Name: ${name}")
 			render(status: 400, text: 'Insuffient Fire Crystals.')
 			return
 		}
 		if (downtime.waterCurrent < reforgeRecipe?.waterCrystals + recipe?.waterCrystals + water){
+			log.warn("Downtime: ${downtime.id} Insuffient Water Crystals. Recipe: ${recipe.id} Name: ${name}")
 			render(status: 400, text: 'Insuffient Water Crystals.')
 			return
 		}
 		if (downtime.blendedCurrent < reforgeRecipe?.blendedCrystals + recipe?.blendedCrystals + blended){
+			log.warn("Downtime: ${downtime.id} Insuffient Blended Crystals. Recipe: ${recipe.id} Name: ${name}")
 			render(status: 400, text: 'Insuffient Blended Crystals.')
 			return
 		}
 		if (downtime.voidCurrent < reforgeRecipe?.voidCrystals + recipe?.voidCrystals + voidC){
+			log.warn("Downtime: ${downtime.id} Insuffient Void Crystals. Recipe: ${recipe.id} Name: ${name}")
 			render(status: 400, text: 'Insuffient Void Crystals.')
 			return
 		}
 		if (air+earth+fire+water+blended+voidC != recipe?.anyCrystal){
+			log.warn("Downtime: ${downtime.id} Incorrect amount of Any Crystals specified. Recipe: ${recipe.id} Name: ${name}")
 			render(status: 400, text: 'Incorrect amount of Any Crystals specified.')
 			return
 		}
