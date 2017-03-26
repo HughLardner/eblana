@@ -171,7 +171,8 @@ class PlayerCharacterController {
 	}
 
 	def genDowntime(Downtime downtime){
-		def roles = springSecurityService.getPrincipal().getAuthorities()
+		def roles = springSecurityService.getPrincipal().getAuthorities().getAuthority()
+		print roles
 		if(isAuthService.hasModifyAuth(downtime.character.user) &&(roles.contains('ROLE_ADMIN')||downtime.event.lastEvent)){
 			PlayerCharacter character = downtime.character
 			def feat = []
