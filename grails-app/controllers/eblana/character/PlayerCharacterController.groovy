@@ -2,6 +2,9 @@ package eblana.character
 
 
 import static org.springframework.http.HttpStatus.*
+
+import org.hibernate.validator.internal.util.privilegedactions.GetClassLoader
+
 import eblana.event.CraftLog
 import eblana.event.Downtime
 import eblana.event.Event
@@ -171,8 +174,7 @@ class PlayerCharacterController {
 	}
 
 	def genDowntime(Downtime downtime){
-		def roles = springSecurityService.getPrincipal().getAuthorities().getAuthority()
-		print roles
+		def roles = springSecurityService.getPrincipal().getAuthorities()*.getAuthority()
 		if(isAuthService.hasModifyAuth(downtime.character.user) &&(roles.contains('ROLE_ADMIN')||downtime.event.lastEvent)){
 			PlayerCharacter character = downtime.character
 			def feat = []
@@ -191,7 +193,7 @@ class PlayerCharacterController {
 			def recipes = feat.collect{ fetchRecipes(character,it,[] as Set) }
 			render(view:'genDowntime', model:[downtime:downtime, character:character, recipes:recipes, crafted:crafted])
 		}else
-			redirect action: 'auth', params: params
+			render "We are sorry. Downtime submissions are currently closed. If you believe you are seeing this in error, please contact the event team."
 	}
 
 
