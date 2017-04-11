@@ -254,7 +254,7 @@ li {
 	}
 	.character {
 		font-size: 8pt;
-		page-break-after: always;
+		page-break-after: right;
 	}
 	.item-downtime {
 		display: none;

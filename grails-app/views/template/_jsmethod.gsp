@@ -141,8 +141,7 @@ function amended_event_unchecked(){
 	originaljQuery("#previousVersion").hide();
 };
 
-var atcmplt_company = codeGenerator.autocompleteOptionCompany(prefix);
-var atcmplt_firm = codeGenerator.autocompleteOptionFirm(prefix);
+
 originaljQuery(function(){ // equivalent to document ready
 	originaljQuery('a.media').media({width:600,height:849}); //A4: width  1.4142 = height 
 	originaljQuery(document).on("keydown", "input.comauto", function(){ // use this if there is autocomplete for company name
