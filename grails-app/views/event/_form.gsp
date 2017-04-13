@@ -91,8 +91,8 @@
 			<th class="void">Void</th>
 			<th>Items (comma separated)</th>
 		</tr>
-		<g:each in="${PlayerCharacter.findAllByAlive(true,[sort:"user.firstName"])}" var="c">
-		<g:set var="d" value="${downtimes.get(c.id)}"/>
+		<g:each in="${PlayerCharacter.findAllByAlive(true,[sort:"user?.firstName"])}" var="c">
+		<g:set var="d" value="${downtimes?.get(c.id)}"/>
 		<g:hiddenField  name="character.${c.id}.downtimeId" value="${d?.id}"/>
 				<tr>
 				<td>

@@ -4,6 +4,10 @@
 			${fieldValue(bean: instance, field: "event")}
 		</h3>
 	</div>
+	<sec:ifAllGranted roles="ROLE_ADMIN">
+		<a class="btn btn-primary col-xs-2" href="${createLink(controller:'PlayerCharacter', action:'genDowntime', id:instance.id)}"><g:message code="default.button.reset.label" default="Downtime" /></a>
+	
+	</sec:ifAllGranted>
 	<g:if test="${instance.event.currentDowntime && !instance.event.downtimeDone && instance.event.lastEvent }">
 	<a class="btn btn-primary col-xs-2" href="${createLink(controller:'PlayerCharacter', action:'genDowntime', id:instance.id)}"><g:message code="default.button.reset.label" default="Downtime" /></a>
 </g:if>
