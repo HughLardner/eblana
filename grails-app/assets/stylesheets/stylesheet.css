@@ -241,6 +241,7 @@ li {
 	}
 	@page {
 		size: A4;
+
 	}
 	.consumable, .item-print, .recipe, .avoid-break {
 		page-break-inside: avoid;
