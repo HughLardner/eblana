@@ -15,7 +15,7 @@
 </head>
 
 <body>
-<jq:plugin name="redirect"/>
+	<jq:plugin name="redirect" />
 	<script>
 function printItems(){
 	$.ajax({ 
@@ -29,131 +29,75 @@ function printItems(){
 }
 </script>
 	<section id="show-event" class="first">
-		<button onclick="printItems()" class="btn btn-primary">Print Items</button>
-		<a href="${g.createLink(action:"printLabels", id:eventInstance.id)}" class="btn btn-primary">Print Labels</a>
+		<button onclick="printItems()" class="btn btn-primary">Print
+			Items</button>
+		<a href="${g.createLink(action:"printLabels", id:eventInstance.id)}"
+			class="btn btn-primary">Print Labels</a>
 		<g:form action="print" class="form-horizontal" role="form">
 			<g:hiddenField name="event" value="${eventInstance.id}" />
-			<table class="table">
-				<tbody>
-					<tr class="prop">
-						<td valign="top" class="name"><g:message
-								code="event.name.label" default="Number" /></td>
-
-						<td valign="top" class="value">
-							${fieldValue(bean: eventInstance, field: "eventNumber")}
-						</td>
-
-					</tr>
-					<tr class="prop">
-						<td valign="top" class="name"><g:message
-								code="event.name.label" default="Name" /></td>
-						<td valign="top" class="value">
-							${fieldValue(bean: eventInstance, field: "name")}
-						</td>
-					</tr>
-					<tr class="prop">
-						<td valign="top" class="name"><g:message
-								code="event.name.label" default="Date" /></td>
-						<td valign="top" class="value">
-							${fieldValue(bean: eventInstance, field: "date")}
-						</td>
-					</tr>
-					<tr class="prop">
-						<td valign="top" class="name"><g:message
-								code="event.name.label" default="Downtime Open" /></td>
-						<td valign="top" class="value">
-							${fieldValue(bean: eventInstance, field: "lastEvent")}
-						</td>
-					</tr>
-					<tr class="prop">
-						<td valign="top" class="name"><g:message
-								code="event.name.label" default="Current Downtime" /></td>
-						<td valign="top" class="value">
-							${fieldValue(bean: eventInstance, field: "currentDowntime")}
-						</td>
-					</tr>
-					<tr class="prop">
-						<td valign="top" class="name"><g:message
-								code="event.name.label" default="Downtime Done" /></td>
-						<td valign="top" class="value">
-							${fieldValue(bean: eventInstance, field: "downtimeDone")}
-						</td>
-					</tr>
-					<tr class="prop">
-						<td valign="top" class="name"><g:message
-								code="event.characterEvent.label" default="Attended" /></td>
+			<div class="row">
+				<div class="col-xs-2">Number</div>
+				<div class="col-xs-2">
+					${fieldValue(bean: eventInstance, field: "eventNumber")}
+				</div>
+				<div class="col-xs-2">Name</div>
+				<div class="col-xs-2">
+					${fieldValue(bean: eventInstance, field: "name")}
+				</div>
+				<div class="col-xs-2">Date</div>
+				<div class="col-xs-2">
+					${fieldValue(bean: eventInstance, field: "date")}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2">Downtime Open</div>
+				<div class="col-xs-2">
+					${fieldValue(bean: eventInstance, field: "lastEvent")}
+				</div>
+				<div class="col-xs-2">Current Downtime</div>
+				<div class="col-xs-2">
+					${fieldValue(bean: eventInstance, field: "currentDowntime")}
+				</div>
+				<div class="col-xs-2">Downtime Done</div>
+				<div class="col-xs-2">
+					${fieldValue(bean: eventInstance, field: "downtimeDone")}
+				</div>
+			</div>
+			<table class="table table-bordered table-sm table-responsive">
+				<thead>
 					<tr>
-						<td>Print</td>
-						<td>Player Id</td>
-						<td>Player Name</td>
-						<td>Character Id</td>
-						<td>Character Name</td>
-						<td>XP</td>
-						<td>Attended</td>
-						<td>Air Crystals</td>
-						<td>Earth Crystals</td>
-						<td>Fire Crystals</td>
-						<td>Water Crystals</td>
-						<td>Blended Crystals</td>
-						<td>Void Crystals</td>
-						<td>Items</td>
+						<th>Print</th>
+						<th>Player Id</th>
+						<th>Player Name</th>
+						<th>Character Id</th>
+						<th>Character Name</th>
+						<th>Downtime Id</th>
+						<th>XP</th>
+						<th>Attended</th>
+						<th></th>
+						<th class="air">Air Crystals</th>
+						<th class="earth">Earth Crystals</th>
+						<th class="fire">Fire Crystals</th>
+						<th class="water">Water Crystals</th>
+						<th class="blended">Blended Crystals</th>
+						<th class="void">Void Crystals</th>
+						<th>Items</th>
 					</tr>
+					<tr>
+				</thead>
+				<tbody>
 					<g:each
 						in="${PlayerCharacter.findAllByAlive(true,[sort:'user.firstName'])}"
 						var="c">
 						<g:set var="d" value="${downtimes.get(c.id)}" />
-						<tr>
-							<td><g:checkBox class="form-control" name="printIds"
-									value="${c.id}" checked="" /></td>
-							<td>
-								${c.user?.id}
-							</td>
-							<td><g:link controller="secUser" action="show"
-									id="${c.user?.id}">
-									${fieldValue(bean: c, field: "user")}
-								</g:link></td>
-							<td>
-								${c.id}
-							</td>
-							<td><g:link controller="playerCharacter" action="show"
-									id="${c.id}">
-									${c?.encodeAsHTML()}
-								</g:link></td>
-							<td>
-								${c.xp}
-							</td>
-							<td>
-								${eventInstance.attended.contains(c)}
-							</td>
-							<td>
-								${d?.airCrystals}
-							</td>
-							<td>
-								${d?.earthCrystals}
-							</td>
-							<td>
-								${d?.fireCrystals}
-							</td>
-							<td>
-								${d?.waterCrystals}
-							</td>
-							<td>
-								${d?.blendedCrystals}
-							</td>
-							<td>
-								${d?.voidCrystals}
-							</td>
-							<td><ul>
-									<g:each in="${d?.item}" var="i">
-										<li><g:link controller="Item" action="show" id="${i.id}">
-												${i.name?i.name:i.toString()}
-											</g:link></li>
-									</g:each>
-								</ul></td>
-						</tr>
+						<g:render template="player" model="['c': c, 'd': d]"></g:render>
+
 					</g:each>
 				</tbody>
 			</table>
+
+
+
 			<g:submitButton name="print" class="btn btn-primary" value="Print" />
 		</g:form>
 	</section>
