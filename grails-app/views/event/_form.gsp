@@ -1,5 +1,5 @@
-<%@ page import="eblana?.event?.Event"%>
-<%@ page import="eblana?.character?.PlayerCharacter"%>
+<%@ page import="eblana.event.Event"%>
+<%@ page import="eblana.character.PlayerCharacter"%>
 
 <div
 	class="${hasErrors(bean: eventInstance, field: 'eventNumber', 'error')} ">
