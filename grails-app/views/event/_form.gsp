@@ -30,7 +30,7 @@
 	<div>
 		<g:datePicker class="form-control" name="date"
 			value="${eventInstance?.date}" precision="day"
-			noSelection="['':'-Choose-']" relativeYears="[-2?.?.7]" />
+			noSelection="['':'-Choose-']" relativeYears="[-2..7]" />
 		<span class="help-inline"> ${hasErrors(bean: eventInstance, field: 'date', 'error')}
 		</span>
 	</div>
