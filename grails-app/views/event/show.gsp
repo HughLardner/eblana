@@ -29,6 +29,7 @@ function printItems(){
 }
 </script>
 	<section id="show-event" class="first">
+		${sort }
 		<button onclick="printItems()" class="btn btn-primary">Print
 			Items</button>
 		<a href="${g.createLink(action:"printLabels", id:eventInstance.id)}"
@@ -67,12 +68,16 @@ function printItems(){
 				<thead>
 					<tr>
 						<th>Print</th>
-						<th>Player Id</th>
-						<th>Player Name</th>
-						<th>Character Id</th>
-						<th>Character Name</th>
+						<g:sortableColumn property="user.id"
+							title="${message(code: 'event.name.label', default: 'Player Id')}" />
+						<g:sortableColumn property="user.firstName"
+							title="${message(code: 'event.name.label', default: 'Player Name')}" />
+						<g:sortableColumn property="id"
+							title="${message(code: 'event.name.label', default: 'Character Id')}" />
+						<g:sortableColumn property="name"
+							title="${message(code: 'event.name.label', default: 'Character Name')}" />
 						<th>Downtime Id</th>
-						<th>XP</th>
+						<th>xp</th>
 						<th>Attended</th>
 						<th></th>
 						<th class="air">Air Crystals</th>
@@ -87,7 +92,7 @@ function printItems(){
 				</thead>
 				<tbody>
 					<g:each
-						in="${PlayerCharacter.findAllByAlive(true,[sort:'user.firstName'])}"
+						in="${PlayerCharacter.findAllByAlive(true,[sort:sort])}"
 						var="c">
 						<g:set var="d" value="${downtimes.get(c.id)}" />
 						<g:render template="player" model="['c': c, 'd': d]"></g:render>
