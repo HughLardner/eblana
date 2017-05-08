@@ -24,6 +24,9 @@
 		${c.xp}
 	</td>
 	<td rowspan="2">
+		${c.level}
+	</td>
+	<td rowspan="2">
 		${eventInstance.attended.contains(c)}
 	</td>
 	<th>Starting</th>

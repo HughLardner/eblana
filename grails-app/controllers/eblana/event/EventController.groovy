@@ -34,7 +34,29 @@ class EventController {
 		charDowntimes.each{
 			downtimes.put(it.character.id, it)
 		}
-		respond eventInstance, model:[downtimes:downtimes, sort:params.sort, order:params.order]
+		def characters = PlayerCharacter.findAllByAliveAndUserIsNotNull(true).collect {
+			[c:it, d:Downtime.findByEventAndCharacter(eventInstance, it)]
+		};
+		if(params.sort == "userId")
+			characters.sort{ it.c.user.id}
+		if(params.sort == "userName")
+			characters.sort{a,b-> a.c.user.firstName.toUpperCase()<=>b.c.user.firstName.toUpperCase() }
+		if(params.sort == "name")
+			characters.sort{a,b-> a.c.name<=>b.c.name}
+		if(params.sort == "character")
+			characters.sort{ it.c.id}
+		if(params.sort == "downtime")
+			characters.sort{ it.d.id}
+		if(params.sort == "xp")
+			characters.sort{ it.c.xp}
+		if(params.sort == "level")
+			characters.sort{ it.c.level}
+
+		if(params.order =="desc")
+			characters = characters.reverse()
+
+
+		respond eventInstance, model:[characters:characters]
 	}
 
 	def create() {
@@ -68,7 +90,7 @@ class EventController {
 		}
 		def downtimeParams = params.character
 		def characters = PlayerCharacter.findAllByAlive(true)
-		characters.each{c->
+		characters.each{ c->
 			def param = downtimeParams.get(c.id.toString())
 			if(param){
 				def downtimeId = param.long("downtimeId")
@@ -104,7 +126,9 @@ class EventController {
 				])
 				redirect eventInstance
 			}
-			'*'{ respond eventInstance, [status: OK] }
+			'*'{
+				respond eventInstance, [status: OK]
+			}
 		}
 	}
 
@@ -140,7 +164,7 @@ class EventController {
 		}
 		def downtimeParams = params.character
 		def characters = PlayerCharacter.findAllByAlive(true)
-		characters.each{c->
+		characters.each{ c->
 			def param = downtimeParams.get(c.id.toString())
 			if(param){
 				def downtimeId = param.long("downtimeId")
@@ -176,7 +200,9 @@ class EventController {
 				])
 				redirect eventInstance
 			}
-			'*'{ respond eventInstance, [status: OK] }
+			'*'{
+				respond eventInstance, [status: OK]
+			}
 		}
 	}
 
@@ -220,8 +246,10 @@ class EventController {
 		def event = Event.read(params.long("event"))
 		def preEvent = Event.findByEventNumber(event.eventNumber-1,[readOnly:true])
 		def fullLores = EventLore.findAllByEvent(event)
-		def results =  players.collect{player->
-			def lore = fullLores.findAll{player.lore.id.contains(it.lore.id)}
+		def results =  players.collect{ player->
+			def lore = fullLores.findAll{
+				player.lore.id.contains(it.lore.id)
+			}
 			[character:player, downtime:Downtime.findByCharacterAndEvent(player, preEvent, [readOnly:true]), lore:lore]
 		}
 		render(view: "print", model: [players: results])
@@ -230,11 +258,9 @@ class EventController {
 	def printLabels(Event event){
 		def downtimes = Downtime.findAllByEvent(event,[readOnly:true])
 		String results = ''
-		downtimes?.each{downtime->
+		downtimes?.each{ downtime->
 			results += "${downtime?.character?.user?.id}|${downtime?.character?.user?.toString()}|${downtime?.character?.id}|${downtime?.character?.toString()}|${downtime?.airCurrent}|${downtime?.earthCurrent}|${downtime?.fireCurrent}|${downtime.waterCurrent}|${downtime?.blendedCurrent}|${downtime?.voidCurrent}|"
-			downtime?.itemCurrent.sort{it.id}.each{item->
-				results+="${item.id}, "
-			}
+			downtime?.itemCurrent.sort{ it.id }.each{ item-> results+="${item.id}, " }
 			results+='<br />'
 		}
 		render results
