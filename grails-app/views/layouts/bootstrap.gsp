@@ -17,6 +17,7 @@
 	type="text/css" />
 <g:javascript library="jquery" plugin="jquery"/>
 <r:layoutResources />
+<asset:javascript src="application.js"/>
 <g:layoutHead />
 <!-- Fav and touch icons -->
 
