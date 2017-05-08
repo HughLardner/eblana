@@ -34,7 +34,7 @@ class EventController {
 		charDowntimes.each{
 			downtimes.put(it.character.id, it)
 		}
-		respond eventInstance, model:[downtimes:downtimes]
+		respond eventInstance, model:[downtimes:downtimes, sort:params.sort, order:params.order]
 	}
 
 	def create() {
