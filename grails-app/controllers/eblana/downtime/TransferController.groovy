@@ -24,6 +24,29 @@ class TransferController {
 		else
 			redirect action: 'auth', params: params
 	}
+	
+	def fixItems(){
+		def downtimes = Downtime.list()
+		downtimes.each {
+			println "Starting Items: " + it.item 
+			it.item.removeAll(it.to*.item.flatten())
+			it.item.removeAll(it.craftLog*.item)
+			it.item.addAll(it.from*.item?.flatten())
+			it.item.addAll(it.craftLog*.itemReforged)
+			it.item = it.item -null
+			it.item = it.item.toUnique{
+				[
+					equals: { delegate?.equals(it) },
+					compare: { first, second ->
+						first?.id <=> second?.id
+					}
+				] as Comparator
+			}
+			
+			it.save()
+			println "finished Items: " + it.item
+		}
+	}
 
 	@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 	@Transactional
@@ -64,8 +87,8 @@ class TransferController {
 				throw new ValidationException("Error - you do may not transfer an negitive amount of crystals", downtime.errors)
 			}
 
-			downtime.save()
-			target.save()
+			//downtime.save()
+			//target.save()
 			new TransferLog(from:downtime, to:target, item:items, air:air, earth:earth, water:water, fire:fire, blended:blended, voidC:voidC).save()
 			redirect ( action: "createTransfer", id: downtime.id)
 		}else
