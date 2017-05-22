@@ -34,7 +34,7 @@ class TransferController {
 			it.item.addAll(it.from*.item?.flatten())
 			it.item.addAll(it.craftLog*.itemReforged)
 			it.item = it.item -null
-			it.item = it.item.toUnique{
+			it.item = it.item.unique{
 				[
 					equals: { delegate?.equals(it) },
 					compare: { first, second ->
