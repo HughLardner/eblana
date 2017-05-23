@@ -75,35 +75,14 @@ class Downtime {
 	}
 
 	public Set<Item> getItemCurrent(){
-		
 		 def current = [] as Set
 		 current.addAll(item)
 		 current.addAll(to*.item.flatten())
 		 current.addAll(craftLog*.item)
-		 //current.removeAll{ it.id in from*.item?.flatten()?.id}
-		 //current.removeAll{it.id in craftLog*.itemReforged?.id}
+		 current.removeAll{ it.id in from*.item?.flatten()?.id}
+		 current.removeAll{it.id in craftLog*.itemReforged?.id}
 		return  current.unique(itemComparator)
-		 
-		 
-		/*
-		def toAdd = to*.item.flatten() + craftLog*.item - null
-		println this.id + " To Add: "+ toAdd
 
-		def toRemove = from*.item?.flatten() + craftLog*.itemReforged - null
-		println this.id + " To Remove: "+ toRemove
-
-		def current = []
-		current.addAll(item)
-		println this.id + " Starting Items: "+ current
-
-		current.addAll(toAdd)
-		println this.id + " After add: "+ current
-
-		toRemove.each { current.remove(it) }
-		println this.id + " After Remove: "+ current
-
-		return current.unique(itemComparator)
-		*/
 	}
 
 	//#TODO: ugly way to do this - need to work out why not treating items with the same id as the same item

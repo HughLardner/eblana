@@ -4,6 +4,7 @@ import eblana.character.PlayerCharacter
 import eblana.event.Downtime
 import eblana.event.TransferLog
 import eblana.items.Item
+import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 import grails.validation.ValidationException
@@ -24,15 +25,16 @@ class TransferController {
 		else
 			redirect action: 'auth', params: params
 	}
-	
+	@Transactional(readOnly = false)
 	def fixItems(){
 		def downtimes = Downtime.list()
 		downtimes.each {
-			println "Starting Items: " + it.item 
-			it.item.removeAll(it.to*.item.flatten())
-			it.item.removeAll(it.craftLog*.item)
+			println "Starting Items: " + it.item
+
 			it.item.addAll(it.from*.item?.flatten())
 			it.item.addAll(it.craftLog*.itemReforged)
+			it.item.removeAll(it.to*.item.flatten())
+			it.item.removeAll(it.craftLog*.item)
 			it.item = it.item -null
 			it.item = it.item.unique{
 				[
@@ -42,10 +44,59 @@ class TransferController {
 					}
 				] as Comparator
 			}
-			
-			it.save()
+
+			it.save(flush:true)
 			println "finished Items: " + it.item
 		}
+	}
+	@Transactional(readOnly = false)
+	def fixItemsDowntime(Downtime downtime){
+		println "Starting Items: " + downtime.item
+		println "Transfered to: " + downtime.to*.item.flatten()
+		println "Transfered From: " + downtime.from*.item?.flatten()
+		println "Crafted Items: " + downtime.craftLog*.item
+		println "reforged Items: " + downtime.craftLog*.itemReforged
+
+		downtime.item.addAll(downtime.from*.item?.flatten())
+		downtime.item.addAll(downtime.craftLog*.itemReforged)
+		downtime.item.removeAll(downtime.to*.item.flatten())
+		downtime.item.removeAll(downtime.craftLog*.item)
+		downtime.item = downtime.item -null
+		println "pre unique Items: " + downtime.item
+		downtime.item = downtime.item.unique{
+			[
+				equals: { delegate?.equals(it) },
+				compare: { first, second ->
+					first?.id <=> second?.id
+				}
+			] as Comparator
+		}
+
+		downtime.save(flush:true)
+		println "finished Items: " + downtime.item
+		render downtime.item as JSON
+	}
+	@Transactional(readOnly = false)
+	def getItems(Downtime downtime){
+		def current = []
+		println "Stage 1: " + current
+		current.addAll(downtime.item)
+		println "Stage 2: " + current
+		current.addAll(downtime.craftLog.item)
+		println "Stage 3: " + current
+		
+		current.addAll(downtime.to.item.flatten())
+		println "Stage 4: " + current
+		downtime.from.item.flatten().each {
+			println it
+			if(it)
+				current.remove(it)
+		}
+		println "Stage 5: " + current
+
+		println "Stage 6: " + current
+
+		render current.collect {[it.id, it.name]} as JSON
 	}
 
 	@Secured(['ROLE_ADMIN', 'ROLE_USER'])
@@ -53,7 +104,7 @@ class TransferController {
 	def save(){
 		Downtime downtime = Downtime.get(params.long('downtime'))
 		def secUserInstance = downtime.character.user
-		if(isAuthService.hasModifyAuth(secUserInstance)){		
+		if(isAuthService.hasModifyAuth(secUserInstance)){
 			def event = downtime.event
 			def targetCharacter = PlayerCharacter.get(params.long('target'))
 			Downtime target = Downtime.findByEventAndCharacter(event, targetCharacter)
