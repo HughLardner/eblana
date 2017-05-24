@@ -39,7 +39,7 @@
 			<div class="form-group">
 				<label for="created">Created</label>
 				<g:select name="created" class="form-control" id="created"
-					from="${events}" noSelection="${['null':'Select Event...']}" />
+					from="${events}" noSelection="${['null':'Select Event...']}" optionKey="id" />
 			</div>
 			<div class="form-group">
 				<label for="internal">Internal Notes</label> <input name="internal"
@@ -48,7 +48,7 @@
 			<div class="form-group">
 				<label for="feat">Level</label>
 				<g:select name="feat" class="form-control" id="feat" from="${feat}"
-					noSelection="${['null':'Select Feat...']}" />
+					noSelection="${['null':'Select Feat...']}" optionKey="id"/>
 			</div>
 			<div class="form-group">
 				<label for="proposed" class="col-xs-3">Proposed</label>

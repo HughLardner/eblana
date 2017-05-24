@@ -30,7 +30,7 @@ class ItemController {
 	}
 
 	def search(){
-		def list = searchService.searchItem(params.long('id') ,params.name, params.power1, params.type ,params.duration ,params.created ,params.internal ,params.level ,params.proposed ,params.transferable , params.max, params.offset)
+		def list = searchService.searchItem(params.long('id') ,params.name, params.power1, params.type ,params.duration ,params.long('created') ,params.internal ,params.long('feat') ,params.proposed ,params.transferable , params.max, params.offset)
 		render(template:'serachResults', model:[itemInstanceList:list, count:list.size()])
 	}
 
