@@ -15,7 +15,6 @@ class SecUser {
 	
 	String firstName, surname, phoneNumber, email
 	String emergancyContact, emergancyContactNumber, medicalInformation, carReg
-	List character = new ArrayList<PlayerCharacter>()
 	
 	static hasMany = [character : PlayerCharacter]
 

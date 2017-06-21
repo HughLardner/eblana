@@ -393,4 +393,9 @@ class PlayerCharacterController {
 			return time1
 		return time2
 	}
+	
+	def createNew(){
+		render(view:'createNew', model:[])
+		
+	}
 }

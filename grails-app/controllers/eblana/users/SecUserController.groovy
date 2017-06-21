@@ -23,8 +23,8 @@ class SecUserController {
 	}
 
 	def list(Integer max) {
-		params.max = Math.min(max ?: 10, 100)
-		respond SecUser.list(params), model:[secUserInstanceCount: SecUser.count()]
+		params.max = 200
+		respond SecUser.findAllByEnabledAndAccountExpired(true,false,params), model:[secUserInstanceCount: SecUser.count()]
 	}
 	@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 	def show(SecUser secUserInstance) {
@@ -142,6 +142,15 @@ class SecUserController {
 	
 	def medical(){
 		def userList = SecUser.list(sort:'surname')
+		render (view:'medical', model:[instanceList : userList])
+		
+	}
+	
+	def playerDetails(){
+		
+		params.put('max', 200)
+		println params 
+		def userList = SecUser.findAllByEnabledAndAccountExpired(true,false,params)
 		render (view:'medical', model:[instanceList : userList])
 		
 	}
