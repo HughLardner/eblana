@@ -7,11 +7,7 @@
 		<div class="image__content item__name">
 			${fieldValue(bean: itemInstance, field: "name")}
 		</div>
-		<div class="image__content item__power resize">
-			<p>${fieldValue(bean: itemInstance, field: "power1")}<br>
-				${fieldValue(bean: itemInstance, field: "power2")}<br>
-				Attunes to:	${fieldValue(bean: itemInstance, field: "slot")}	
-		</div>
+		<div class="image__content item__power resize">${fieldValue(bean: itemInstance, field: "power1")}<br>${fieldValue(bean: itemInstance, field: "power2")}<g:if test="${itemInstance.power2}"><br></g:if>Attunes to: ${fieldValue(bean: itemInstance, field: "slot")}</div>
 		<div class="image__content item__attunementTime">
 			Attunement Time:
 			${fieldValue(bean: itemInstance, field: "attunementTime")}
