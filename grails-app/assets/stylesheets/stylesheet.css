@@ -89,6 +89,8 @@ p.item__header {
 	display: flex;
 	align-items: center;
 	justify-content: center; /* align vertical */
+	white-space: pre-line;
+	line-height: .7;
 }
 
 .item__attunementTime {
@@ -254,8 +256,9 @@ li {
 		display: table-header-group;
 	}
 	.character {
+		float: none !important;
 		font-size: 8pt;
-		page-break-after: always;
+		break-after: right;
 	}
 	.item-downtime {
 		display: none;

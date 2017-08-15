@@ -8,7 +8,7 @@
 			${fieldValue(bean: itemInstance, field: "name")}
 		</div>
 		<div class="image__content item__power resize">
-			${fieldValue(bean: itemInstance, field: "power1")}<br>
+			<p>${fieldValue(bean: itemInstance, field: "power1")}<br>
 				${fieldValue(bean: itemInstance, field: "power2")}<br>
 				Attunes to:	${fieldValue(bean: itemInstance, field: "slot")}	
 		</div>
