@@ -1,4 +1,5 @@
 <div id=transfer>
+
 	<g:form class="form-group">
 		<input type="hidden" name="downtime" value="${instance.id }">
 		<div class="row">
@@ -7,7 +8,7 @@
 						code="target.playerCharacter" default="Target Character" /></label>
 				<div>
 					<g:select class="form-control" id="target" name="target"
-						from="${eblana.character.PlayerCharacter.findAllByAlive(true)}"
+						from="${eblana.character.PlayerCharacter.findAllByAliveAndIdNotEqual(true,instance.character.id)}"
 						optionKey="id" value="" class="one-to-one"
 						noSelection="['null': '']" />
 				</div>
@@ -65,13 +66,12 @@
 				</g:each>
 			</div>
 		</div>
-		<div class="btn-group">
+		<div class="btn-group" >
 			<g:submitToRemote class="btn btn-primary" update="transfers"
-				action="save" controller="transfer" name="Transfer" value="Transfer"
+				action="save" controller="transfer" name="transfer" value="Transfer"
 				onFailure="error(XMLHttpRequest.responseText)"
 				before="if (!confirm('Confirm Transfer?')) {return false;}"
-				onComplete="autoSizeText();"
-				onSuccess="fetchResources()" />
+				onComplete="autoSizeText();" onSuccess="fetchResources()" id="transfer" disabled="disabled"/>
 		</div>
 	</g:form>
 
@@ -104,4 +104,19 @@
 			</g:each>
 		</table>
 	</div>
+
+	<g:javascript>
+        $(document).ready(function() {
+        $("input[name='transfer']").attr('disabled','disabled'); 
+            $("#target").change(function(){
+                // myButton is disabled if myCheckBox is checked
+                if($("#target").val()=="null"){
+                	$("input[name='transfer']").attr('disabled','disabled');   
+                }
+                else{
+               		$("input[name='transfer']").removeAttr('disabled');	                            
+                }
+            });
+        });
+    </g:javascript>
 </div>
