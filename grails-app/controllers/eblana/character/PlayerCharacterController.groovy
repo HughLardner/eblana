@@ -349,11 +349,11 @@ class PlayerCharacterController {
 		def sustainable = sustainable(character, recipe.requiredSkillToCraft)?1:0
 		def duration = 4 + sustainable
 		def newItem = new Item(
-				name:item.name,power1:"${item.power1?:''} ${recipe.power1?'<br>'+recipe.power1:''}",power2:"${item.power2?:''}${recipe.power2?'<br>'+recipe.power2:''}",
+				name:item.name,power1:"${item.power1?:''} ${recipe.power1?'\n'+recipe.power1:''}",power2:"${item.power2?:''}${recipe.power2?'<br>'+recipe.power2:''}",
 				attunementTime:attunementTime(item, recipe),
 				type:item.type,
 				duration:"Event ${downtime.event.eventNumber+duration}",
-				internalNotes:"${item.internalNotes}<br> Reforged by ${character}",
+				internalNotes:"${item.internalNotes}\n Reforged by ${character}",
 				slot:item.slot, created:downtime.event, level:reforgeRecipe.requiredSkillToCraft).save()
 		def craftLog = new CraftLog(
 				item:newItem, itemReforged:item,
