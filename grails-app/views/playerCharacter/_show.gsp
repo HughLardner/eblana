@@ -46,7 +46,7 @@
 		<ul id="triple">
 			<g:each in="${playerCharacterInstance?.feat?.sort{it.feat.name}}"
 				var="f">
-				<li><g:link controller="feat" action="show" id="${f?.feat?.id}">
+				<li class="${(!f?.feat?.prereqClass||f?.source.equals('special')||playerCharacterInstance?.classes*.id?.contains(f?.feat?.prereqClass?.id))? '':'cantUse'}"><g:link controller="feat" action="show" id="${f?.feat?.id}">
 						${f?.encodeAsHTML()}
 						${f?.effect}
 					</g:link></li>
@@ -61,7 +61,7 @@
 			<g:each
 				in="${playerCharacterInstance?.spell?.sort{it.spell?.classes?.level}}"
 				var="s">
-				<li><g:link controller="spell" action="show"
+				<li class="${playerCharacterInstance?.classes*.id?.contains(s?.spell?.classes?.id)||s?.source?.equals('Mage Born Vagabond') ? '':'cantUse'}"><g:link controller="spell" action="show"
 						id="${s?.spell?.id}">
 						${s?.encodeAsHTML()}
 						${s?.effect1}
