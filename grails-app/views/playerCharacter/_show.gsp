@@ -61,7 +61,7 @@
 			<g:each
 				in="${playerCharacterInstance?.spell?.sort{it.spell?.classes?.level}}"
 				var="s">
-				<li class="${playerCharacterInstance?.classes*.id?.contains(s?.spell?.classes?.id)||s?.source?.equals('Mage Born Vagabond') ? '':'cantUse'}"><g:link controller="spell" action="show"
+				<li class="${playerCharacterInstance?.classes*.id?.contains(s?.spell?.classes?.id)||s?.source.equals('special')||s?.source?.equals('Mage Born Vagabond') ? '':'cantUse'}"><g:link controller="spell" action="show"
 						id="${s?.spell?.id}">
 						${s?.encodeAsHTML()}
 						${s?.effect1}
