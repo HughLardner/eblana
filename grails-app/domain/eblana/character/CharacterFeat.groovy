@@ -6,6 +6,7 @@ class CharacterFeat {
 	String source
 	Effect effect
 	Boolean open
+	Classes classes
 	
 	static belongsTo = [character : PlayerCharacter]
 	

@@ -7,10 +7,10 @@ class Spell {
 	Classes classes
 	
 	String toString(){
-		return pre + " " + effect + " " + post
+		return (pre?:"") + " " + effect + " " + (post?:"")
 	}
 	
 	static mapping = {
-		sort "effect"
+		sort ([pre:'asc',effect:'asc', post:'asc'])
 	}
 }
