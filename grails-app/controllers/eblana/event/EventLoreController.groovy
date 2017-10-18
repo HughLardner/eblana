@@ -23,7 +23,7 @@ class EventLoreController {
 	}
 
 	def list(Integer max) {
-		params.max = Math.min(max ?: 10, 100)
+		params.max = max?:10000
 		respond EventLore.list(params), model:[eventLoreInstanceCount: EventLore.count()]
 	}
 

@@ -3,6 +3,7 @@ package eblana
 import eblana.character.PlayerCharacter
 import eblana.event.Downtime
 import eblana.event.Event
+import eblana.event.EventLore
 import grails.transaction.Transactional
 
 /**
@@ -31,9 +32,15 @@ class EventService {
 			return true
 		return false
 	}
-	
+
 	def attended(Event event, PlayerCharacter pc){
 		if(event?.getAttended()?.contains(pc))
+			return true
+		return false
+	}
+
+	def eventLore(Downtime downtime){
+		if(attended(downtime)&&EventLore.countByEventAndLoreInList(downtime.event,downtime.character.lore)>0)
 			return true
 		return false
 	}

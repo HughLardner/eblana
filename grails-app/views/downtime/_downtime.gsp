@@ -7,7 +7,7 @@
 			${fieldValue(bean: instance, field: "event")}
 		</h3>
 	</div>
-	<g:if test="${eventService?.attended(instance)}" >
+	<g:if test="${eventService?.eventLore(instance)}" >
 
 		<a class="btn btn-primary col-xs-2"
 			href="${createLink(controller:'EventLore', action:'fetchCharacterEventLore', params:[playerCharacter:instance.character.id, event:instance.event.id])}"><g:message
