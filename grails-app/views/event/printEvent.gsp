@@ -17,7 +17,7 @@ table, td, th {
 }
 
 div.character {
-	page-break-after: always;
+	page-break-after: right;
 }
 
 ul.feat {

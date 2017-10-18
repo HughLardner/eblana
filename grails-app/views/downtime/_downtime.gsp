@@ -1,16 +1,31 @@
+<g:set var="eventService" bean="eventService"/>
+
+
 <div class="row avoid-break">
-	<div class="col-xs-10">
+	<div class="col-xs-8">
 		<h3>
 			${fieldValue(bean: instance, field: "event")}
 		</h3>
 	</div>
+	<g:if test="${eventService?.attended(instance)}" >
+
+		<a class="btn btn-primary col-xs-2"
+			href="${createLink(controller:'EventLore', action:'fetchCharacterEventLore', params:[playerCharacter:instance.character.id, event:instance.event.id])}"><g:message
+				code="default.button.reset.label" default="Lore" /></a>
+
+	</g:if>
 	<sec:ifAllGranted roles="ROLE_ADMIN">
-		<a class="btn btn-primary col-xs-2" href="${createLink(controller:'PlayerCharacter', action:'genDowntime', id:instance.id)}"><g:message code="default.button.reset.label" default="Downtime" /></a>
-	
+		<a class="btn btn-primary col-xs-2"
+			href="${createLink(controller:'PlayerCharacter', action:'genDowntime', id:instance.id)}"><g:message
+				code="default.button.reset.label" default="Downtime" /></a>
+
 	</sec:ifAllGranted>
-	<g:if test="${instance.event.currentDowntime && !instance.event.downtimeDone && instance.event.lastEvent }">
-	<a class="btn btn-primary col-xs-2" href="${createLink(controller:'PlayerCharacter', action:'genDowntime', id:instance.id)}"><g:message code="default.button.reset.label" default="Downtime" /></a>
-</g:if>
+	<g:if
+		test="${instance.event.currentDowntime && !instance.event.downtimeDone && instance.event.lastEvent }">
+		<a class="btn btn-primary col-xs-2"
+			href="${createLink(controller:'PlayerCharacter', action:'genDowntime', id:instance.id)}"><g:message
+				code="default.button.reset.label" default="Downtime" /></a>
+	</g:if>
 </div>
 <div class="row row-eq-height bordered avoid-break">
 	<div class="col-xs-2 bordered">

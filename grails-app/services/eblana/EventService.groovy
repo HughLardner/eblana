@@ -1,5 +1,7 @@
 package eblana
 
+import eblana.character.PlayerCharacter
+import eblana.event.Downtime
 import eblana.event.Event
 import grails.transaction.Transactional
 
@@ -10,10 +12,9 @@ import grails.transaction.Transactional
 @Transactional
 class EventService {
 
-    def serviceMethod() {
+	def serviceMethod() {
+	}
 
-    }
-	
 	def lastEvent(){
 		def events = Event.findAllByDowntimeDone(true)
 		def lastEvent = events.get(0)
@@ -23,5 +24,17 @@ class EventService {
 			}
 		}
 		return lastEvent
+	}
+
+	def attended(Downtime downtime){
+		if(downtime.event.getAttended().contains(downtime.character))
+			return true
+		return false
+	}
+	
+	def attended(Event event, PlayerCharacter pc){
+		if(event?.getAttended()?.contains(pc))
+			return true
+		return false
 	}
 }
