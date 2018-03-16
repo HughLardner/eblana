@@ -254,6 +254,20 @@ class EventController {
 		}
 		render(view: "print", model: [players: results])
 	}
+	
+	def printCharacter(){
+		def players = PlayerCharacter.read(params.long("player"))
+		def event = Event.read(params.long("event"))
+		def preEvent = Event.findByEventNumber(event.eventNumber-1,[readOnly:true])
+		def fullLores = EventLore.findAllByEvent(event)
+		def results =  players.collect{ player->
+			def lore = fullLores.findAll{
+				player.lore.id.contains(it.lore.id)
+			}
+			[character:player, downtime:Downtime.findByCharacterAndEvent(player, preEvent, [readOnly:true]), lore:lore]
+		}
+		render(view: "print", model: [players: results])
+	}
 
 	def printLabels(Event event){
 		def downtimes = Downtime.findAllByEvent(event,[readOnly:true])
