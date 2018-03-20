@@ -260,7 +260,6 @@ li {
 	.character {
 		float: none !important;
 		font-size: 8pt;
-		page-break-after: right;
 	}
 	.item-downtime {
 		display: none;
