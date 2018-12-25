@@ -55,7 +55,7 @@ class PlayerCharacter {
 	]
 
 	public int getXp(){
-		return Event.executeQuery('from Event e where :character in elements(e.attended)',[character: this]).size()
+		return Event.executeQuery('from Event e where :character in elements(e.attended)',[character: this]).size()+1
 	}
 
 	public int getBody(){
